@@ -1,6 +1,6 @@
 ###Review HTML, CSS, and JavaScript
 
-This lab covers the basics of creating your first web page.  Take this starter page and play around with modifying the HTML, CSS, and JavaScript.  Use the resource [W3School](http://w3schools.com) to learn what is possible
+This lab covers the basics of creating your first web page.  Take this starter page and play around with modifying the HTML, CSS, and JavaScript.  Use the resource [W3School](http://w3schools.com) to learn what is possible.
 
 1. Copy and paste the code below into a new [jsbin.com](http://jsbin.com).
 
@@ -39,9 +39,11 @@ This lab covers the basics of creating your first web page.  Take this starter p
 
 Your app should look something like this:
  * [Code](index.html)
- * [Live App](http://jofraley.github.io/Hacking_Javascript/labs/review/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/review/index.html)
 
 ###Bonus
 
-* Experiment with different basemaps such as `topo` or `gray`.
-* Run the code locally on your machine. Eventually if your app gets larger you'll want to migrate it from JSBin to your desktop.
+* Experiment with different HTML, CSS, JavaScript.  Use [W3Schools](http://w3schools.com) as a resource to help.
+* CSS:  Change the whole page background to a color besides white (body)
+* HTML:  Modify the table to show the last and first names of two people in class (table)
+* JavaScript:  Change the onclick to show an alert box (alert)
