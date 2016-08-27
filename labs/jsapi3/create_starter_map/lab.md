@@ -1,9 +1,7 @@
-###Build a starter map (3.x JS API)
+###Build a starter map (3.17 JS API)
 
-This lab covers the basics for creating a basic starter mapping application with the 3.x JS API.
+This lab covers the basics for creating a basic starter mapping application with the 3.17 JS API.
 The starter map simply loads a default base map, centers and zooms it in.
-If you are new to ArcGIS and need a full set of instructions on building a basic mapping application
-visit the [Build your first mapping application](https://developers.arcgis.com/javascript/jshelp/intro_firstmap_amd.html) tutorial.
 
 1. Copy and paste the code below into a new [jsbin.com](http://jsbin.com).
 
@@ -12,10 +10,10 @@ visit the [Build your first mapping application](https://developers.arcgis.com/j
   <html>
   <head>
     <title>JS API Starter App</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.15/esri/css/esri.css">
+    <meta charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.15/esri/css/esri.css">
+    <script src="//js.arcgis.com/3.15compact/"></script>
     <style>
       html,body,#mapDiv {
         padding:0;
@@ -23,9 +21,6 @@ visit the [Build your first mapping application](https://developers.arcgis.com/j
         height:100%;
       }
     </style>
-
-    <script src="http://js.arcgis.com/3.15compact/"></script>
-
     <script>
       var map;
       require(["esri/map",
@@ -34,7 +29,7 @@ visit the [Build your first mapping application](https://developers.arcgis.com/j
           map = new Map("mapDiv", {
             center: [-122.68, 45.52],
             zoom: 10,
-            basemap: "dark-gray"
+            basemap: "topo"
           });
         }
       );
