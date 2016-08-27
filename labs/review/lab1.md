@@ -43,5 +43,7 @@ Your app should look something like this:
 
 ###Bonus
 
-* Experiment with different basemaps such as `topo` or `gray`.
-* Run the code locally on your machine. Eventually if your app gets larger you'll want to migrate it from JSBin to your desktop.
+* Experiment with different HTML, CSS, JavaScript
+* CSS:  Change the whole page background to a color besides white (body)
+* HTML:  Modify the table to show the last and first names of two people in class (table)
+* JavaScript:  Change the onclick to show an alert box (alert)
