@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create a Web Map</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.16/esri/css/esri.css">
+<style>
+  html,body,#mapDiv {
+    padding:0;
+    margin:0;
+    height:100%;
+    font-family: Helvetica;
+  }
+  
+  #title {
+    display: inline-block;
+    padding: 10px;
+    font-size: 20px;
+    background-color: #843520;
+    color: #f8f8f8;
+    width: 100%;
+  }
+  
+  #legendDiv{
+    background-color: #fff;
+    position: absolute !important;
+    top: 60px;
+    height: 250px;
+    right: 20px;
+    width: 150px;
+    overflow: auto;
+    padding: 10px;
+    font-size: 12px;
+  }
+  .esriScalebarLine {
+    border-color: #f8f8f8;
+  }
+  .esriScalebarLabel {
+    color: #ffffff;
+  }
+</style>
+
+<script src="http://js.arcgis.com/3.16compact/"></script>
+<script>
+  var map;
+  require([
+    "esri/map",
+    "esri/arcgis/utils",
+    "esri/dijit/Legend",
+    "esri/dijit/Scalebar",
+    "dojo/domReady!"
+    ], function(Map, arcgisUtils, Legend, Scalebar) {
+      
+      arcgisUtils.createMap("7186a92406194797aa518c06c189a71f", "mapDiv").then(function(response) {
+        
+        map = response.map;
+        
+        var legend = new Legend({
+          map: map,
+          layerInfos: (arcgisUtils.getLegendLayers(response))
+        }, "legendDiv");
+        
+        legend.startup();
+        
+        var scalebar = new Scalebar({
+          map: map,
+          scalebarUnit: "dual"
+        });
+      });
+  });
+</script>
+</head>
+
+<body>
+  <div id="title">2015 Portland Population Density - ArcGIS JS 3.x API</div>
+  <div id="mapDiv"></div>
+  <div id="legendDiv"></div>
+</body>
+</html>
