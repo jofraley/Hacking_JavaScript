@@ -36,6 +36,7 @@ In this lab you will add a feature layer to an ArcGIS API for JavaScript applica
 
 Your app should look something like this:
 * [Code](index.html)
+* [Live App](https:/jofraley.github.io/Hacking_JavaScript/labs/jsapi3/add_feature_layer/index.html)
 
 
 ###Bonus
