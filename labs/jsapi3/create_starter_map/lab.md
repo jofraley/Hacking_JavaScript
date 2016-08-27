@@ -53,5 +53,6 @@ Your app should look something like this:
 * Experiment with different basemaps such as `streets` or `gray`.  What are some of the other options for basemap names?
 * Try using a vector basemap
 * Change the zoom value, Higher number does what?  Lower number does what?
+* Commit out the line <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.15/esri/css/esri.css"> Your line should look like <!--<link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.15/esri/css/esri.css">-->  What happens?
 * Go to the [API reference](https://developers.arcgis.com/javascript/3/jsapi/map-amd.html) and look at other properties and methods available
 
