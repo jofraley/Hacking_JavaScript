@@ -21,7 +21,7 @@ In this lab you will add a feature layer to an ArcGIS API for JavaScript applica
   ```javascript
   function(Map, FeatureLayer) {
     map = new Map("mapDiv", {
-      center: [-122.68, 45.52],
+      center: [-77.029, 38.89],
       zoom: 10,
       basemap: "dark-gray"
     });
