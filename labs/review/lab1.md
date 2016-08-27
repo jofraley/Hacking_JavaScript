@@ -39,7 +39,7 @@ This lab covers the basics of creating your first web page.  Take this starter p
 
 Your app should look something like this:
  * [Code](index.html)
- * [Live App](http://jofraley.github.io/geodev-hackerlabs/labs/jsapi3/create_starter_map/index.html)
+ * [Live App](http://jofraley.github.io/geodev-hackerlabs/labs/review/index.html)
 
 ###Bonus
 

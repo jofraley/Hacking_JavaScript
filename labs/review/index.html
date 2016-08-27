@@ -1,37 +1,28 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>3.x JS API Starter App</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
-  <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.16/esri/css/esri.css">
-  <style>
-    html,body,#mapDiv {
-      padding:0;
-      margin:0;
-      height:100%;
-    }
-  </style>
-
-  <script src="http://js.arcgis.com/3.16compact/"></script>
-
-  <script>
-    var map;
-    require(["esri/map",
-             "dojo/domReady!"],
-      function(Map) {
-        map = new Map("mapDiv", {
-          center: [-122.68, 45.52],
-          zoom: 10,
-          basemap: "dark-gray"
-        });
-      }
-    );
-  </script>
+    <script>
+        function myFunction() {
+            document.getElementById("heading").innerHTML = "Hello World";
+        }
+    </script>
 </head>
-
 <body>
-  <div id="mapDiv"></div>
+<style>
+    h1{
+        color:  orange;
+        text-align:  center;
+        padding:  21;
+    }
+    p{
+        font-family:  cursive;
+        font-size:  20px;
+    }
+</style>    
+<h1 id="heading">this is a heading</h1>
+<p>this is a paragraph</p>
+<table>this is a table</table>
+<form>this is a form</form>
+<button type="button" onclick="myFunction()">Click Me!</button>
 </body>
 </html>
