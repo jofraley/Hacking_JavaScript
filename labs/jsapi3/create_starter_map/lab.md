@@ -46,9 +46,12 @@ The starter map simply loads a default base map, centers and zooms it in.
 
 Your app should look something like this:
  * [Code](index.html)
- * [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi3/create_starter_map/index.html)
+ * [Live App](http://esri.github.io/Hacking_JavaScript/labs/jsapi3/create_starter_map/index.html)
 
-###Bonus
+###Make the following changes
 
-* Experiment with different basemaps such as `topo` or `gray`.
-* Run the code locally on your machine. Eventually if your app gets larger you'll want to migrate it from JSBin to your desktop.
+* Experiment with different basemaps such as `streets` or `gray`.  What are some of the other options for basemap names?
+* Try using a vector basemap
+* Change the zoom value, Higher number does what?  Lower number does what?
+* Go to the [API reference](https://developers.arcgis.com/javascript/3/jsapi/map-amd.html) and look at other properties and methods available
+
