@@ -39,6 +39,8 @@ Your app should look something like this:
 * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/add_feature_layer/index.html)
 
 ###Bonus
-* Add a [Rail Stops feature layer](http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0) to the map,
- and then add a [Neighborhoods feature layer](http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Styled/FeatureServer/0).
+* Add a [Metro Stops feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroStops/FeatureServer/0) to the map,
+ and then add a [Metro Lines feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroLines/FeatureServer/0).
 * Ensure the layers are ordered with polygons on the bottom, lines and then points on top.
+* Make another application and add this image service https://sampleserver6.arcgisonline.com/arcgis/rest/services/Toronto/ImageServer
+[Here is the result](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/add_image_layer/index.html)
