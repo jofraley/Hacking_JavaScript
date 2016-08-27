@@ -36,7 +36,7 @@ In this lab you will add a feature layer to an ArcGIS API for JavaScript applica
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/add_feature_layer/index.html)
+
 
 ###Bonus
 * Add a [Metro Stops feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroStops/FeatureServer/0) to the map,
