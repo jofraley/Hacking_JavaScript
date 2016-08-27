@@ -26,8 +26,8 @@ Let's get started!
 ### Labs
 
 * Lab 1:  [Review HTML, CSS, and JavaScript](./labs/review/lab1.md)
-* [Build a Starter Map](./labs/jsapi3/create_starter_map/lab.md)
- * [Add Feature Layer](./add_feature_layer/lab.md)
+* Lab 2:  [Build a Starter Map](./labs/jsapi3/create_starter_map/lab.md)
+* Lab 3:  [Add Feature Layer](./labs/jsapi3/add_feature_layer/lab.md)
  * [Add Vector Tile Layer](./add_vector_tile_layer/lab.md)
  * [Style Feature Layer](./style_feature_layer/lab.md)
  * [Style Feature Layer with JSON](./style_feature_layer_with_json/lab.md)
