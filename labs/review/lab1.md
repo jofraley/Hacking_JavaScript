@@ -39,7 +39,7 @@ This lab covers the basics of creating your first web page.  Take this starter p
 
 Your app should look something like this:
  * [Code](index.html)
- * [Live App](http://jofraley.github.io/Hacking_Javascript/labs/review/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/review/index.html)
 
 ###Bonus
 
