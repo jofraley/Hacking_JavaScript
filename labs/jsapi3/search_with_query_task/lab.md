@@ -52,10 +52,10 @@ You will create a simple widget in the UI to change the query selection.
 4. Add a reference to a calcite CSS Theme (`calcite`), and configure the `body` tag to use it:
 
     ```HTML
-    <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/themes/calcite/dijit/calcite.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/themes/calcite/dijit/calcite.css">
 
     <!-- ADD a link to the calcite Dojo theme's CSS -->
-    <link rel="stylesheet" href="https://js.arcgis.com/3.16/esri/themes/calcite/esri/esri.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/themes/calcite/esri/esri.css">
 
     ...
 
@@ -141,4 +141,4 @@ You will create a simple widget in the UI to change the query selection.
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi3/search_with_query_task/index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/search_with_query_task/index.html)
