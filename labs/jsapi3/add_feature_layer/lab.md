@@ -40,8 +40,8 @@ Your app should look something like this:
 
 
 ###Bonus
-* Add a [Metro Stops feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroStops/FeatureServer/0) to the map,
- and then add a [Metro Lines feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroLines/FeatureServer/0).
+* Add the [Metro Stops feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroStops/FeatureServer/0) to the map,
+ and then add the [Metro Lines feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroLines/FeatureServer/0).
 * Ensure the layers are ordered with polygons on the bottom, lines and then points on top.
 * Make another application and add this image service https://sampleserver6.arcgisonline.com/arcgis/rest/services/Toronto/ImageServer
-[Here is the result](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/add_image_layer/index.html)
+  [Here is the result](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/add_image_layer/index.html)
