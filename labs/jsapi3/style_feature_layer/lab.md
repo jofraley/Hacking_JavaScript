@@ -9,62 +9,55 @@ In this lab you will apply custom styling to a feature layer.
   ```javascript
   require(["esri/map",
            // ADD modules 
-           "esri/layers/FeatureLayer",
-           "esri/symbols/SimpleLineSymbol",
-           "esri/renderers/UniqueValueRenderer",
            "esri/Color",
-           "dojo/domReady!"],
+            "esri/symbols/SimpleFillSymbol",
+            "esri/layers/FeatureLayer", "esri/renderers/ClassBreaksRenderer",
+            "dojo/domReady!"],
     // ADD FeatureLayer,SimpleLineSymbol,UniqueValueRenderer,Color references
-    function(Map,FeatureLayer,SimpleLineSymbol,UniqueValueRenderer,Color) {
+    function(Map,Color,SimpleFillSymbol,FeatureLayer, ClassBreakRenderer) {
       ...
   ```
 
-3. Now set up a `UniqueValueRenderer` based off the `TYPE` field.
+3. Now set up a `ClassBreakRenderer` based off the `P0010001` field.
 
   ```javascript
-  function(Map,FeatureLayer,SimpleLineSymbol,UniqueValueRenderer,Color) {
-    map = new Map("mapDiv", {
-      center: [-122.68, 45.52],
-      zoom: 10,
+  function(Map,Color,SimpleFillSymbol,FeatureLayer, ClassBreakRenderer) {
+    map = new Map("map", {
+      center: [-77.029, 38.89],
+      zoom: 12,
       basemap: "dark-gray"
     });
 
-    // ADD a Unique Value Renderer with no default symbol
-    var renderer = new UniqueValueRenderer(null, "TYPE");
+    // ADD a Class Break Renderer with no default symbol
+    var renderer = new ClassBreakRenderer(null, "P0010001")
   ```
 
-4. Next we tell the renderer how to show each `TYPE` value (the values are `MAX`, `SC`, `MAX/SC` and `CR`). We want to highlight `CR`, so we make the line wider and darker by setting the width to `4` and the `Color` opacity to `1`.
+4. Next we tell the renderer how to show each class break for `P0010001`.
 
   ```javascript
-  // Green for Type MAX
-  renderer.addValue("MAX", new SimpleLineSymbol().setColor(new Color([96, 219, 34, 0.8])));
-
-  // Yellow for Type SC
-  renderer.addValue("SC", new SimpleLineSymbol().setColor(new Color([255, 255, 34, 0.8])));
-
-  // Red for Type MAX/SC
-  renderer.addValue("MAX/SC", new SimpleLineSymbol().setColor(new Color([238, 71, 71, 0.8])));
-
-  // Light blue for Type CR
-  renderer.addValue("CR", new SimpleLineSymbol().setColor(new Color([8, 197, 249, 1])).setWidth(4));
+ renderer.addBreak(0, 500, new SimpleFillSymbol().setColor(new Color([204, 255, 204, 0.6])));
+            renderer.addBreak(500, 1500, new SimpleFillSymbol().setColor(new Color([164, 245, 157, 0.6])));
+            renderer.addBreak(1500, 2500, new SimpleFillSymbol().setColor(new Color([123, 232, 111, 0.6])));
+            renderer.addBreak(2500, 3500, new SimpleFillSymbol().setColor(new Color([77, 217, 67, 0.6])));
+            renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([14, 204, 14, 0.6])));
   ```
 
-5. Lastly, we create the `FeatureLayer`, attach the `UniqueValueRenderer`, and add it to the map. Because the renderer relies on the `TYPE` field, we tell the `FeatureLayer` to retrieve it by specifying the `outFields` parameter.
+5. Lastly, we create the `FeatureLayer`, attach the `ClassBreakRenderer`, and add it to the map. Because the renderer relies on the `P0010001` field, we tell the `FeatureLayer` to retrieve it by specifying the `outFields` parameter.
 
   ```javascript
-  var featureLayer = new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Lines/FeatureServer/0", {
+  var featureLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
     mode: FeatureLayer.MODE_ONDEMAND,
-    outFields: ["TYPE"]
+    outFields: ["P0010001"]
   });
 
   featureLayer.setRenderer(renderer);
 
   map.addLayer(featureLayer);
   ```
-
-Your app should look something like this:
+ 
+ Your app should look something like this:
  * [Code](index.html)
- * [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi3/style_feature_layer/index.html)
+ * [Live App](http://jofraley.github.io/geodev-hackerlabs/labs/jsapi3/style_feature_layer/index.html)
 
-###Bonus
- * Add a [Rail Stops feature layer](http://services.arcgis.com/uCXeTVveQzP4IIcx/ArcGIS/rest/services/PDX_Rail_Stops/FeatureServer/0) to the map and then apply custom styles to it.
+###Options
+ * Add a renderer to the Metro Stops
