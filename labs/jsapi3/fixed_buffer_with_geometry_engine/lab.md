@@ -26,7 +26,7 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
         ...
     ```
 
-3. Add a `FeatureLayer` for the Rail Stops and a `GraphicsLayer` to display the calculated buffers. Optionally modify the map to initialize at zoom level `12`:
+3. Add a `FeatureLayer` for the Metro Stops and a `GraphicsLayer` to display the calculated buffers. Optionally modify the map to initialize at zoom level `12`:
 
     ```javascript
     function(Map,
@@ -35,15 +35,14 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
              Graphic,graphicsUtils,
              SimpleFillSymbol,Color) {
       map = new Map("mapDiv", {
-        center: [-122.68, 45.52],
-        // OPTIONAL Change the initial zoom to 12
+        center: [-77.029, 38.89],
         zoom: 12,
         basemap: "dark-gray"
       });
 
       // ADD Create layers and add them to the map
       var bufferLayer = new GraphicsLayer(),
-          stopsLayer = new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0", {
+          stopsLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroStops/FeatureServer/0", {
             mode: FeatureLayer.MODE_SNAPSHOT
           });
 
@@ -73,8 +72,7 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi3/fixed_buffer_with_geometry_engine/index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/fixed_buffer_with_geometry_engine/index.html)
 
 ###Bonus
-* Make the buffer amount a top-level JavaScript variable and use the browser's interactive console to modify it between clicks.
 * See the [Interactive Buffer Lab](../buffer_with_geometry_engine/lab.md) for more bonus items.
