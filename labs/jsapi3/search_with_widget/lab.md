@@ -98,7 +98,7 @@ In this lab it will search against the neighborhood polygon layer.
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/search_with_widget/index.html)
+* [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/search_with_widget/index.html)
 
 ###Bonus
 * Add a [Metro Stops feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0) to the Search widget.
