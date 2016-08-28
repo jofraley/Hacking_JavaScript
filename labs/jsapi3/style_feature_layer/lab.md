@@ -36,10 +36,10 @@ In this lab you will apply custom styling to a feature layer.
 
   ```javascript
  renderer.addBreak(0, 500, new SimpleFillSymbol().setColor(new Color([204, 255, 204, 0.6])));
-            renderer.addBreak(500, 1500, new SimpleFillSymbol().setColor(new Color([164, 245, 157, 0.6])));
-            renderer.addBreak(1500, 2500, new SimpleFillSymbol().setColor(new Color([123, 232, 111, 0.6])));
-            renderer.addBreak(2500, 3500, new SimpleFillSymbol().setColor(new Color([77, 217, 67, 0.6])));
-            renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([14, 204, 14, 0.6])));
+ renderer.addBreak(500, 1500, new SimpleFillSymbol().setColor(new Color([164, 245, 157, 0.6])));
+ renderer.addBreak(1500, 2500, new SimpleFillSymbol().setColor(new Color([123, 232, 111, 0.6])));
+ renderer.addBreak(2500, 3500, new SimpleFillSymbol().setColor(new Color([77, 217, 67, 0.6])));
+ renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([14, 204, 14, 0.6])));
   ```
 
 5. Lastly, we create the `FeatureLayer`, attach the `ClassBreakRenderer`, and add it to the map. Because the renderer relies on the `P0010001` field, we tell the `FeatureLayer` to retrieve it by specifying the `outFields` parameter.
@@ -57,7 +57,7 @@ In this lab you will apply custom styling to a feature layer.
  
  Your app should look something like this:
  * [Code](index.html)
- * [Live App](http://jofraley.github.io/geodev-hackerlabs/labs/jsapi3/style_feature_layer/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/style_feature_layer/index.html)
 
 ###Options
  * Add a renderer to the Metro Stops
