@@ -1,63 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JS API Unique Value Renderer</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Layer Renderer</title>
+    <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css">
 
-  <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.16/esri/css/esri.css">
-  <style>
-    html,body,#mapDiv {
-      padding:0;
-      margin:0;
-      height:100%;
-    }
-  </style>
+    <style>
+        html, body, #map {
+            height:100%;
+            width:100%;
+            margin:0;
+            padding:0;
+        }
+    </style>
+    <script src="//js.arcgis.com/3.17/"></script>
+    <script>
+        require([
+            "esri/map",
+            "esri/Color",
+            "esri/symbols/SimpleFillSymbol",
+            "esri/layers/FeatureLayer", "esri/renderers/ClassBreaksRenderer",
+            "dojo/dom-class", "dojo/_base/event", "dojo/domReady!"
+        ], function(
+                Map,
+                Color,
+                SimpleFillSymbol,
+                FeatureLayer, ClassBreakRenderer,
+                domClass, event
+        ) {
+            map = new Map("map",{
+                basemap: "dark-gray",
+                center: [-77.029, 38.89],
+                zoom: 12,
+                slider: false
+            });
 
-  <script src="http://js.arcgis.com/3.16compact/"></script>
-  <script>
-    var map;
-    require(["esri/map",
-             "esri/layers/FeatureLayer",
-             "esri/symbols/SimpleLineSymbol",
-             "esri/renderers/UniqueValueRenderer",
-             "esri/Color",
-             "dojo/domReady!"],
-      function(Map,FeatureLayer,SimpleLineSymbol,UniqueValueRenderer,Color) {
-        map = new Map("mapDiv", {
-          center: [-122.68, 45.52],
-          zoom: 10,
-          basemap: "dark-gray"
+            var renderer = new ClassBreakRenderer(null, "P0010001");
+
+            renderer.addBreak(0, 500, new SimpleFillSymbol().setColor(new Color([204, 255, 204, 0.6])));
+            renderer.addBreak(500, 1500, new SimpleFillSymbol().setColor(new Color([164, 245, 157, 0.6])));
+            renderer.addBreak(1500, 2500, new SimpleFillSymbol().setColor(new Color([123, 232, 111, 0.6])));
+            renderer.addBreak(2500, 3500, new SimpleFillSymbol().setColor(new Color([77, 217, 67, 0.6])));
+            renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([14, 204, 14, 0.6])));
+
+            var blockGroups = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0");
+
+            blockGroups.setRenderer(renderer);
+
+            map.addLayer(blockGroups);
+
         });
-
-        var renderer = new UniqueValueRenderer(null, "TYPE");
-
-        // Green for Type MAX
-        renderer.addValue("MAX", new SimpleLineSymbol().setColor(new Color([96, 219, 34, 0.8])));
-
-        // Yellow for Type SC
-        renderer.addValue("SC", new SimpleLineSymbol().setColor(new Color([255, 255, 34, 0.8])));
-
-        // Red for Type MAX/SC
-        renderer.addValue("MAX/SC", new SimpleLineSymbol().setColor(new Color([238, 71, 71, 0.8])));
-
-        // Light blue for Type CR
-        renderer.addValue("CR", new SimpleLineSymbol().setColor(new Color([8, 197, 249, 1])).setWidth(4));
-
-        var featureLayer = new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Lines/FeatureServer/0",{
-          mode: FeatureLayer.MODE_ONDEMAND,
-          outFields: ["TYPE"]
-        });
-
-        featureLayer.setRenderer(renderer);
-
-        map.addLayer(featureLayer);
-      }
-    );
-  </script>
+    </script>
 </head>
-
 <body>
-  <div id="mapDiv"></div>
+<div id="search"></div>
+<div id="map"></div>
 </body>
 </html>
