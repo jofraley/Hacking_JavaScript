@@ -57,8 +57,8 @@ In this lab it will search against the neighborhood polygon layer.
     ```javascript
     function(Map,Search) {
       map = new Map("mapDiv", {
-        center: [-122.68, 45.52],
-        zoom: 10,
+        center: [-77.029, 38.89],
+        zoom: 12,
         basemap: "dark-gray"
       });
 
@@ -70,36 +70,36 @@ In this lab it will search against the neighborhood polygon layer.
       search.startup();
     ```
 
-    At this point, the map will allow you to search against the default ArcGIS Online Geocoding Service. Give it a go. You can enter an address or point of interest (like `Providence Park` or `PDX`) or a geography (like `Oregon` or `USA`).
+    At this point, the map will allow you to search against the default ArcGIS Online Geocoding Service. Give it a go. You can enter an address or point of interest (like `Tysons Corner` or `DCA`) or a geography (like `Maryland` or `USA`).
 
-6. Configure the Search Widget to also search against the Neighborhoods Feature Service. Insert the following code directly before the `search.startup()` line added above.
+6. Configure the Search Widget to also search against the Metro Stops Feature Service. Insert the following code directly before the `search.startup()` line added above.
 
     ```javascript
     var sources = search.get("sources");
 
     sources.push({
-      featureLayer: new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Styled/FeatureServer/0"),
-      name: "Neighborhood Search",
+      featureLayer: new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+      name: "Metro Stop Search",
       searchFields: ["NAME"],
       displayField: "NAME",
       exactMatch: false,
-      outFields: ["NAME","AVGHINC_CY","MEDAGE_CY"],
-      placeholder: "St. Johns",
+      outFields: ["NAME","LINE","ADDRESS"],
+      placeholder: "Dupoin Circle",
       enableSuggestions: true,
 
       // Create an InfoTemplate for the popup
-      infoTemplate: new InfoTemplate("Neighborhood","Name: ${NAME}</br>Avg. Household Income $ ${AVGHINC_CY}</br>Median Age: ${MEDAGE_CY}")
+      infoTemplate: new InfoTemplate("Metro Stop","Name: ${NAME}</br>Line: ${LINE}</br>Address: ${ADDRESS}")
     });
 
     search.set("sources",sources);
     ```
 
-7. In JSBin, run the app > select the pulldown on the left-hand side of the search box > select `Neighborhood Search` from the pull down list > enter "St. John's". The app should highlight and zoom into the neighborhood polygon, and a popup should also be displayed.
+7. In JSBin, run the app > select the pulldown on the left-hand side of the search box > select `Metro Stop Search` from the pull down list > enter "Dupoint Circle". The app should highlight and zoom into the metro stop point, and a popup should also be displayed.
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi3/search_with_widget/index.html)
+* [Live App](http://jofraley.github.io/geodev-hackerlabs/labs/jsapi3/search_with_widget/index.html)
 
 ###Bonus
-* Add a [Rail Stops feature layer](http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0) to the Search widget.
-* Customize the popup's CSS. Hint: see the [Search with customization](https://developers.arcgis.com/javascript/jssamples/search_customized.html) sample.
+* Add a [Metro Stops feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0) to the Search widget.
+* Customize the popup's CSS. Add the WEB_URL for the stops so they show in the popup.  Hint: see the [Search with customization](https://developers.arcgis.com/javascript/jssamples/search_customized.html) sample.
