@@ -44,4 +44,5 @@ Your app should look something like this:
  and then add the [Metro Lines feature layer](https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroLines/FeatureServer/0).
 * Ensure the layers are ordered with polygons on the bottom, lines and then points on top.
 * Make another application and add this image service https://sampleserver6.arcgisonline.com/arcgis/rest/services/Toronto/ImageServer
-  [Here is the result](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/add_image_layer/index.html)
+
+  [Here is the result](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/add_image_layer/index.html)
