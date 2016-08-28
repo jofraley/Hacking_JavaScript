@@ -46,7 +46,7 @@ The starter map simply loads a default base map, centers and zooms it in.
 
 Your app should look something like this:
  * [Code](index.html)
- * [Live App](http://esri.github.io/Hacking_JavaScript/labs/jsapi3/create_starter_map/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/create_starter_map/index.html)
 
 ###Make the following changes
 
