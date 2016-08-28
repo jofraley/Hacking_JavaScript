@@ -8,7 +8,7 @@ In this lab you will use code to style a popup.
 
   ```javascript
   require(["esri/map",
-          "esri/layers/FeatureLayer",
+          "esri/layers/FeatureLayer", 
           "esri/dijit/PopupTemplate",
           "dojo/domReady!"],
       function(Map, FeatureLayer, PopupTemplate) {
@@ -19,54 +19,51 @@ In this lab you will use code to style a popup.
 
   ```javascript
   function(Map, FeatureLayer, PopupTemplate) {
-    map = new Map("mapDiv", {
-      center: [-122.68, 45.52],
-      zoom: 10,
+    map = new Map("map", {
+      center: [-77.029, 38.89],
+      zoom: 12,
       basemap: "dark-gray"
     });
 
     var popupTemplate = new PopupTemplate({
-      title: "Neighborhoods",
+      title: "Block Groups",
       // Fields
       fieldInfos: [
-        { fieldName: "TOTPOP_CY", label: "Total Population", visible: true, format: { places: 0 } },
-        { fieldName: "AVGHINC_CY", label: "Average Income", visible: true, format: { places: 0 } },
-        { fieldName: "MEDAGE_CY", label: "Median Age", visible: true, format: { places: 0 } },
-        { fieldName: "AREA", visible: true, format: { places: 2 } }
+       { fieldName: "P0010001", label: "Total Population", visible: true, format: { places: 0 } },
+       { fieldName: "H0010001", label: "Total Housing Units", visible: true, format: { places: 0 } },
+       { fieldName: "H0010002", label: "Occupied Housing Units", visible: true, format: { places: 0 } },
+       { fieldName: "H0010003", label: "Vacant Housing Units", visible: true, format: { places: 0 } }
       ],
       // Charts
-      mediaInfos: [
-        {
-          title: "Demographics",
-          type: "piechart",
-          value: { 
-            fields: [ 
-              "TOTPOP_CY", 
-              "AVGHINC_CY", 
-            ] 
-          }
-        }
-      ]
-    });
+     mediaInfos: [
+     {
+      title: "Demographics",
+      type: "barchart",
+      value: {
+        fields: [
+          "H0010001",
+          "H0010002",
+          "H0010003"
+        ]
+      }
+     }]
+   });
   ```
 5. Now add the template to the feature layer and add the featurelayer to the map.
 
   ```javascript
-    var featureLayer = new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Enriched/FeatureServer/0", 
-      {
-        outFields: ["*"],
-        infoTemplate: popupTemplate
-      }
-    );
-    
-    map.addLayer(featureLayer);
+   var featureLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
+      outFields: ["*"],
+      infoTemplate: popupTemplate
+   });
+   map.addLayer(featureLayer);
   ```
 
-6. Confirm that the JSBin `Output` panel shows styled popups when you click on the neighborhoods.
+6. Confirm that the JSBin `Output` panel shows styled popups when you click on the block groups.
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi3/style_simple_popup/index.html)
+* [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/style_simple_popup/index.html)
 
 Bonus
 * Combine the code from the last lab with this one so the features are styled along with the popup.

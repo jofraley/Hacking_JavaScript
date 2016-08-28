@@ -13,15 +13,15 @@ In this lab you will apply custom styling to a feature layer.
             "esri/symbols/SimpleFillSymbol",
             "esri/layers/FeatureLayer", "esri/renderers/ClassBreaksRenderer",
             "dojo/domReady!"],
-    // ADD FeatureLayer,SimpleLineSymbol,UniqueValueRenderer,Color references
-    function(Map,Color,SimpleFillSymbol,FeatureLayer, ClassBreakRenderer) {
+    // ADD FeatureLayer,SimpleLineSymbol,ClassBreaksRenderer,Color references
+    function(Map,Color,SimpleFillSymbol,FeatureLayer, ClassBreaksRenderer) {
       ...
   ```
 
-3. Now set up a `ClassBreakRenderer` based off the `P0010001` field.
+3. Now set up a `ClassBreaksRenderer` based off the `P0010001` field.
 
   ```javascript
-  function(Map,Color,SimpleFillSymbol,FeatureLayer, ClassBreakRenderer) {
+  function(Map,Color,SimpleFillSymbol,FeatureLayer, ClassBreaksRenderer) {
     map = new Map("map", {
       center: [-77.029, 38.89],
       zoom: 12,
@@ -29,7 +29,7 @@ In this lab you will apply custom styling to a feature layer.
     });
 
     // ADD a Class Break Renderer with no default symbol
-    var renderer = new ClassBreakRenderer(null, "P0010001")
+    var renderer = new ClassBreaksRenderer(null, "P0010001")
   ```
 
 4. Next we tell the renderer how to show each class break for `P0010001`.
@@ -42,7 +42,7 @@ In this lab you will apply custom styling to a feature layer.
  renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([14, 204, 14, 0.6])));
   ```
 
-5. Lastly, we create the `FeatureLayer`, attach the `ClassBreakRenderer`, and add it to the map. Because the renderer relies on the `P0010001` field, we tell the `FeatureLayer` to retrieve it by specifying the `outFields` parameter.
+5. Lastly, we create the `FeatureLayer`, attach the `ClassBreaksRenderer`, and add it to the map. Because the renderer relies on the `P0010001` field, we tell the `FeatureLayer` to retrieve it by specifying the `outFields` parameter.
 
   ```javascript
   var featureLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
