@@ -26,7 +26,7 @@
                 Map,
                 Color,
                 SimpleFillSymbol,
-                FeatureLayer, ClassBreakRenderer
+                FeatureLayer, ClassBreaksRenderer
         ) {
             map = new Map("map",{
                 basemap: "dark-gray",
@@ -34,7 +34,7 @@
                 zoom: 12
             });
 
-            var renderer = new ClassBreakRenderer(null, "P0010001");
+            var renderer = new ClassBreaksRenderer(null, "P0010001");
 
             renderer.addBreak(0, 500, new SimpleFillSymbol().setColor(new Color([204, 255, 204, 0.6])));
             renderer.addBreak(500, 1500, new SimpleFillSymbol().setColor(new Color([164, 245, 157, 0.6])));
