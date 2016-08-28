@@ -1,76 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JS API Simple Popup</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
+    <title>Layer Renderer</title>
+    <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css">
 
-  <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.16/esri/css/esri.css">
-  <style>
-    html,body,#mapDiv {
-      padding:0;
-      margin:0;
-      height:100%;
-    }
-  </style>
-
-  <script src="http://js.arcgis.com/3.16compact/"></script>
-  <script>
-    var map;
-    require(["esri/map",
-             "esri/layers/FeatureLayer",
-             "esri/dijit/PopupTemplate",
-             "esri/renderers/jsonUtils",
-             "dojo/domReady!"],
-      function(Map, FeatureLayer, PopupTemplate, JsonUtils) {
-        map = new Map("mapDiv", {
-          center: [-122.68, 45.52],
-          zoom: 10,
-          basemap: "dark-gray"
-        });
-      
-      var popupTemplate = new PopupTemplate({
-        title: "Neighborhoods",
-        // Fields
-        fieldInfos: [
-          { fieldName: "TOTPOP_CY", label: "Total Population", visible: true, format: { places: 0 } },
-          { fieldName: "AVGHINC_CY", label: "Average Income", visible: true, format: { places: 0 } },
-          { fieldName: "MEDAGE_CY", label: "Median Age", visible: true, format: { places: 0 } },
-          { fieldName: "AREA", visible: true, format: { places: 2 } }
-        ],
-        // Charts
-        mediaInfos: [
-          {
-            title: "Demographics",
-            type: "piechart",
-            value: { 
-              fields: [ 
-                "TOTPOP_CY", 
-                "AVGHINC_CY", 
-              ] 
-            }
-          }
-        ]
-      });
-      
-      var featureLayer = new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Enriched/FeatureServer/0", 
-        {
-          outFields: ["*"],
-          infoTemplate: popupTemplate
+    <style>
+        html, body, #map {
+            height:100%;
+            width:100%;
+            margin:0;
+            padding:0;
         }
-      );
+    </style>
+    <script src="//js.arcgis.com/3.17/"></script>
+    <script>
+        require([
+            "esri/map",
+            "esri/Color",
+            "esri/symbols/SimpleFillSymbol",
+            "esri/layers/FeatureLayer", "esri/renderers/ClassBreaksRenderer",
+            "esri/dijit/PopupTemplate",
+            "dojo/domReady!"
+        ], function(
+                Map,
+                Color,
+                SimpleFillSymbol,
+                FeatureLayer, ClassBreakRenderer,
+                PopupTemplate
+        ) {
+            map = new Map("map",{
+                basemap: "dark-gray",
+                center: [-77.029, 38.89],
+                zoom: 12
+            });
 
-      var renderer = JsonUtils.fromJson(  {"visualVariables":[{"type":"colorInfo","field":"TOTPOP_CY","normalizationField":"AREA","stops":[{"value":1280,"color":[116,77,48,255],"label":"< 1,280"},{"value":3212,"color":[175,107,47,255],"label":null},{"value":5144,"color":[214,146,83,255],"label":"5,144"},{"value":7076,"color":[235,195,154,255],"label":null},{"value":9008,"color":[255,245,230,255],"label":"> 9,008"}]},{"type":"sizeInfo","target":"outline","expression":"view.scale","stops":[{"size":2,"value":42474},{"size":1,"value":132730},{"size":0.5,"value":530919},{"size":0,"value":1061838}]}],"authoringInfo":{"visualVariables":[{"type":"colorInfo","minSliderValue":0,"maxSliderValue":17654.51572245626,"theme":"high-to-low"}]},"type":"classBreaks","field":"TOTPOP_CY","minValue":-9007199254740991,"classBreakInfos":[{"symbol":{"color":[170,170,170,255],"outline":{"color":[153,153,153,128],"width":0.75,"type":"esriSLS","style":"esriSLSSolid"},"type":"esriSFS","style":"esriSFSSolid"},"classMaxValue":9007199254740991}],"normalizationType":"esriNormalizeByField","normalizationField":"AREA"});
-        
-        featureLayer.setRenderer(renderer);
-   
-        map.addLayer(featureLayer);
-      }
-    );
-  </script>
+            var popupTemplate = new PopupTemplate({
+                title: "Block Groups",
+                // Fields
+                fieldInfos: [
+                    { fieldName: "P0010001", label: "Total Population", visible: true, format: { places: 0 } },
+                    { fieldName: "H0010001", label: "Total Housing Units", visible: true, format: { places: 0 } },
+                    { fieldName: "H0010002", label: "Occupied Housing Units", visible: true, format: { places: 0 } },
+                    { fieldName: "H0010003", label: "Vacant Housing Units", visible: true, format: { places: 0 } }
+                ],
+                // Charts
+                mediaInfos: [
+                    {
+                        title: "Demographics",
+                        type: "barchart",
+                        value: {
+                            fields: [
+                                "H0010001",
+                                "H0010002",
+                                "H0010003"
+                            ]
+                        }
+                    }
+                ]
+            });
+
+            var renderer = new ClassBreakRenderer(null, "P0010001");
+            renderer.addBreak(0, 500, new SimpleFillSymbol().setColor(new Color([204, 255, 204, 0.6])));
+            renderer.addBreak(500, 1500, new SimpleFillSymbol().setColor(new Color([164, 245, 157, 0.6])));
+            renderer.addBreak(1500, 2500, new SimpleFillSymbol().setColor(new Color([123, 232, 111, 0.6])));
+            renderer.addBreak(2500, 3500, new SimpleFillSymbol().setColor(new Color([77, 217, 67, 0.6])));
+            renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([14, 204, 14, 0.6])));
+
+            var featureLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
+                outFields: ["*"],
+                infoTemplate: popupTemplate
+            });
+
+            featureLayer.setRenderer(renderer);
+            map.addLayer(featureLayer);
+        });
+    </script>
 </head>
-
 <body>
-  <div id="mapDiv"></div>
+<div id="search"></div>
+<div id="map"></div>
 </body>
 </html>
