@@ -31,7 +31,7 @@ Let's get started!
 * Lab 4:  [Style Feature Layer](./labs/jsapi3/style_feature_layer/lab.md)
 * Lab 5:  [Style a layer popup](./labs/jsapi3/style_simple_popup/lab.md)
 * Lab 6:  [Search with a Widget](./labs/jsapi3/search_with_widget/lab.md)
- * [Search with a Query Task](./labs/jsapi3/search_with_query_task/lab.md)
+* Lab 7:  [Search with a Query Task](./labs/jsapi3/search_with_query_task/lab.md)
  * [Client-side Buffering](./labs/jsapi3/fixed_buffer_with_geometry_engine/lab.md)
  * [Client-side Buffering with UI](./labs/jsapi3/buffer_with_geometry_engine/lab.md)
  * [Create a JS API 3.x WebMap App](../labs/jsapi3/webmap_apps/create_jsapi3_app/lab.md)
