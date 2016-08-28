@@ -28,13 +28,13 @@ Let's get started!
 * Lab 1:  [Review HTML, CSS, and JavaScript](./labs/review/lab1.md)
 * Lab 2:  [Build a Starter Map](./labs/jsapi3/create_starter_map/lab.md)
 * Lab 3:  [Add Feature Layer](./labs/jsapi3/add_feature_layer/lab.md)
-* Lab 4:  [Style Feature Layer](./style_feature_layer/lab.md)
- * [Style a layer popup](./style_simple_popup/lab.md)
- * [Search with a Widget](./search_with_widget/lab.md)
- * [Search with a Query Task](./search_with_query_task/lab.md)
- * [Client-side Buffering](./fixed_buffer_with_geometry_engine/lab.md)
- * [Client-side Buffering with UI](./buffer_with_geometry_engine/lab.md)
- * [Create a JS API 3.x WebMap App](../webmap_apps/create_jsapi3_app/lab.md)
+* Lab 4:  [Style Feature Layer](./labs/jsapi3/style_feature_layer/lab.md)
+ * [Style a layer popup](./labs/jsapi3/style_simple_popup/lab.md)
+ * [Search with a Widget](./labs/jsapi3/search_with_widget/lab.md)
+ * [Search with a Query Task](./labs/jsapi3/search_with_query_task/lab.md)
+ * [Client-side Buffering](./labs/jsapi3/fixed_buffer_with_geometry_engine/lab.md)
+ * [Client-side Buffering with UI](./labs/jsapi3/buffer_with_geometry_engine/lab.md)
+ * [Create a JS API 3.x WebMap App](../labs/jsapi3/webmap_apps/create_jsapi3_app/lab.md)
 
 You can see a high-level overview of the differences between the 3.x and 4.x JS APIs [here](https://developers.arcgis.com/javascript/latest/guide/choose-version/index.html) and a more detailed comparison [here](https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html).
 
