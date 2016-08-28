@@ -29,7 +29,7 @@ Let's get started!
 * Lab 2:  [Build a Starter Map](./labs/jsapi3/create_starter_map/lab.md)
 * Lab 3:  [Add Feature Layer](./labs/jsapi3/add_feature_layer/lab.md)
 * Lab 4:  [Style Feature Layer](./labs/jsapi3/style_feature_layer/lab.md)
- * [Style a layer popup](./labs/jsapi3/style_simple_popup/lab.md)
+* Lab 5:  [Style a layer popup](./labs/jsapi3/style_simple_popup/lab.md)
  * [Search with a Widget](./labs/jsapi3/search_with_widget/lab.md)
  * [Search with a Query Task](./labs/jsapi3/search_with_query_task/lab.md)
  * [Client-side Buffering](./labs/jsapi3/fixed_buffer_with_geometry_engine/lab.md)
