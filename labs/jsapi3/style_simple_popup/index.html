@@ -27,7 +27,7 @@
                 Map,
                 Color,
                 SimpleFillSymbol,
-                FeatureLayer, ClassBreakRenderer,
+                FeatureLayer, ClassBreaksRenderer,
                 PopupTemplate
         ) {
             map = new Map("map",{
@@ -61,7 +61,7 @@
                 ]
             });
 
-            var renderer = new ClassBreakRenderer(null, "P0010001");
+            var renderer = new ClassBreaksRenderer(null, "P0010001");
             renderer.addBreak(0, 500, new SimpleFillSymbol().setColor(new Color([204, 255, 204, 0.6])));
             renderer.addBreak(500, 1500, new SimpleFillSymbol().setColor(new Color([164, 245, 157, 0.6])));
             renderer.addBreak(1500, 2500, new SimpleFillSymbol().setColor(new Color([123, 232, 111, 0.6])));
