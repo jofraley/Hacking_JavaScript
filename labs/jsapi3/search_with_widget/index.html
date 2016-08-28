@@ -5,9 +5,9 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-  <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.16/esri/css/esri.css">
+  <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.17/esri/css/esri.css">
   <style>
-    html,body,#mapDiv {
+    html,body,#map {
       padding:0;
       margin:0;
       height:100%;
@@ -21,19 +21,19 @@
     }
   </style>
 
-  <script src="http://js.arcgis.com/3.16compact/"></script>
+  <script src="//js.arcgis.com/3.17/"></script>
 
   <script>
-    var map;
     require(["esri/map",
-             "esri/layers/FeatureLayer",
-             "esri/InfoTemplate",
-             "esri/dijit/Search",
-             "dojo/domReady!"],
-      function(Map,FeatureLayer,InfoTemplate,Search) {
-        map = new Map("mapDiv", {
-          center: [-122.68, 45.52],
-          zoom: 10,
+      // Add Search, FeatureLayer and InfoTemplate modules
+      "esri/dijit/Search",
+      "esri/layers/FeatureLayer",
+      "esri/InfoTemplate",
+      "dojo/domReady!"],
+      function(Map, Search, FeatureLayer, InfoTemplate) {
+        map = new Map("map", {
+          center: [-77.029, 38.89],
+          zoom: 12,
           basemap: "dark-gray"
         });
         var search = new Search({
@@ -41,16 +41,16 @@
         }, "searchDiv");
         var sources = search.get("sources");
         sources.push({
-          featureLayer: new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Styled/FeatureServer/0"),
-          name: "Neighborhood Search",
+          featureLayer: new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+          name: "Metro Stop Search",
           searchFields: ["NAME"],
           displayField: "NAME",
           exactMatch: false,
-          outFields: ["NAME","AVGHINC_CY","MEDAGE_CY"],
-          placeholder: "St. Johns",
+          outFields: ["NAME","LINE","ADDRESS"],
+          placeholder: "Dupont Circle",
           enableSuggestions: true,
           // Create an InfoTemplate for the popup
-          infoTemplate: new InfoTemplate("Neighborhood","Name: ${NAME}</br>Avg. Household Income $ ${AVGHINC_CY}</br>Median Age: ${MEDAGE_CY}")
+          infoTemplate: new InfoTemplate("Stop Name","Name: ${NAME}</br>Line: ${LINE}</br>Address: ${ADDRESS}")
         });
         search.set("sources",sources);
         search.startup();
@@ -60,7 +60,7 @@
 </head>
 
 <body>
-  <div id="mapDiv"></div>
+  <div id="map"></div>
 
   <!-- ADD new div for the search widget -->
   <div id="searchDiv"></div>
