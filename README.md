@@ -47,7 +47,8 @@ You can see a high-level overview of the differences between the 3.x and 4.x JS 
  * Lab 7:  [Search with a Widget](./labs/jsapi/search_with_widget/lab.md)
  * Lab 8:  [Search with a Query Task](./labs/jsapi/search_with_query_task/lab.md)
  * Lab 9:  [Client-side Buffering](./labs/jsapi/buffer_with_geometry_engine/lab.md)
-
+ * Lab 10: [Create a JS API 4.x WebMap App](./labs/webmap_apps/create_jsapi_app/lab.md)
+ * 
 ## Data and Terms of Use
 
 Please see [www.civicapps.org](http://www.civicapps.org/), [developer.trimet.org/gis](developer.trimet.org/gis), [http://www.portlandoregon.gov/bts](http://www.portlandoregon.gov/bts), and [http://opendata.dc.gov/](http://opendata.dc.gov/) for the data terms of use.
