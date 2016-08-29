@@ -56,7 +56,7 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
     var bufferSymbol = new SimpleFillSymbol(SimpleFillSymbol.STYLE_SOLID, undefined,
                        new Color([0,100,255,0.4]));
 
-    // ADD A function to buffer the Rail Stops
+    // ADD A function to buffer the Metro Stops
     map.on('click', function bufferStopsLayer() {
       var stopGeoms = graphicsUtils.getGeometries(stopsLayer.graphics);
       geometryEngineAsync.union(stopGeoms).then(function (stops) {
