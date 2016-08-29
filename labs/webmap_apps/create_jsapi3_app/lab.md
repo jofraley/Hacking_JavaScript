@@ -33,7 +33,7 @@ In this lab, you will use the ArcGIS JS 3.x API to load a map by a `WebmapID` in
 	    	], function(Map, arcgisUtils) {
 
 		    	// ADD this to create the map from the webmapid
-				arcgisUtils.createMap("7186a92406194797aa518c06c189a71f", "mapDiv").then(function(response) {
+				arcgisUtils.createMap("901f7926b460472087c1d102ae48c106", "mapDiv").then(function(response) {
 					map = response.map;
 				});
 
@@ -44,7 +44,7 @@ In this lab, you will use the ArcGIS JS 3.x API to load a map by a `WebmapID` in
 
 Your app should look something like this:
  * [Code](index.html)
- * [Live App](http://esri.github.io/geodev-hackerlabs/develop/webmap_apps/create_jsapi3_app/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi3_app/index.html)
 
 ###Bonus
 * Use the esri/dijit/Legend to add a legend to the upper right of the app. Apply CSS to style the legend.
