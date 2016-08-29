@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.16/esri/css/esri.css">
+<link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.17/esri/css/esri.css">
 <style>
   html,body,#mapDiv {
     padding:0;
@@ -42,7 +42,7 @@
   }
 </style>
 
-<script src="http://js.arcgis.com/3.16compact/"></script>
+<script src="http://js.arcgis.com/3.17/"></script>
 <script>
   var map;
   require([
@@ -53,7 +53,7 @@
     "dojo/domReady!"
     ], function(Map, arcgisUtils, Legend, Scalebar) {
       
-      arcgisUtils.createMap("7186a92406194797aa518c06c189a71f", "mapDiv").then(function(response) {
+      arcgisUtils.createMap("901f7926b460472087c1d102ae48c106", "mapDiv").then(function(response) {
         
         map = response.map;
         
@@ -74,7 +74,7 @@
 </head>
 
 <body>
-  <div id="title">2015 Portland Population Density - ArcGIS JS 3.x API</div>
+  <div id="title">Washington DC Crime</div>
   <div id="mapDiv"></div>
   <div id="legendDiv"></div>
 </body>
