@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://basemapsbeta.arcgis.com/preview/app/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no">
+  <title>Vector Tile Demo</title>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+	#basemapsDiv {
+      position: absolute;
+      z-index: 50;
+      top: 0px;
+      right: 0px;
+      background-color: black;
+      opacity: 0.8;
+      color: snow;
+      padding: 10px;
+      border-radius: 10px;
+      visibility: hidden;
+      max-height: 85%;
+      overflow-y: scroll;
+    }
+  </style>
+
+  <script src="https://js.arcgis.com/4.0/"></script>
+
+  <script>
+    var map;
+
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/VectorTileLayer",
+	  "dojo/dom-construct",
+      "dojo/dom",
+      "dojo/on",
+      "dojo/dom-style",
+      "dojo/query",
+      "dojo/domReady!"
+    ], function (Map, MapView, VectorTileLayer, domConstruct, dom, on, domStyle, query) {
+
+      // Create a Map
+      var map = new Map();
+	  var basemaps = ["dark-gray-vector", "gray-vector", "streets-vector", "topo-vector", "streets-night-vector", "streets-relief-vector", "streets-navigation-vector"]
+
+      // Make map view and bind it to the map
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-90.52, 37.78],
+        zoom: 4
+      });
+	  view.then(function() {
+	    dom.byId("basemapsDiv").style.visibility = "visible";
+		basemaps.forEach(function(baseItem, i){
+		  domConstruct.create("span", {
+		    id: baseItem,
+		    innerHTML: baseItem + "<br>"
+		  }, dom.byId("basemapsDiv"));
+		
+		  domConstruct.create("img", {
+		    src:  "images/" + baseItem + ".jpg",
+		    id:  "image_" + i,
+		    title: baseItem
+		  }, dom.byId(baseItem));
+		  dom.byId(baseItem).innerHTML += "<br>";
+		
+		  on(dom.byId(baseItem), "click", function() {
+            query("img").style({
+              "box-shadow": null,
+              "border-style": null,
+              "border-width": null,
+              "border-color": null
+            });
+            // Set a border to the selected slide to indicate it has been selected
+            domStyle.set(dom.byId("image_" + i), {
+              "box-shadow": "0px 0px 12px #ffffff",
+              "border-style": "solid",
+              "border-width": "thin",
+              "border-color": "white"
+            });
+			tileLyr.visible = false;
+			map.basemap = baseItem;
+	      });
+		});
+	  });
+      /********************************************************************  
+       * Add a tile layer to the map
+       * 
+       * The url property must either point to the style as 
+       * demonstrated below or to the URL of a Vector Tile service 
+       * such as: 
+       * https://basemaps.arcgis.com/b2/arcgis/rest/services/World_Basemap/VectorTileServer
+       *********************************************************************/
+      var tileLyr = new VectorTileLayer({
+        url: "http://www.arcgis.com/sharing/rest/content/items/850db44b9eb845d3bd42b19e8aa7a024/resources/styles/root.json",
+		visible: true
+      });
+      map.add(tileLyr);
+    });
+
+
+  </script>
+</head>
+<body>
+  <div id="viewDiv"></div>
+  <div id="basemapsDiv"></div>
+</body></html>
