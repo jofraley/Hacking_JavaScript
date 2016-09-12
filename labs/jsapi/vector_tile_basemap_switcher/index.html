@@ -50,7 +50,7 @@
 
       // Create a Map
       var map = new Map();
-	  var basemaps = ["dark-gray-vector", "gray-vector", "streets-vector", "topo-vector", "streets-night-vector", "streets-relief-vector", "streets-navigation-vector"]
+	  var basemaps = ["dark-gray", "gray", "streets", "topo", "streets-night", "streets-relief", "streets-navigation"]
 
       // Make map view and bind it to the map
       var view = new MapView({
@@ -89,7 +89,7 @@
               "border-color": "white"
             });
 			tileLyr.visible = false;
-			map.basemap = baseItem;
+			map.basemap = baseItem + "-vector";
 	      });
 		});
 	  });
