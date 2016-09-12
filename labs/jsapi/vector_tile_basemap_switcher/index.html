@@ -49,7 +49,10 @@
     ], function (Map, MapView, VectorTileLayer, domConstruct, dom, on, domStyle, query) {
 
       // Create a Map
-      var map = new Map();
+      var map = new Map({
+		basemap:  "dark-gray-vector"
+	  });
+	  
 	  var basemaps = ["dark-gray", "gray", "streets", "topo", "streets-night", "streets-relief", "streets-navigation"]
 
       // Make map view and bind it to the map
@@ -88,24 +91,11 @@
               "border-width": "thin",
               "border-color": "white"
             });
-			tileLyr.visible = false;
+			
 			map.basemap = baseItem + "-vector";
 	      });
 		});
 	  });
-      /********************************************************************  
-       * Add a tile layer to the map
-       * 
-       * The url property must either point to the style as 
-       * demonstrated below or to the URL of a Vector Tile service 
-       * such as: 
-       * https://basemaps.arcgis.com/b2/arcgis/rest/services/World_Basemap/VectorTileServer
-       *********************************************************************/
-      var tileLyr = new VectorTileLayer({
-        url: "http://www.arcgis.com/sharing/rest/content/items/850db44b9eb845d3bd42b19e8aa7a024/resources/styles/root.json",
-		visible: true
-      });
-      map.add(tileLyr);
     });
 
 
