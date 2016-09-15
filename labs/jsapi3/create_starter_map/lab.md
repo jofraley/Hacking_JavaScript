@@ -13,7 +13,7 @@ The starter map simply loads a default base map, centers and zooms it in.
     <meta charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.15/esri/css/esri.css">
-    <script src="//js.arcgis.com/3.15compact/"></script>
+    <script src="//js.arcgis.com/3.17/"></script>
     <style>
       html,body,#mapDiv {
         padding:0;
