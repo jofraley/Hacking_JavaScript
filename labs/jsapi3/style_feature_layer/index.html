@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css">
 
     <style>
-        html, body, #map {
+        html, body, #mapDiv {
             height:100%;
             width:100%;
             margin:0;
@@ -28,7 +28,7 @@
                 SimpleFillSymbol,
                 FeatureLayer, ClassBreaksRenderer
         ) {
-            map = new Map("map",{
+            map = new Map("mapDiv",{
                 basemap: "dark-gray",
                 center: [-77.029, 38.89],
                 zoom: 12
@@ -56,6 +56,6 @@
 </head>
 <body>
 <div id="search"></div>
-<div id="map"></div>
+<div id="mapDiv"></div>
 </body>
 </html>
