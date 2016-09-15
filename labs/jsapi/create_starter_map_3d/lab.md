@@ -41,7 +41,7 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
         var view = new SceneView({
           container: "viewDiv",
           map: map,
-          center: [-101.17, 21,78],
+          center: [-77.029, 38.89],
           scale: 50000000
         });
 
