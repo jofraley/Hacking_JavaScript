@@ -22,14 +22,14 @@ In this lab you will apply custom styling to a feature layer.
 
   ```javascript
   function(Map,Color,SimpleFillSymbol,FeatureLayer, ClassBreaksRenderer) {
-    map = new Map("map", {
+    map = new Map("mapDiv", {
       center: [-77.029, 38.89],
       zoom: 12,
       basemap: "dark-gray"
     });
 
     // ADD a Class Break Renderer with no default symbol
-    var renderer = new ClassBreaksRenderer(null, "P0010001")
+    var renderer = new ClassBreaksRenderer(null, "P0010001");
   ```
 
 4. Next we tell the renderer how to show each class break for `P0010001`.
