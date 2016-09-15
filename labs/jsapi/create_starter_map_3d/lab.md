@@ -64,5 +64,6 @@ Your app should look something like this:
 ###Bonus
 
 * Experiment with different basemaps such as `topo` or `gray`.
+* Add elevation to the map using the ground property.
 * Take a look at the bonus section for the [2D Starter Map](../create_starter_map/lab.md#bonus) and try the same only with the `SceneView` instead of the `MapView`.
 * Run the code locally on your machine. Eventually if your app gets larger you'll want to migrate it from JSBin to your desktop.
