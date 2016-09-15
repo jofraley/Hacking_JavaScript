@@ -38,17 +38,17 @@ Let's get started!
 You can see a high-level overview of the differences between the 3.x and 4.x JS APIs [here](https://developers.arcgis.com/javascript/latest/guide/choose-version/index.html) and a more detailed comparison [here](https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html).
 
 ### Version 4.0
- * Lab 1:  [Build a Starter Map](./labs/jsapi/create_starter_map/lab.md)
- * Lab 2:  [Build a Starter 3D Map](./labs/jsapi/create_starter_map_3d/lab.md)
- * Lab 3:  [Add Feature Layer](./labs/jsapi/add_feature_layer/lab.md)
- * Lab 4:  [Style Feature Layer](./labs/jsapi/style_feature_layer/lab.md)
- * Lab 5:  [Extrude data as Polygons in 3D](./labs/jsapi/extrude_polygon_3d/lab.md)
- * Lab 6:  [Style a layer popup](./labs/jsapi/style_simple_popup/lab.md)
- * Lab 7:  [Search with a Widget](./labs/jsapi/search_with_widget/lab.md)
- * Lab 8:  [Search with a Query Task](./labs/jsapi/search_with_query_task/lab.md)
- * Lab 9:  [Client-side Buffering](./labs/jsapi/buffer_with_geometry_engine/lab.md)
- * Lab 10: [Create a JS API 4.x WebMap App](./labs/webmap_apps/create_jsapi_app/lab.md)
- * 
+ * Lab 10:  [Build a Starter Map](./labs/jsapi/create_starter_map/lab.md)
+ * Lab 11:  [Build a Starter 3D Map](./labs/jsapi/create_starter_map_3d/lab.md)
+ * Lab 12:  [Add Feature Layer](./labs/jsapi/add_feature_layer/lab.md)
+ * Lab 13:  [Style Feature Layer](./labs/jsapi/style_feature_layer/lab.md)
+ * Lab 14:  [Extrude data as Polygons in 3D](./labs/jsapi/extrude_polygon_3d/lab.md)
+ * Lab 15:  [Style a layer popup](./labs/jsapi/style_simple_popup/lab.md)
+ * Lab 16:  [Search with a Widget](./labs/jsapi/search_with_widget/lab.md)
+ * Lab 17:  [Search with a Query Task](./labs/jsapi/search_with_query_task/lab.md)
+ * Lab 18:  [Client-side Buffering](./labs/jsapi/buffer_with_geometry_engine/lab.md)
+ * Lab 19:  [Create a JS API 4.x WebMap App](./labs/webmap_apps/create_jsapi_app/lab.md)
+ 
 ## Data and Terms of Use
 
 Please see [www.civicapps.org](http://www.civicapps.org/), [developer.trimet.org/gis](developer.trimet.org/gis), [http://www.portlandoregon.gov/bts](http://www.portlandoregon.gov/bts), and [http://opendata.dc.gov/](http://opendata.dc.gov/) for the data terms of use.
