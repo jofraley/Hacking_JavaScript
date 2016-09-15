@@ -25,13 +25,14 @@
     ], function(Map, MapView) {
 
       var map = new Map({
-        basemap: "dark-gray"
+        basemap: "dark-gray",
+        ground:  "world-elevation"
       });
 
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-122.68, 45.52],
+        center: [-77.029, 38.89],
         zoom: 10
       });
 
