@@ -41,7 +41,7 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
         var view = new MapView({
           container: "viewDiv",
           map: map,
-          center: [-122.68, 45.52],
+          center: [-77.029, 38.89],
           zoom: 10
         });
 
@@ -82,7 +82,7 @@ Your app should look something like this:
     view = new MapView({ // REMOVE the 'var' so we're setting the new global 'view' variable.
       container: "viewDiv",
       map: map,
-      center: [-122.68, 45.52],
+      center: [-77.029, 38.89],
       zoom: 10
     });
   ```
