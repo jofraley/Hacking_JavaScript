@@ -84,7 +84,7 @@ In this lab it will search against the neighborhood polygon layer.
       displayField: "NAME",
       exactMatch: false,
       outFields: ["NAME","LINE","ADDRESS"],
-      placeholder: "Dupoin Circle",
+      placeholder: "Dupont Circle",
       enableSuggestions: true,
 
       // Create an InfoTemplate for the popup
@@ -94,7 +94,7 @@ In this lab it will search against the neighborhood polygon layer.
     search.set("sources",sources);
     ```
 
-7. In JSBin, run the app > select the pulldown on the left-hand side of the search box > select `Metro Stop Search` from the pull down list > enter "Dupoint Circle". The app should highlight and zoom into the metro stop point, and a popup should also be displayed.
+7. In JSBin, run the app > select the pulldown on the left-hand side of the search box > select `Metro Stop Search` from the pull down list > enter "Dupont Circle". The app should highlight and zoom into the metro stop point, and a popup should also be displayed.
 
 Your app should look something like this:
 * [Code](index.html)
