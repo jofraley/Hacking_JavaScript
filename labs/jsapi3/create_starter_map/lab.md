@@ -27,7 +27,7 @@ The starter map simply loads a default base map, centers and zooms it in.
                "dojo/domReady!"],
         function(Map) {
           map = new Map("mapDiv", {
-            center: [-122.68, 45.52],
+            center: [-77.029, 38.89],
             zoom: 10,
             basemap: "topo"
           });
