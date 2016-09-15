@@ -55,7 +55,7 @@ In this lab it will search against the neighborhood polygon layer.
 5. Create the Search widget and start it up.
 
     ```javascript
-    function(Map,Search) {
+    function(Map,Search,FeatureLayer,InfoTemplate) {
       map = new Map("mapDiv", {
         center: [-77.029, 38.89],
         zoom: 12,
