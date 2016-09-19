@@ -46,7 +46,7 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
             container: "viewDiv",
             map: map,
             camera: {
-              position: [-122.617, 45.18, 30000],
+              position: [-77.00, 38.55, 30000],
               tilt: 50,
               heading: 0
             }
@@ -71,7 +71,7 @@ Don't worry, we're going to fix this in just a minute.
   ``` js
       //Create featureLayer and add to the map
       var featureLayer = new FeatureLayer({
-        url: "http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Enriched/FeatureServer/0"
+        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/BlockGroupsDC/FeatureServer/0"
       });
       map.add(featureLayer);
   ```
@@ -91,21 +91,19 @@ then we'll apply `visualVariables` to define how to render the values by color, 
         // Each visualVariable is associated with a field
         visualVariables: [{
             type: "size",
-            field: "TOTPOP_CY",
-            normalizationField: "AREA",
+            field: "P0010001",
              stops: [
               {
                 value: 0,
                 size: 500
               },
               {
-                value: 10000,
+                value: 3500,
                 size: 4000
               }]
           }, {
             type: "color", 
-            field: "TOTPOP_CY",
-            normalizationField: "AREA",
+            field: "P0010001",
              stops: [
               {
                 value: 0,
@@ -117,15 +115,14 @@ then we'll apply `visualVariables` to define how to render the values by color, 
               }]
           }]
         });
-
-      featureLayer.renderer = extrudePolygonRenderer;
+        featureLayer.renderer = extrudePolygonRenderer;
 
   ```
    
 Your app should look something like this:
 
  * [Code](index.html)
- * [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi/extrude_polygon_3d/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/extrude_polygon_3d/index.html)
  
 ###Bonus
 
