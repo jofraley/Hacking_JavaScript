@@ -64,7 +64,7 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
    
 2. The JSBin `Output` panel should show a 3D view of earth that you can rotate around.
 
-3. Below the `SceneView` add a feature layer. When you test run your app the layer will look like a black outline. 
+3. Below the `SceneView` add a feature layer. When you test run your app the layer will look like blue polygons with a black outline. 
 Don't worry, we're going to fix this in just a minute.
 
 
