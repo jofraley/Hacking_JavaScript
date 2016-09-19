@@ -15,7 +15,7 @@ In this lab you will apply custom styling to a feature layer.
     "esri/symbols/SimpleMarkerSymbol",
     "esri/renderers/UniqueValueRenderer",
     "dojo/domReady!"
-  ], function(Map, MapView, FeatureLayer, SimpleMarkerSymboll, UniqueValueRenderer) {
+  ], function(Map, MapView, FeatureLayer, SimpleMarkerSymbol, UniqueValueRenderer) {
   ```
 
 3. Now set up a `UniqueValueRenderer` based off the `Transfer` field.
