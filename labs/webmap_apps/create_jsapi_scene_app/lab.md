@@ -32,7 +32,7 @@ In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a cust
 
     var scene = new WebMap({
       portalItem: { // autocasts as new PortalItem
-        id: "7186a92406194797aa518c06c189a71f"
+        id: "6b06eb3e7db04dfab1b67d49e654c587"
       }
     });
 
