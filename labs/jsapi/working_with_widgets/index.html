@@ -24,17 +24,17 @@
     require([
       "dojo/dom-construct",
       "esri/Map",
-      "esri/views/SceneView",
+      "esri/views/MapView",
       "esri/widgets/Search",
 	  "esri/widgets/BasemapToggle",
       "dojo/domReady!"
-    ], function(domConstruct, Map, SceneView, Search, BasemapToggle) {
+    ], function(domConstruct, Map, MapView, Search, BasemapToggle) {
 
       map = new Map({
         basemap: "dark-gray"
       });
 
-      view = new SceneView({
+      view = new MapView({
         map: map,
         container: "viewDiv",
         center: [-77.029, 38.89],
@@ -56,7 +56,7 @@
 	  
       view.ui.add(logo, "bottom-right");
       view.ui.add(search, "top-right");
-	  view.ui.add(toggle, "top-left")
+      view.ui.add(toggle, "top-left")
     });
   </script>
 </head>
