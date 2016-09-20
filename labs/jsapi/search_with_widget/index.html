@@ -25,52 +25,54 @@
       "esri/layers/FeatureLayer",
       "dojo/domReady!"
     ], function(Map, MapView, Search, FeatureLayer) {
-
-      var map = new Map({
-        basemap: "dark-gray"
+	
+	  var metrolines = new FeatureLayer({
+        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
       });
 
+      var metrostops = new FeatureLayer({
+        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+      });
+
+      var map = new Map({
+        basemap: "dark-gray",
+		layers: [metrolines, metrostops]
+      });
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-122.68, 45.52], // lon, lat
+        center: [-77.029, 38.89], // lon, lat
         zoom: 10
       });
-
       // Create search widget
       var searchWidget = new Search({
         view: view,
-        allPlaceholder: "Neighborhood e.g. Downtown",
+        allPlaceholder: "Metro Stop e.g. Dupont Circle",
         searchAllEnabled: true
       });
-
       var sources = [];
       
       // Add the default world geocoder source
       sources.push(searchWidget.defaultSource);
-
       // Add the feature layer source to search
       sources.push({
-        featureLayer: new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Styled/FeatureServer/0"),
-        name: "Neighborhood Search",
+        featureLayer: new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+        name: "Metro Stop Search",
         searchFields: ["NAME"],
         displayField: "NAME",
         exactMatch: false,
-        outFields: ["NAME","AVGHINC_CY","MEDAGE_CY","TOTPOP_CY"],
-        placeholder: "Neighborhood e.g. Downtown",
+        outFields: ["*"],
+        placeholder: "Metro Stop e.g. Dupont Circle",
         // Create a PopupTemplate to format data
         popupTemplate: {
           title: "{NAME}",
-          content: "Median Age: {MEDAGE_CY}</br>Average Household Income: {AVGHINC_CY}</br> Population: {TOTPOP_CY}"
+          content: "Line: {LINE}</br>Address: {ADDRESS}</br>Transfer Station: {Transfer}</br><a href={WEB_URL}>More info</a>"
         }
       });
-
       // Set the sources
       searchWidget.sources = sources;
-
       // Initialize the widget
       searchWidget.startup();
-
       // Add widget to the UI
       view.ui.add(searchWidget, {
         position: "top-right"
