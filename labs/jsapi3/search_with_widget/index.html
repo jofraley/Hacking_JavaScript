@@ -1,68 +1,87 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JS API Starter App</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Search with widget</title>
 
-  <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.17/esri/css/esri.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
+  
   <style>
-    html,body,#map {
-      padding:0;
-      margin:0;
-      height:100%;
-    }
-    #searchDiv {
-      display: block;
-      position: absolute;
-      z-index: 3;
-      top: 20px;
-      left: 74px;
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
     }
   </style>
 
-  <script src="//js.arcgis.com/3.17/"></script>
+  <script src="https://js.arcgis.com/4.0/"></script>
 
   <script>
-    require(["esri/map",
-      // Add Search, FeatureLayer and InfoTemplate modules
-      "esri/dijit/Search",
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/widgets/Search",
       "esri/layers/FeatureLayer",
-      "esri/InfoTemplate",
-      "dojo/domReady!"],
-      function(Map, Search, FeatureLayer, InfoTemplate) {
-        map = new Map("map", {
-          center: [-77.029, 38.89],
-          zoom: 12,
-          basemap: "dark-gray"
-        });
-        var search = new Search({
-          map: map
-        }, "searchDiv");
-        var sources = search.get("sources");
-        sources.push({
-          featureLayer: new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
-          name: "Metro Stop Search",
-          searchFields: ["NAME"],
-          displayField: "NAME",
-          exactMatch: false,
-          outFields: ["NAME","LINE","ADDRESS"],
-          placeholder: "Dupont Circle",
-          enableSuggestions: true,
-          // Create an InfoTemplate for the popup
-          infoTemplate: new InfoTemplate("Stop Name","Name: ${NAME}</br>Line: ${LINE}</br>Address: ${ADDRESS}")
-        });
-        search.set("sources",sources);
-        search.startup();
-      }
-    );
+      "dojo/domReady!"
+    ], function(Map, MapView, Search, FeatureLayer) {
+	
+	  var metrolines = new FeatureLayer({
+        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
+      });
+
+      var metrostops = new FeatureLayer({
+        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+      });
+
+      var map = new Map({
+        basemap: "dark-gray",
+		    layers: [metrolines, metrostops]
+      });
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-77.029, 38.89], // lon, lat
+        zoom: 10
+      });
+      // Create search widget
+      var searchWidget = new Search({
+        view: view,
+        allPlaceholder: "Metro Stop e.g. Dupont Circle",
+        searchAllEnabled: true
+      });
+      var sources = [];
+      
+      // Add the default world geocoder source
+      sources.push(searchWidget.defaultSource);
+      // Add the feature layer source to search
+      sources.push({
+        featureLayer: new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+        name: "Metro Stop Search",
+        searchFields: ["NAME"],
+        displayField: "NAME",
+        exactMatch: false,
+        outFields: ["*"],
+        placeholder: "Metro Stop e.g. Dupont Circle",
+        // Create a PopupTemplate to format data
+        popupTemplate: {
+          title: "{NAME}",
+          content: "Line: {LINE}</br>Address: {ADDRESS}</br>Transfer Station: {Transfer}</br><a href={WEB_URL}>More info</a>"
+        }
+      });
+      // Set the sources
+      searchWidget.sources = sources;
+      // Initialize the widget
+      searchWidget.startup();
+      // Add widget to the UI
+      view.ui.add(searchWidget, {
+        position: "top-right"
+      });
+    });
   </script>
 </head>
 
 <body>
-  <div id="map"></div>
-
-  <!-- ADD new div for the search widget -->
-  <div id="searchDiv"></div>
+  <div id="viewDiv"></div>
 </body>
 </html>
