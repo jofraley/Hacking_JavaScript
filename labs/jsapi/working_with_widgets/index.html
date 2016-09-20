@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Simple UI</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
+
+  <style>
+    html,
+    body,
+    #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
+
+  <script src="https://js.arcgis.com/4.0/"></script>
+  <script>
+    var map, view;
+
+    require([
+      "dojo/dom-construct",
+      "esri/Map",
+      "esri/views/SceneView",
+      "esri/widgets/Search",
+	  "esri/widgets/BasemapToggle",
+      "dojo/domReady!"
+    ], function(domConstruct, Map, SceneView, Search, BasemapToggle) {
+
+      map = new Map({
+        basemap: "dark-gray"
+      });
+
+      view = new SceneView({
+        map: map,
+        container: "viewDiv",
+        center: [-77.029, 38.89],
+        zoom: 10
+      });
+
+      var logo = domConstruct.create("img", {
+        src: "https://placeholdit.imgix.net/~text?bg=000&txtclr=e8117f&txtsize=48&txt=logo&w=100&h=80",
+        id: "logo",
+        title: "logo"
+      });
+      var search = new Search({
+        view: view
+      });
+	  var toggle = new BasemapToggle({
+        view: view,
+        nextBasemap: "hybrid"
+      });
+	  
+      view.ui.add(logo, "bottom-right");
+      view.ui.add(search, "top-right");
+	  view.ui.add(toggle, "top-left")
+    });
+  </script>
+</head>
+
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>

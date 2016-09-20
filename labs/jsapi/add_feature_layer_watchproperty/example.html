@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<script>
+require([
+  "esri/symbols/SimpleMarkerSymbol"
+], function (
+     SimpleMarkerSymbol
+   ) {
+
+     var symbol = new SimpleMarkerSymbol({
+       style: "diamond",
+       color: [255, 128, 45],  // No need to write new Color()
+       outline: {              // No need for new SimpleLineSymbol()
+       style: "dash-dot",
+       color: [255, 128, 45] // Again, no need for new Color()
+    }});
+
+});
+</script>
+<body>
+
+</body>
+</html>
