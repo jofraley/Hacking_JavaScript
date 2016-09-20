@@ -48,8 +48,17 @@
          container: "viewDiv",
          map: map,
          center: [-77.029, 38.89],
-         zoom: 10
+         zoom: 10,
+	 popup: {
+ 	   dockEnabled: true,
+           dockOptions: {
+	     buttonEnabled: false,
+	     position: "bottom-right",
+	     breakpoint: false
+	   }
+	 }
        });
+       
 	  //Define symbols for each class break.
 	  var less500 = new SimpleFillSymbol({
 	    color: "#7EAAFF",
