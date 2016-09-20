@@ -11,9 +11,12 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
       <div id="viewDiv"></div>
       <!-- ADD -->
       <select id="queryDiv">
-        <option selected>TYPE = 'MAX'</option>
-        <option>TYPE = 'CR'</option>
-        <option>TYPE = 'SC'</option>
+        <option selected>blue</option>
+        <option>orange</option>
+        <option>red</option>
+	      <option>silver</option>
+        <option>yellow</option>
+        <option>green</option>
       </select>
     </body>
   ```
@@ -36,7 +39,7 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
   ], function(Map, MapView, FeatureLayer, QueryTask, Query, SimpleMarkerSymbol, watchUtils, on, dom) { /*** ADD ***/
   ```
 
-4. Now add the `QueryTask` and `Query` to select features from the PDX_Rail_Stops_Styled layer. Only return three fields from the layer.
+4. Now add the `QueryTask` and `Query` to select features from the metro stops layer. Only return two fields from the layer.
 
   ```javascript
     ...
@@ -44,7 +47,7 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
     var view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [-122.68, 45.52], // lon, lat
+      center: [-77.029, 38.89], // lon, lat
       zoom: 10
     });
 
@@ -52,13 +55,13 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
 
     // Create query task to reference the PDX_Rail_Stops_Styled feature layer      
     var queryTask = new QueryTask({
-      url: "http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0"
+      url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
     });
 
     // Only return three fields
     var query = new Query({
       returnGeometry: true,
-      outFields: ["STATION", "LINE", "TYPE"],
+      outFields: ["NAME", "LINE"],
       where: ""
     });
   ```
@@ -69,62 +72,86 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
     /*** ADD ***/
 
     // Perform query when page loads
-    getFeatures("TYPE = 'MAX'");
-
-    // Get features with sql clause
-    function getFeatures(sql) {
-      query.where = sql;
-      queryTask.execute(query).then(function(results) {
-        if (!view.ready) {
-          watchUtils.whenTrueOnce(view, "ready", function() {
-            addFeatures(results.features);
-          })
-        } else {
-          addFeatures(results.features);
-        }
-      });
-    }
+    getFeatures("blue");
+	  
+      // Get features with query where clause
+      function getFeatures(theColor) {
+        query.where = "LINE LIKE '%" + theColor + "%'";
+        queryTask.execute(query).then(function(results) {
+			    if (!view.ready) {
+			      watchUtils.whenTrueOnce(view, "ready", function() {
+                addFeatures(results.features);
+			      })
+			    } else {
+			      addFeatures(results.features);
+			    }  
+        })
+		    .otherwise(promiseRejected);
+      }
+		  // Get features with query where clause
+      function getFeatures(theColor) {
+        query.where = "LINE LIKE '%" + theColor + "%'";
+        queryTask.execute(query).then(function(results) {
+			if (!view.ready) {
+			  watchUtils.whenTrueOnce(view, "ready", function() {
+                addFeatures(results.features);
+			  })
+			} else {
+			  addFeatures(results.features);
+			}  
+        })
+		.otherwise(promiseRejected);
+      }
 
     // Add features as graphics
-    function addFeatures(features) {
-      var color,
-        symbol;
-      // Color
-      switch (features[0].attributes.TYPE) {
-        case "MAX":
-          color = [237, 81, 81]
-          break;
-        case "CR":
-          color = [167, 198, 54]
-          break;
-        case "SC":
-          color = [20, 158, 206]
-          break;
-      }
-      symbol = new SimpleMarkerSymbol({
-        color: color,
-        size: 8,
-        outline: {
-          color: [ 255, 255, 255 ],
-          width: 1
+      function addFeatures(features) {
+        var color,
+          symbol;
+        // Color
+        switch (dom.byId("queryDiv").value) {
+          case "blue":
+            color = [0, 0, 255]
+            break;
+          case "red":
+            color = [255, 0, 0]
+            break;
+          case "green":
+            color = [0, 255, 0]
+            break;
+		  case "orange":
+            color = [255,165, 0]
+            break;	
+		  case "yellow":
+            color = [255, 255, 0]
+            break;
+		  case "silver":
+            color = [190, 190, 190]
+            break;
         }
-      });
+        symbol = new SimpleMarkerSymbol({
+          color: color,
+          size: 8,
+          outline: {
+            color: [ 255, 255, 255 ],
+            width: 1
+          }
+        });
       // Set symbol and popup template
-      for (var i = 0; i < features.length; i++) {
-        var feature = features[i];
-        feature.symbol = symbol;
-        feature.popupTemplate = {
-          title: "{STATION}",
-          content: "This is a {TYPE} rail stop for the {LINE} line."
+        for (var i=0; i < features.length; i++) {
+          var feature = features[i];
+          feature.symbol = symbol;
+          feature.popupTemplate = {
+            title: "{NAME}",
+            content: "This is a metro stop for the {LINE} line(s)."
+          }
+          view.graphics.add(feature);
         }
-        view.graphics.add(feature);
+        // Add graphics
+        view.graphics.removeAll();
+        view.graphics.addMany(features);
+        view.goTo(features);
+        view.popup.visible = false;
       }
-      // Add graphics
-      view.graphics.removeAll();
-      view.graphics.addMany(features);
-      view.goTo(features);
-      view.popup.visible = false;
-    }
   ```
 
 6. Finally, add the select HTML element and an event handler so we can change the SQL string for the query.
@@ -137,11 +164,16 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
       position: "top-right"
     });
 
-    // Select a sql query
+   // Get the color from the drop down
     on(dom.byId("queryDiv"), "change", function(e) {
-      var sql = e.target.value;
-      getFeatures(sql);
-    })
+	    var theColor = e.target.value;
+		  getFeatures(theColor);
+	  })
+ 
+    //Add the promise rejected function
+    function promiseRejected(){
+	    console.write("Error with query");
+	  }
 
   ```
 
@@ -149,4 +181,4 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi/search_with_query_task/index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/search_with_query_task/index.html)
