@@ -27,7 +27,7 @@ In this lab it will search against the neighborhood polygon layer but you can po
     var view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [-122.68, 45.52], // lon, lat
+      center: [-77.029, 38.89], // lon, lat
       zoom: 10
     });
 
@@ -36,7 +36,7 @@ In this lab it will search against the neighborhood polygon layer but you can po
     // Create search widget
     var searchWidget = new Search({
       view: view,
-      allPlaceholder: "Neighborhood e.g. Downtown"
+      allPlaceholder: "Metro Stop e.g. Dupont Circle"
     });
 
     // Initialize the widget
@@ -48,16 +48,16 @@ In this lab it will search against the neighborhood polygon layer but you can po
     });    
   ```
 
-  At this point, the map will allow you to search against the default ArcGIS Online Geocoding Service. Give it a go. You can enter an address or point of interest (like `Providence Park` or `PDX`) or a geography (like `Oregon` or `USA`).
+  At this point, the map will allow you to search against the default ArcGIS Online Geocoding Service. Give it a go. You can enter an address or point of interest (like `Washtington Monument` or `DCA`) or a geography (like `Tysons Corner` or `USA`).
 
-4. Now add the Neighborhoods Feature Service as a search source to the widget. This will allow you to search for different neighborhoods by the `Name` field. Also notice that a template is added for the popup to format the data nicely.
+4. Now add the Metro Stops Feature Service as a search source to the widget. This will allow you to search for different metro stops by the `NAME` field. Also notice that a template is added for the popup to format the data nicely.
 
   ```javascript
     ...
     
     var searchWidget = new Search({
       view: view,
-      allPlaceholder: "Neighborhood e.g. Downtown"
+      allPlaceholder: "Metro Stop e.g. Dupont Circle"
     });
 
     /*** ADD ***/
@@ -69,17 +69,17 @@ In this lab it will search against the neighborhood polygon layer but you can po
 
     // Add the feature layer source to search      
     sources.push({
-      featureLayer: new FeatureLayer("http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Styled/FeatureServer/0"),
-      name: "Neighborhood Search",
+      featureLayer: new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+      name: "Metro Stop Search",
       searchFields: ["NAME"],
       displayField: "NAME",
       exactMatch: false,
-      outFields: ["NAME","AVGHINC_CY","MEDAGE_CY","TOTPOP_CY"],
-      placeholder: "Neighborhood e.g. Downtown",
+      outFields: ["*"],
+      placeholder: "Metro Stop e.g. Dupont Circle",
       // Create a PopupTemplate to format data
       popupTemplate: {
         title: "{NAME}",
-        content: "Median Age: {MEDAGE_CY}</br>Average Household Income: {AVGHINC_CY}</br> Population: {TOTPOP_CY}"
+        content: "Line: {LINE}</br>Address: {ADDRESS}</br>Transfer Station: {Transfer}</br><a href={WEB_URL}>More info</a>"
       }
     });
 
@@ -87,12 +87,11 @@ In this lab it will search against the neighborhood polygon layer but you can po
     searchWidget.sources = sources;
   ```
 
-5. In JSBin, run the app and type in `Downtown` or `St. John's`. The app should highlight and zoom into the neighborhood polygon, and a popup should also be displayed with there field data.
+5. In JSBin, run the app and type in `Crystal City` or `Dupont Circle`. The app should highlight and zoom into the metro stop, and a popup should also be displayed with there field data.
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi/search_with_widget/index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/search_with_widget/index.html)
 
 ###Bonus
-* Add the default world geocoder to the search widget as well.
-* Add a [Rail Stops feature layer](http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0) to the Search widget.
+* Add the [Metro Stops](http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0) and [Metro Lines](http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0) to the map.
