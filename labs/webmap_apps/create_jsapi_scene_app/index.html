@@ -14,35 +14,27 @@
       height: 100%;
     }
   
-    #title {
-      display: inline-block;
-      padding: 10px;
-      font-size: 20px;
-      background-color: #843520;
-      color: #f8f8f8;
-      width: 100%;
-      font-family: sans-serif;
-    }
+    
   </style>
 
   <script src="https://js.arcgis.com/4.0/"></script>
 
   <script>
     require([
-      "esri/views/MapView",
-      "esri/WebMap",
+      "esri/views/SceneView",
+      "esri/WebScene",
       "esri/widgets/Legend",
       "dojo/domReady!"
-    ], function(MapView, WebMap, Legend) {
+    ], function(SceneView, WebScene, Legend) {
 
-      var map = new WebMap({
+      var scene = new WebScene({
         portalItem: { // autocasts as new PortalItem()
-          id: "7186a92406194797aa518c06c189a71f"
+          id: "c7e3de1c168c4acf963539970d36b8dd"
         }
       });
 
-      var view = new MapView({
-        map: map,
+      var view = new SceneView({
+        map: scene,
         container: "viewDiv"
       });
 
