@@ -26,7 +26,7 @@
       "esri/tasks/support/Query",
       "esri/symbols/SimpleMarkerSymbol",
       "esri/core/watchUtils",
-	    "dojo/on",
+	  "dojo/on",
       "dojo/dom",
       "dojo/domReady!"
     ], function(Map, MapView, FeatureLayer, QueryTask, Query, SimpleMarkerSymbol, watchUtils, on, dom) {
@@ -51,11 +51,19 @@
         where: ""
       });
       
+	  getFeatures("blue");
+	  
       // Get features with query where clause
       function getFeatures(theColor) {
         query.where = "LINE LIKE '%" + theColor + "%'";
-        queryTask.execute(query).then(function(results) {       
-            addFeatures(results.features);
+        queryTask.execute(query).then(function(results) {
+			if (!view.ready) {
+			  watchUtils.whenTrueOnce(view, "ready", function() {
+                addFeatures(results.features);
+			  })
+			} else {
+			  addFeatures(results.features);
+			}  
         })
 		.otherwise(promiseRejected);
       }
@@ -120,7 +128,7 @@
 	    var theColor = e.target.value;
 		getFeatures(theColor);
 	  })
- 
+      //Add the promise rejected function  
       function promiseRejected(){
 	    console.write("Error with query");
 	  }
