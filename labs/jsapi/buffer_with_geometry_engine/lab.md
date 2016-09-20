@@ -21,7 +21,7 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
               GraphicsLayer, FeatureLayer, Graphic, SimpleFillSymbol, geometryEngineAsync) {
   ```
 
-3. Add the Styled Rail Stops and a Graphics Layer to display the calculated buffers. Optionally modify the map to initialize at zoom level `12` to see the half-mile buffers more easily:
+3. Add the Styled Metro Stops and a Graphics Layer to display the calculated buffers. Optionally modify the map to initialize at zoom level `12` to see the half-mile buffers more easily:
 
   ```javascript
     ...
@@ -29,17 +29,17 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
     var view = new MapView({
       container: "viewDiv",
       map: map,
-      center: [-122.68, 45.52],
+      center: [-77.029, 38.89],
       zoom: 12
     });
 
     /*** ADD ***/
 
     // Create a GraphicsLayer to show the calculated buffer, and a FeatureLayer for the buffer source data
-    // (Rail Stops).
+    // (Metro Stops).
     var bufferLayer = new GraphicsLayer();
     var stopsLayer = new FeatureLayer({
-      url : "http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0"
+      url : "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
     });
 
     // Add these layers to the map with the buffer layer below the stops layer.
@@ -62,7 +62,7 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
     });
   ```
 
-5. Lastly we'll wait for the Rail Stops data to load and then calculate and display a buffer.
+5. Lastly we'll wait for the Metro Stops data to load and then calculate and display a buffer.
 
   ```javascript
     /*** ADD ***/
@@ -96,7 +96,7 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi/buffer_with_geometry_engine/index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/buffer_with_geometry_engine/index.html)
 
 ###Bonus
-* See the [Interactive Buffer Lab](../buffer_with_geometry_engine_and_slider/lab.md) for interactive buffering and more bonus items.
+* Modify buffer distance and units, change value to merge buffer
