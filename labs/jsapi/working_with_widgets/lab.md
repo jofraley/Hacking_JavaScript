@@ -70,7 +70,7 @@ In this lab it will search against the neighborhood polygon layer but you can po
     view.ui.add(toggle, "top-left");
 
     
-  ``.
+  ```
 
 Your app should look something like this:
 * [Code](index.html)
