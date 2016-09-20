@@ -13,72 +13,159 @@ In this lab you will use code to style a popup.
     /*** ADD ***/
     "esri/layers/FeatureLayer",
     "esri/PopupTemplate",
+    "esri/renderers/ClassBreaksRenderer",
+	  "esri/symbols/SimpleFillSymbol",
+	  "esri/widgets/Legend",
     "dojo/domReady!"
-  ], function(Map, MapView, FeatureLayer, PopupTemplate) {
+  ], function(Map, MapView, FeatureLayer, PopupTemplate, ClassBreaksRenderer, SimpleFillSymbol, Legend) {
   ```
-
+3. reate the map and define the symbols and ClassBreaksRenderer for the Block Groups
+  ```javascript
+   ...
+  var map = new Map({
+         basemap: "dark-gray"
+  });
+	  
+	var view = new MapView({
+         container: "viewDiv",
+         map: map,
+         center: [-77.029, 38.89],
+         zoom: 10
+  });
+       
+//Define symbols for each class break.
+	  var less500 = new SimpleFillSymbol({
+	    color: "#7EAAFF",
+		style: "solid",
+		outline: {
+		  width: 0.5,
+		  color:  "white"
+		}
+	  });
+	  
+	  var less1500 = new SimpleFillSymbol({
+	    color: "#6591FF",
+		style: "solid",
+		outline: {
+		  width: 0.5,
+		  color:  "white"
+		}
+	  });
+	  
+	  var less2500 = new SimpleFillSymbol({
+	    color: "#4B77F2",
+		style: "solid",
+		outline: {
+		  width: 0.5,
+		  color:  "white"
+		}
+	  });
+	  
+	  var more3500 = new SimpleFillSymbol({
+	    color: "#325ED9",
+		style: "solid",
+		outline: {
+		  width: 0.5,
+		  color:  "white"
+		}
+	  });
+	  
+	  var less3500 = new SimpleFillSymbol({
+	    color: "#1844BF",
+		style: "solid",
+		outline: {
+		  width: 0.5,
+		  color:  "white"
+		}
+	  });
+	  
+	  //Define the ClassBreaksRenderer
+	   var renderer = new ClassBreaksRenderer({
+        field: "P0010001",
+        classBreakInfos: [
+        {
+          minValue: 0,
+          maxValue: 499,
+          symbol: less500,
+          label: "< 500"
+        }, {
+          minValue: 500,
+          maxValue: 1499,
+          symbol: less1500,
+          label: "500 - 1499"
+        }, {
+          minValue: 1500,
+          maxValue: 2499,
+          symbol: less2500,
+          label: "1500 - 2499"
+        }, {
+          minValue: 2500,
+          maxValue: 3499,
+          symbol: less3500,
+          label: "2500 - 3499"
+        }, {
+		  minValue: 3500,
+          maxValue: 10000,
+          symbol: more3500,
+          label: "<= 3500"
+        }]
+      });
+      
 4. Now add create a new PopupTemple with the popup template style desired:
 
   ```javascript
     ...
 
-    var view = new MapView({
-      container: "viewDiv",
-      map: map,
-      center: [-122.68, 45.52],
-      zoom: 10
-    });
-
     /*** ADD ***/
 
     var popupTemplate = new PopupTemplate({
-      title: "Neighborhoods",
-      // Fields
-      content: [{
-        type: "fields",
-        fieldInfos: [
-          { fieldName: "TOTPOP_CY", label: "Total Population", visible: true, format: { places: 0 } },
-          { fieldName: "AVGHINC_CY", label: "Average Income", visible: true, format: { places: 0 } },
-          { fieldName: "MEDAGE_CY", label: "Median Age", visible: true, format: { places: 0 } },
-          { fieldName: "AREA", visible: true, format: { places: 2 } }
-        ]
-      },
-      {
-        type: "media",
-        mediaInfos: [{
-          title: "Demographics",
-          type: "pie-chart",
-          value: { 
-            fields: [ 
-              "TOTPOP_CY", 
-              "AVGHINC_CY", 
-            ]
-          }
-        }]
-      }] 
-    });
+		  title: "Total Population is {P0010001}",
+		  content: [{ 
+            type: "text",		  
+			text: "Total Housing Units: {H0010001}.  {H0010002} are occupied and {H0010003} are vacant."
+		  	},{
+        	type: "media",
+            mediaInfos: [{
+              title: "<b>Housing Units</b>",
+              type: "pie-chart",
+              value: {
+                theme: "BlueDusk",
+                fields: [
+                  "H0010002",
+				  "H0010003"
+                ],
+              }
+            }]
+          }]
+		});
   ```
 5. Now add the template to the feature layer and add the featurelayer to the map.
 
   ```javascript
     var featureLayer = new FeatureLayer({
-      url: "http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Neighborhoods_Enriched/FeatureServer/0",
-      outFields: ["*"],
-      popupTemplate: popupTemplate
-    });
-
-    map.add(featureLayer);
+        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0",
+        outFields: ["*"],
+		renderer: renderer,
+        popupTemplate: popupTemplate
+	   });
+	  
+	   map.add(featureLayer);
   ```
 
-6. Confirm that the JSBin `Output` panel shows styled popups when you click on the neighborhoods.
+6. Confirm that the JSBin `Output` panel shows styled popups when you click on the block groups.
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://esri.github.io/geodev-hackerlabs/develop/jsapi/style_simple_popup/index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/style_simple_popup/index.html)
 
 Bonus
-* Combine the principles from the [Style Feature Layer With JSON](../style_feature_layer_with_json/lab.md) lab so the features are styled along with the popup. Use a `ClassBreaksRenderer`.
-
-  ``` javascript
-    var renderer = ClassBreaksRenderer.fromJSON({"visualVariables":[{"type":"colorInfo","field":"TOTPOP_CY","normalizationField":"AREA","stops":[{"value":1280,"color":[116,77,48,255],"label":"< 1,280"},{"value":3212,"color":[175,107,47,255],"label":null},{"value":5144,"color":[214,146,83,255],"label":"5,144"},{"value":7076,"color":[235,195,154,255],"label":null},{"value":9008,"color":[255,245,230,255],"label":"> 9,008"}]},{"type":"sizeInfo","target":"outline","expression":"view.scale","stops":[{"size":2,"value":42474},{"size":1,"value":132730},{"size":0.5,"value":530919},{"size":0,"value":1061838}]}],"authoringInfo":{"visualVariables":[{"type":"colorInfo","minSliderValue":0,"maxSliderValue":17654.51572245626,"theme":"high-to-low"}]},"type":"classBreaks","field":"TOTPOP_CY","minValue":-9007199254740991,"classBreakInfos":[{"symbol":{"color":[170,170,170,255],"outline":{"color":[153,153,153,128],"width":0.75,"type":"esriSLS","style":"esriSLSSolid"},"type":"esriSFS","style":"esriSFSSolid"},"classMaxValue":9007199254740991}],"normalizationType":"esriNormalizeByField","normalizationField":"AREA"});
+* Add a legend and make sure to add the infoDiv to the html
   ```
+  var legend = new Legend({
+         view: view,
+         layerInfos: [
+         {
+           layer: featureLayer,
+           title: "Total Population"
+         }]
+  }, "infoDiv");
