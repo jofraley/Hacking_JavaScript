@@ -6,7 +6,7 @@ In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a cust
 
 1. Click [JS API starter map HTML](../../jsapi/create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
-2. In `JSBin` > `HTML`, update the `require` statement and `function` definition (notice to remove the `Map` reference).
+2. In `JSBin` > `HTML`, update the `require` statement and `function` definition (notice to remove the `Map` and MapView reference and add the WebScene and SceneView references).
 
 	```javascript
   require([
@@ -17,9 +17,9 @@ In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a cust
   ], function(SceneView, WebScene) {
 	```
 
-3. Open a WebMap into the MapView using the WebMapID. Note that the code is really similar to the starter map, but in place of a Map we're using a WebMap. To use the saved initial view of the WebMap, remove the `center` and `zoom` attributes from the `MapView` options.
+3. Open a Web Scene into the SceneView using the WebSceneID. Note that the code is really similar to the starter map, but in place of a Map we're using a WebScene. To use the saved initial view of the WebScene, remove the `center` and `zoom` attributes from the `MapView` options.  Also add the portalItem id to reference the Web Scene.
 	
-  NOTE: Feel free to use your own WebMap ID below!
+  NOTE: Feel free to use your own Web Scene ID below!
 
 	```javascript
   require([
@@ -30,7 +30,7 @@ In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a cust
 
     /*** REPLACE ***/
 
-    var scene = new WebMap({
+    var scene = new WebScene({
       portalItem: { // autocasts as new PortalItem
         id: "6b06eb3e7db04dfab1b67d49e654c587"
       }
