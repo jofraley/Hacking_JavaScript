@@ -33,7 +33,7 @@ In this lab, you will use the ArcGIS JS 3.x API to load a map by a `WebmapID` in
 	    	], function(Map, arcgisUtils) {
 
 		    	// ADD this to create the map from the webmapid
-				arcgisUtils.createMap("901f7926b460472087c1d102ae48c106", "mapDiv").then(function(response) {
+				arcgisUtils.createMap("8d867f9508de4fc681a86ec710ea923a", "mapDiv").then(function(response) {
 					map = response.map;
 				});
 
