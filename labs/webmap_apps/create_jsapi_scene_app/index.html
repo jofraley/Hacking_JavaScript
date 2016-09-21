@@ -23,9 +23,8 @@
     require([
       "esri/views/SceneView",
       "esri/WebScene",
-      "esri/widgets/Legend",
       "dojo/domReady!"
-    ], function(SceneView, WebScene, Legend) {
+    ], function(SceneView, WebScene) {
 
       var scene = new WebScene({
         portalItem: { // autocasts as new PortalItem()
@@ -37,12 +36,6 @@
         map: scene,
         container: "viewDiv"
       });
-
-      var legend = new Legend({
-        view: view
-      });
-
-      view.ui.add(legend, "top-right");
 
     });
   </script>
