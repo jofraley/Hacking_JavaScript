@@ -46,23 +46,3 @@ Your app should look something like this:
  * [Code](index.html)
  * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi_scene_app/index.html)
 
-###Bonus
-* Use the esri/dijit/Legend to add a legend to the upper right of the app. Use the [View UI](https://developers.arcgis.com/javascript/latest/guide/view-ui/index.html) calls to place the legend at the top-right of the display.
-
-  ```javascript
-  require([
-    "esri/views/SceneView",
-    "esri/WebScene",
-    /*** ADD ***/
-    "esri/widgets/Legend",
-    "dojo/domReady!"
-  ], function(SceneView, WebScene, Legend) {
-    ...
-
-    /*** ADD ***/
-    var legend = new Legend({
-      view: view
-    });
-
-    view.ui.add(legend, "top-right");
-  ```
