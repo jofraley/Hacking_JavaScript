@@ -53,7 +53,7 @@ You can see a high-level overview of the differences between the 3.x and 4.x JS 
  
 ## Data and Terms of Use
 
-Please see [www.civicapps.org](http://www.civicapps.org/), [developer.trimet.org/gis](developer.trimet.org/gis), [http://www.portlandoregon.gov/bts](http://www.portlandoregon.gov/bts), and [http://opendata.dc.gov/](http://opendata.dc.gov/) for the data terms of use.
+Please see [www.civicapps.org](http://www.civicapps.org/), [developer.trimet.org/gis](developer.trimet.org/gis), and [http://opendata.dc.gov/](http://opendata.dc.gov/) for the data terms of use.
 
 ## Licensing
 Copyright 2016 Esri
