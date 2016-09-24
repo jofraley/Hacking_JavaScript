@@ -6,8 +6,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.17/esri/css/esri.css">
-    <link rel="stylesheet" type="text/css" href="http://js.arcgis.com/3.17/dijit/themes/claro/claro.css">
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.18/esri/css/esri.css">
+    <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
 
     <style>
         html,body,#mapDiv {
@@ -37,7 +37,7 @@
         }
     </style>
 
-    <script src="http://js.arcgis.com/3.17/"></script>
+    <script src="https://js.arcgis.com/3.18/"></script>
 
     <script>
         var map;
@@ -62,7 +62,7 @@
                         basemap: "dark-gray"
                     });
                     var bufferLayer = new GraphicsLayer(),
-                            stopsLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroStops/FeatureServer/0", {
+                            stopsLayer = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/MetroStops/FeatureServer/0", {
                                 mode: FeatureLayer.MODE_SNAPSHOT
                             });
                     map.addLayers([bufferLayer, stopsLayer]);
