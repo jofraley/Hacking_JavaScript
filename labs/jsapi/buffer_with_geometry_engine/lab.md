@@ -39,7 +39,7 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
     // (Metro Stops).
     var bufferLayer = new GraphicsLayer();
     var stopsLayer = new FeatureLayer({
-      url : "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+      url : "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
     });
 
     // Add these layers to the map with the buffer layer below the stops layer.
