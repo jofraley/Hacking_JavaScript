@@ -52,10 +52,10 @@ You will create a simple widget in the UI to change the query selection.
 4. Add a reference to a calcite CSS Theme (`calcite`), and configure the `body` tag to use it:
 
     ```HTML
-    <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/themes/calcite/dijit/calcite.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.18/esri/themes/calcite/dijit/calcite.css">
 
     <!-- ADD a link to the calcite Dojo theme's CSS -->
-    <link rel="stylesheet" href="https://js.arcgis.com/3.17/esri/themes/calcite/esri/esri.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/3.18/esri/themes/calcite/esri/esri.css">
 
     ...
 
@@ -93,7 +93,7 @@ You will create a simple widget in the UI to change the query selection.
       });
 
       //ADD The service that contains the featurelayer
-      var url = 'http://services.arcgis.com/RkjCp6A0cLN4ubJm/arcgis/rest/services/POIBoulder/FeatureServer/0',
+      var url = 'https://services.arcgis.com/RkjCp6A0cLN4ubJm/arcgis/rest/services/POIBoulder/FeatureServer/0',
                 //ADD Define symbol to display the query results
                 markerSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbol.STYLE_CIRCLE, 11, null, new Color([0,255,0,0.7]));
       //ADD Define InfoTemplate to display attributes in an HTML popup.
