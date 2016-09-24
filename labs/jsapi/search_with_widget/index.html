@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Search with widget</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
   
   <style>
     html, body, #viewDiv {
@@ -15,7 +15,7 @@
     }
   </style>
 
-  <script src="https://js.arcgis.com/4.0/"></script>
+  <script src="https://js.arcgis.com/4.1/"></script>
 
   <script>
     require([
@@ -27,11 +27,11 @@
     ], function(Map, MapView, Search, FeatureLayer) {
 	
 	  var metrolines = new FeatureLayer({
-        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
+        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
       });
 
       var metrostops = new FeatureLayer({
-        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
       });
 
       var map = new Map({
@@ -56,7 +56,7 @@
       sources.push(searchWidget.defaultSource);
       // Add the feature layer source to search
       sources.push({
-        featureLayer: new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+        featureLayer: new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
         name: "Metro Stop Search",
         searchFields: ["NAME"],
         displayField: "NAME",
