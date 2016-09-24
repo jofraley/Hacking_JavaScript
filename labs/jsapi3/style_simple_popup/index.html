@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
     <title>Layer Renderer</title>
-    <link rel="stylesheet" href="//js.arcgis.com/3.17/esri/css/esri.css">
+    <link rel="stylesheet" href="//js.arcgis.com/3.18/esri/css/esri.css">
 
     <style>
         html, body, #map {
@@ -14,7 +14,7 @@
             padding:0;
         }
     </style>
-    <script src="//js.arcgis.com/3.17/"></script>
+    <script src="//js.arcgis.com/3.18/"></script>
     <script>
         require([
             "esri/map",
@@ -68,7 +68,7 @@
             renderer.addBreak(2500, 3500, new SimpleFillSymbol().setColor(new Color([77, 217, 67, 0.6])));
             renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([14, 204, 14, 0.6])));
 
-            var featureLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
+            var featureLayer = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
                 outFields: ["*"],
                 infoTemplate: popupTemplate
             });
