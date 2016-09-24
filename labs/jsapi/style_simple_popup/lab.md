@@ -143,7 +143,7 @@ In this lab you will use code to style a popup.
 
   ```javascript
     var featureLayer = new FeatureLayer({
-        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0",
+        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0",
         outFields: ["*"],
 		renderer: renderer,
         popupTemplate: popupTemplate
