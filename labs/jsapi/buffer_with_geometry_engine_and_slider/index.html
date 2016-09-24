@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
 
   <style>
     html, body, #viewDiv {
@@ -41,7 +41,7 @@
   <!-- Add a link to a dojo theme for the horizontal slider display -->
   <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/dojo/1.10.4/dijit/themes/tundra/tundra.css">
   
-  <script src="https://js.arcgis.com/4.0/"></script>
+  <script src="https://js.arcgis.com/4.1/"></script>
 
   <script>
     require([
@@ -73,7 +73,7 @@
       // Add a layer to show the calculated buffer, and a layer for the buffer source data.
       var bufferLayer = new GraphicsLayer();
       var stopsLayer = new FeatureLayer({
-        url : "http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0"
+        url : "https://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0"
       });
 
       map.addMany([bufferLayer, stopsLayer]);
