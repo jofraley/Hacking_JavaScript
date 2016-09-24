@@ -12,7 +12,7 @@
       margin: 0;
       height: 100%;
     }
-    #search {
+    #searchDiv {
       display: block;
       position: absolute;
       z-index: 2;
@@ -48,7 +48,7 @@
       // Create search
       var search = new Search({
         map: map
-      }, "search");
+      }, "searchDiv");
       
 	  var sources = search.get("sources");
       
@@ -74,7 +74,7 @@
 </head>
 
 <body>
-  <div id="search"></div>
+  <div id="searchDiv"></div>
   <div id="mapDiv"></div>
 </body>
 </html>
