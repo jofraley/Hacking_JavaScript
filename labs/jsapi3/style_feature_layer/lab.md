@@ -45,7 +45,7 @@ In this lab you will apply custom styling to a feature layer.
 5. Lastly, we create the `FeatureLayer`, attach the `ClassBreaksRenderer`, and add it to the map. Because the renderer relies on the `P0010001` field, we tell the `FeatureLayer` to retrieve it by specifying the `outFields` parameter.
 
   ```javascript
-  var featureLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
+  var featureLayer = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
     mode: FeatureLayer.MODE_ONDEMAND,
     outFields: ["P0010001"]
   });
