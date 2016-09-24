@@ -78,7 +78,7 @@ In this lab it will search against the neighborhood polygon layer.
     var sources = search.get("sources");
 
     sources.push({
-      featureLayer: new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+      featureLayer: new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
       name: "Metro Stop Search",
       searchFields: ["NAME"],
       displayField: "NAME",
@@ -101,5 +101,5 @@ Your app should look something like this:
 * [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi3/search_with_widget/index.html)
 
 ###Bonus
-* Add a [Metro Stops feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0) to the Search widget.
+* Add a [Metro Stops feature layer](https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0) to the Search widget.
 * Customize the popup's CSS. Add the WEB_URL for the stops so they show in the popup.  Hint: see the [Search with customization](https://developers.arcgis.com/javascript/jssamples/search_customized.html) sample.
