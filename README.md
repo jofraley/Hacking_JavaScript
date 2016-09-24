@@ -23,7 +23,7 @@ The labs start from ground-zero and work through the accessing different aspects
 
 Let's get started!
 
-### Version 3.17
+### Version 3.18
 
 * Lab 1:  [Review HTML, CSS, and JavaScript](./labs/review/lab1.md)
 * Lab 2:  [Build a Starter Map](./labs/jsapi3/create_starter_map/lab.md)
@@ -37,7 +37,7 @@ Let's get started!
 
 You can see a high-level overview of the differences between the 3.x and 4.x JS APIs [here](https://developers.arcgis.com/javascript/latest/guide/choose-version/index.html) and a more detailed comparison [here](https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html).
 
-### Version 4.0
+### Version 4.1
  * Lab 10:  [Build a Starter Map](./labs/jsapi/create_starter_map/lab.md)
  * Lab 11:  [Build a Starter 3D Map](./labs/jsapi/create_starter_map_3d/lab.md)
  * Lab 12:  [Add Feature Layer](./labs/jsapi/add_feature_layer/lab.md)
