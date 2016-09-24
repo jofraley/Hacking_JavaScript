@@ -107,7 +107,7 @@ You will add an interactive slider and a feedback label to the UI that will be u
     // Add a layer to show the calculated buffer, and a layer for the buffer source data.
     var bufferLayer = new GraphicsLayer();
     var stopsLayer = new FeatureLayer({
-      url : "http://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0"
+      url : "https://services.arcgis.com/uCXeTVveQzP4IIcx/arcgis/rest/services/PDX_Rail_Stops_Styled/FeatureServer/0"
     });
 
     map.addMany([bufferLayer, stopsLayer]);
