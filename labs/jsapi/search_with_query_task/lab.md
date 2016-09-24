@@ -55,7 +55,7 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
 
     // Create query task to reference the PDX_Rail_Stops_Styled feature layer      
     var queryTask = new QueryTask({
-      url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+      url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
     });
 
     // Only return three fields
