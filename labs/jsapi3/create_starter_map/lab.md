@@ -29,7 +29,7 @@ The starter map simply loads a default base map, centers and zooms it in.
           map = new Map("mapDiv", {
             center: [-77.029, 38.89],
             zoom: 10,
-            basemap: "dark-grey"
+            basemap: "dark-gray"
           });
         }
       );
@@ -42,7 +42,7 @@ The starter map simply loads a default base map, centers and zooms it in.
   </html>
   ```
 
-2. The JSBin `Output` panel should show a dark-grey map centered on Washington DC.
+2. The JSBin `Output` panel should show a dark-gray map centered on Washington DC.
 
 Your app should look something like this:
  * [Code](index.html)
