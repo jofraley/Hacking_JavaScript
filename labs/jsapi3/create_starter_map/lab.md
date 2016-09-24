@@ -1,6 +1,6 @@
-###Build a starter map (3.17 JS API)
+###Build a starter map (3.18 JS API)
 
-This lab covers the basics for creating a basic starter mapping application with the 3.17 JS API.
+This lab covers the basics for creating a basic starter mapping application with the 3.18 JS API.
 The starter map simply loads a default base map, centers and zooms it in.
 
 1. Copy and paste the code below into a new [jsbin.com](http://jsbin.com).
@@ -12,8 +12,8 @@ The starter map simply loads a default base map, centers and zooms it in.
     <title>JS API Starter App</title>
     <meta charset=utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.17/esri/css/esri.css">
-    <script src="//js.arcgis.com/3.17/"></script>
+    <link rel="stylesheet" type="text/css" href="//js.arcgis.com/3.18/esri/css/esri.css">
+    <script src="//js.arcgis.com/3.18/"></script>
     <style>
       html,body,#mapDiv {
         padding:0;
@@ -42,7 +42,7 @@ The starter map simply loads a default base map, centers and zooms it in.
   </html>
   ```
 
-2. The JSBin `Output` panel should show a dark-grey map centered on Portland, Oregon.
+2. The JSBin `Output` panel should show a dark-grey map centered on Washington DC.
 
 Your app should look something like this:
  * [Code](index.html)
