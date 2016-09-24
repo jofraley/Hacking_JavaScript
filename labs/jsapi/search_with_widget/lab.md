@@ -69,7 +69,7 @@ In this lab it will search against the neighborhood polygon layer but you can po
 
     // Add the feature layer source to search      
     sources.push({
-      featureLayer: new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+      featureLayer: new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
       name: "Metro Stop Search",
       searchFields: ["NAME"],
       displayField: "NAME",
