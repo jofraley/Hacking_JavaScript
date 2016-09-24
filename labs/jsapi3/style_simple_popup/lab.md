@@ -52,7 +52,7 @@ In this lab you will use code to style a popup.
 5. Now add the template to the feature layer and add the featurelayer to the map.
 
   ```javascript
-   var featureLayer = new FeatureLayer("http://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
+   var featureLayer = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
       outFields: ["*"],
       infoTemplate: popupTemplate
    });
