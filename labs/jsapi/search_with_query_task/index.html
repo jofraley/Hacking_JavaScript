@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Search with Query Task</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
   
   <style>
     html, body, #viewDiv {
@@ -15,7 +15,7 @@
     }
   </style>
 
-  <script src="https://js.arcgis.com/4.0/"></script>
+  <script src="https://js.arcgis.com/4.1/"></script>
 
   <script>
     require([
@@ -41,7 +41,7 @@
       });
       // Create query task to reference the Metro stops feature layer      
       var queryTask = new QueryTask({
-        url: "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
       });
 	  
       // Only return two fields
