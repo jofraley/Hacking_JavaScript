@@ -2,7 +2,7 @@
 
 In this lab you will add a search widget search against a feature layer. The widget performs context-sensitve search as you type and then it will zoom to and highlight the feature selected. You can also format the data in the popup that appears. 
 
-In this lab it will search against the neighborhood polygon layer.
+In this lab it will search against the metro stops polygon layer.
 
 1. Click [create_starter_map/index.html](../create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
