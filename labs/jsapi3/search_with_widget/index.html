@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Search with widget</title>
-  <link rel="stylesheet" href="https://js.arcgis.com/3.18/dijit/themes/claro/claro.css">
   <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.18/esri/css/esri.css">
   
   <style>
@@ -26,37 +25,33 @@
 
   <script>
     require([
-      "esri/Map",
+      "esri/map",
       "esri/dijit/Search",
       "esri/layers/FeatureLayer",
       "esri/InfoTemplate",
       "dojo/domReady!"
     ], function(Map, Search, FeatureLayer, InfoTemplate) {
 	
-	  var metrolines = new FeatureLayer({
-        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
-      });
-
-      var metrostops = new FeatureLayer({
-        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
-      });
-
+	  var metrolines = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
+      );
+      var metrostops = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0");
+	  
       var map = new Map("mapDiv", {
         basemap: "dark-gray",
-	layers: [metrolines, metrostops],
-	center: [-77.029, 38.89], // lon, lat
+	    center: [-77.029, 38.89], // lon, lat
         zoom: 10
       });
       
+	  map.addLayer(metrolines);
+	  map.addLayer(metrostops);
+	  
       // Create search
       var search = new Search({
-        map: map,
-        searchAllEnabled: true
+        map: map
       }, "search");
-      var sources = [];
       
-      // Add the default world geocoder source
-      sources.push(searchWidget.defaultSource);
+	  var sources = search.get("sources");
+      
       // Add the feature layer source to search
       sources.push({
         featureLayer: new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
@@ -67,16 +62,12 @@
         outFields: ["*"],
         placeholder: "Metro Stop e.g. Dupont Circle",
         // Create a PopupTemplate to format data
-        infoTemplate: {
-          title: "{NAME}",
-          content: "Line: {LINE}</br>Address: {ADDRESS}</br>Transfer Station: {Transfer}</br><a href={WEB_URL}>More info</a>"
-        }
+        infoTemplate: new InfoTemplate("Metro Stop", "Line: ${LINE}</br>Address: ${ADDRESS}</br>Transfer Station: ${Transfer}</br><a href=${WEB_URL}>More info</a>"),
       });
       // Set the sources
-      search.sources = sources;
-      // Initialize the widget
+      search.set("sources", sources);
+      // Start the widget
       search.startup();
-
       
     });
   </script>
