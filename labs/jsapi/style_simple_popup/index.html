@@ -158,20 +158,20 @@
           }]
 		});
 		
-	  var featureLayer = new FeatureLayer({
+	  var blockgroups = new FeatureLayer({
         url: "https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0",
         outFields: ["*"],
 		renderer: renderer,
         popupTemplate: popupTemplate
 	   });
 	  
-	   map.add(featureLayer);
+	   map.add(blockgroups);
      
 	   var legend = new Legend({
          view: view,
          layerInfos: [
          {
-           layer: featureLayer,
+           layer: blockgroups,
            title: "Total Population"
          }]
        }, "infoDiv");
