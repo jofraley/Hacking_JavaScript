@@ -23,11 +23,11 @@ In this lab you will add a feature layer to an ArcGIS API for JavaScript applica
 
     /*** ADD ***/
 
-    var featureLayer = new FeatureLayer({
+    var metrolines = new FeatureLayer({
       url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
     });
 
-    map.add(featureLayer);
+    map.add(metrolines);
   ```
 
 4. Confirm that the JSBin `Output` panel shows a map with rail lines.
