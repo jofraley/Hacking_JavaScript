@@ -45,10 +45,10 @@
         });
 		
         //Create featureLayer and add to the map
-        var featureLayer = new FeatureLayer({
+        var blockgroups = new FeatureLayer({
           url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/BlockGroupsDC/FeatureServer/0"
         });
-        map.add(featureLayer);
+        map.add(blockgroups);
         //Create the Renderer for the featureLayer,
         var extrudePolygonRenderer = new SimpleRenderer({
           symbol: new PolygonSymbol3D({
@@ -82,7 +82,7 @@
               }]
           }]
         });
-        featureLayer.renderer = extrudePolygonRenderer;
+        blockgroups.renderer = extrudePolygonRenderer;
       }
     );
   </script>
