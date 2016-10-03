@@ -61,3 +61,4 @@ In this lab you will apply custom styling to a feature layer.
 
 ###Options
  * Add a renderer to the Metro Stops
+ * Add labeling to one of the layers
