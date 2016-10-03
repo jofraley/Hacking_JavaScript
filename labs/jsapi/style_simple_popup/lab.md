@@ -142,14 +142,14 @@ In this lab you will use code to style a popup.
 5. Now add the template to the feature layer and add the featurelayer to the map.
 
   ```javascript
-    var featureLayer = new FeatureLayer({
+    var blockgroups = new FeatureLayer({
         url: "https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0",
         outFields: ["*"],
 		renderer: renderer,
         popupTemplate: popupTemplate
 	   });
 	  
-	   map.add(featureLayer);
+	   map.add(blockgroups);
   ```
 
 6. Confirm that the JSBin `Output` panel shows styled popups when you click on the block groups.
@@ -165,7 +165,7 @@ Bonus
          view: view,
          layerInfos: [
          {
-           layer: featureLayer,
+           layer: blockgroups,
            title: "Total Population"
          }]
   }, "infoDiv");
