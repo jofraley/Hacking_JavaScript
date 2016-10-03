@@ -67,7 +67,7 @@ In this lab you will apply custom styling to a feature layer.
 
   ```javascript
     /*** ADD ***/
-    var featureLayer = new FeatureLayer({
+    var metrostops = new FeatureLayer({
       url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0",
       renderer: renderer 
     });
