@@ -70,10 +70,10 @@ Don't worry, we're going to fix this in just a minute.
 
   ``` js
       //Create featureLayer and add to the map
-      var featureLayer = new FeatureLayer({
+      var blockgroups = new FeatureLayer({
         url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/BlockGroupsDC/FeatureServer/0"
       });
-      map.add(featureLayer);
+      map.add(blockgroups);
   ```
    
 4. Now lets add a `SimpleRenderer` to the feature layer. Since this is 3D we are going to use a `PolygonSymbol3D` and 
@@ -115,7 +115,7 @@ then we'll apply `visualVariables` to define how to render the values by color, 
               }]
           }]
         });
-        featureLayer.renderer = extrudePolygonRenderer;
+        blockgroups.renderer = extrudePolygonRenderer;
 
   ```
    
