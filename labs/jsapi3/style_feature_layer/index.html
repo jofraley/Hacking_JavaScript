@@ -1,61 +1,104 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1,user-scalable=no"/>
-    <title>Layer Renderer</title>
-    <link rel="stylesheet" href="//js.arcgis.com/3.18/esri/css/esri.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Search with widget</title>
+  <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.18/esri/css/esri.css">
+  
+  <style>
+    html, body, #mapDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+    #search {
+      display: block;
+      position: absolute;
+      z-index: 2;
+      top: 20px;
+      left: 74px;
+    }
+  </style>
 
-    <style>
-        html, body, #mapDiv {
-            height:100%;
-            width:100%;
-            margin:0;
-            padding:0;
-        }
-    </style>
-    <script src="//js.arcgis.com/3.18/"></script>
-    <script>
-        require([
-            "esri/map",
-            "esri/Color",
-            "esri/symbols/SimpleFillSymbol",
-            "esri/layers/FeatureLayer", "esri/renderers/ClassBreaksRenderer",
-            "dojo/domReady!"
-        ], function(
-                Map,
-                Color,
-                SimpleFillSymbol,
-                FeatureLayer, ClassBreaksRenderer
-        ) {
-            map = new Map("mapDiv",{
-                basemap: "dark-gray",
-                center: [-77.029, 38.89],
-                zoom: 12
-            });
+  <script src="https://js.arcgis.com/3.18/"></script>
 
-            var renderer = new ClassBreaksRenderer(null, "P0010001");
+  <script>
+    require([
+      "esri/map",
+      "esri/dijit/Search",
+      "esri/layers/FeatureLayer",
+      "esri/InfoTemplate",
+	  "esri/symbols/TextSymbol",
+	  "esri/layers/LabelClass",
+	  "esri/Color",
+      "dojo/domReady!"
+    ], function(Map, Search, FeatureLayer, InfoTemplate, TextSymbol, LabelClass, Color) {
+	
+	  var metrolines = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
+      );
+      var metrostops = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0", {
+	      id: "metrostops",
+          outFields: ["*"]
+	  });
+	  
+      var map = new Map("mapDiv", {
+        basemap: "dark-gray",
+	    center: [-77.029, 38.89], // lon, lat
+        zoom: 10,
+		showLabels : true //very important that this must be set to true for labels!
+      });
+      
+	  // create a text symbol to define the style of labels
+	  var stopsColor = new Color("#5b1f22");
+      var stopsLabel = new TextSymbol().setColor(stopsColor);
+      stopsLabel.font.setSize("14pt");
+      stopsLabel.font.setFamily("arial");
 
-            renderer.addBreak(0, 500, new SimpleFillSymbol().setColor(new Color([204, 255, 204, 0.6])));
-            renderer.addBreak(500, 1500, new SimpleFillSymbol().setColor(new Color([164, 245, 157, 0.6])));
-            renderer.addBreak(1500, 2500, new SimpleFillSymbol().setColor(new Color([123, 232, 111, 0.6])));
-            renderer.addBreak(2500, 3500, new SimpleFillSymbol().setColor(new Color([77, 217, 67, 0.6])));
-            renderer.addBreak(3500, Infinity, new SimpleFillSymbol().setColor(new Color([14, 204, 14, 0.6])));
+      //this is the very least of what should be set within the JSON  
+      var json = {
+        "labelExpressionInfo": {"value": "{NAME}"},
+		"labelPlacement":"center-right"
+      };
 
-            var featureLayer = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0", {
-                mode: FeatureLayer.MODE_ONDEMAND,
-                outFields: ["P0010001"]
-            });
-            
-            featureLayer.setRenderer(renderer);
-
-            map.addLayer(featureLayer);
-
-        });
-    </script>
+      //create instance of LabelClass (note: multiple LabelClasses can be passed in as an array)
+      var labelClass = new LabelClass(json);
+      labelClass.symbol = stopsLabel; // symbol also can be set in LabelClass' json
+      metrostops.setLabelingInfo([ labelClass ]);
+	  
+	  map.addLayer(metrolines);
+	  map.addLayer(metrostops);
+	  
+      // Create search
+      var search = new Search({
+        map: map
+      }, "search");
+      
+	  var sources = search.get("sources");
+      
+      // Add the feature layer source to search
+      sources.push({
+        featureLayer: new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
+        name: "Metro Stop Search",
+        searchFields: ["NAME"],
+        displayField: "NAME",
+        exactMatch: false,
+        outFields: ["*"],
+        placeholder: "Metro Stop e.g. Dupont Circle",
+        // Create a PopupTemplate to format data
+        infoTemplate: new InfoTemplate("Metro Stop", "Line: ${LINE}</br>Address: ${ADDRESS}</br>Transfer Station: ${Transfer}</br><a href=${WEB_URL}>More info</a>"),
+      });
+      // Set the sources
+      search.set("sources", sources);
+      // Start the widget
+      search.startup();
+      
+    });
+  </script>
 </head>
+
 <body>
-<div id="search"></div>
-<div id="mapDiv"></div>
+  <div id="search"></div>
+  <div id="mapDiv"></div>
 </body>
 </html>
