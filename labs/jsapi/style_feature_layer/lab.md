@@ -72,7 +72,7 @@ In this lab you will apply custom styling to a feature layer.
       renderer: renderer 
     });
 
-    map.add(featureLayer);
+    map.add(metrostops);
   ```
 
 Your app should look something like this:
