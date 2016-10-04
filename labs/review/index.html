@@ -5,10 +5,16 @@
         function myFunction() {
             document.getElementById("heading").innerHTML = "Hello World";
         }
+      function alertFunc() {
+            alert("Hello World!");
+        }
     </script>
 </head>
 <body>
 <style>
+  body {
+    background-color: lightblue;
+  }
     h1{
         color:  orange;
         text-align:  center;
@@ -21,8 +27,18 @@
 </style>    
 <h1 id="heading">this is a heading</h1>
 <p>this is a paragraph</p>
-<table>this is a table</table>
+<table>this is a table
+  <tr>
+    <th>Jo</th>
+    <th>Fraley</th> 
+  </tr>
+  <tr>
+    <th>Brett</th>
+    <th>Rose</th> 
+  </tr>
+</table>
 <form>this is a form</form>
 <button type="button" onclick="myFunction()">Click Me!</button>
+  <button type="button" onclick="alertFunc()">Alert Me</button>
 </body>
 </html>
