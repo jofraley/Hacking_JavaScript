@@ -26,13 +26,12 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
   ```javascript
     ...
 
-    var view = new MapView({
-      container: "viewDiv",
-      map: map,
-      center: [-77.029, 38.89],
-      zoom: 12
-    });
-
+     var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-77.029, 38.89],
+        zoom: 12
+      });
     /*** ADD ***/
 
     // Create a GraphicsLayer to show the calculated buffer, and a FeatureLayer for the buffer source data
@@ -53,13 +52,13 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
 
     // Configure the output buffer
     var bufferSymbol = new SimpleFillSymbol({
-      color: [0,100,255,0.4],
-      style: "solid",
-      outline: {
-        color: [110,110,110],
-        width: 1
-      }
-    });
+        color: [0,100,255,0.4],
+        style: "solid",
+        outline: {
+          color: [110,110,110],
+          width: 1
+        }
+      });
   ```
 
 5. Lastly we'll wait for the Metro Stops data to load and then calculate and display a buffer.
@@ -69,25 +68,25 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
 
     // Buffer the view's contents
     view.whenLayerView(stopsLayer).then(function(stopsLayerView) {
-      stopsLayerView.watch("updating", function(isUpdating) {
-        if (!isUpdating) {
-          // The Layer View *was* updating and now isn't. Let's buffer the data.
-          stopsLayerView.queryFeatures().then(function(stopGraphics) {
-            // We need geometries, not graphics for the buffer operation
-            var stops = stopGraphics.map(function(stopGraphic) {
-              return stopGraphic.geometry;
+        stopsLayerView.watch("updating", function(isUpdating) {
+          if (!isUpdating) {
+            stopsLayerView.queryFeatures().then(function(stopGraphics) {
+              // We need geometries, not graphics for the buffer operation.
+              var stops = stopGraphics.map(function(stopGraphic) {
+                return stopGraphic.geometry;
+              });
+              // Buffer and union all the points in the layer view.
+              geometryEngineAsync.geodesicBuffer(stops, 0.5, "miles", true).then(function(totalBuffer) {
+                // Display the unioned buffer on the map.
+                bufferLayer.removeAll();
+                bufferLayer.add(new Graphic({
+                  geometry: totalBuffer[0],
+                  symbol: bufferSymbol
+                }));
+              });
             });
-            // Buffer and union all the points in the layer view
-            geometryEngineAsync.geodesicBuffer(stops, 0.5, "miles", true).then(function(totalBuffer) {
-              // Display the single unioned buffer on the map.
-              bufferLayer.removeAll();
-              bufferLayer.add(new Graphic({
-                geometry: totalBuffer[0],
-                symbol: bufferSymbol
-              }));
-            });
-          });
-        }
+          }
+        });
       });
     });
   ```
