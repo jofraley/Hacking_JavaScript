@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
+  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
 
   <style>
     html, body, #viewDiv {
@@ -16,7 +16,7 @@
     }
   </style>
 
-  <script src="https://js.arcgis.com/4.1/"></script>
+  <script src="https://js.arcgis.com/4.0/"></script>
 
   <script>
     require([
@@ -28,28 +28,23 @@
       "esri/symbols/SimpleFillSymbol",
       "esri/geometry/geometryEngineAsync",
       "dojo/domReady!"
-    ], function(Map, MapView, 
+    ], function(Map, MapView,
                 GraphicsLayer, FeatureLayer, Graphic, SimpleFillSymbol, geometryEngineAsync) {
-
       var map = new Map({
         basemap: "dark-gray"
       });
-
       var view = new MapView({
         container: "viewDiv",
         map: map,
         center: [-77.029, 38.89],
         zoom: 12
       });
-
       // Add a layer to show the calculated buffer, and a layer for the buffer source data.
       var bufferLayer = new GraphicsLayer();
       var stopsLayer = new FeatureLayer({
-        url : "http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+        url : "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
       });
-
       map.addMany([bufferLayer, stopsLayer]);
-
       // Configure the output buffer.
       var bufferSymbol = new SimpleFillSymbol({
         color: [0,100,255,0.4],
@@ -59,7 +54,6 @@
           width: 1
         }
       });
-
       // Buffer the view's contents
       view.whenLayerView(stopsLayer).then(function(stopsLayerView) {
         stopsLayerView.watch("updating", function(isUpdating) {
@@ -82,12 +76,11 @@
           }
         });
       });
-
     });
   </script>
 </head>
 
 <body>
-  <div id="viewDiv"></div>
+<div id="viewDiv"></div>
 </body>
 </html>
