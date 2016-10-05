@@ -88,20 +88,6 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
         })
 		    .otherwise(promiseRejected);
       }
-		  // Get features with query where clause
-      function getFeatures(theColor) {
-        query.where = "LINE LIKE '%" + theColor + "%'";
-        queryTask.execute(query).then(function(results) {
-			if (!view.ready) {
-			  watchUtils.whenTrueOnce(view, "ready", function() {
-                addFeatures(results.features);
-			  })
-			} else {
-			  addFeatures(results.features);
-			}  
-        })
-		.otherwise(promiseRejected);
-      }
 
     // Add features as graphics
       function addFeatures(features) {
