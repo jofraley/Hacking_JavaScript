@@ -26,7 +26,6 @@
   <script>
     require([
       "esri/map",
-      "esri/dijit/Search",
       "esri/layers/FeatureLayer",
       "esri/InfoTemplate",
       "esri/symbols/TextSymbol",
@@ -35,7 +34,7 @@
       "esri/renderers/ClassBreaksRenderer",
       "esri/symbols/SimpleFillSymbol",
       "dojo/domReady!"
-    ], function(Map, Search, FeatureLayer, InfoTemplate, TextSymbol, LabelClass, Color, ClassBreaksRenderer, SimpleFillSymbol) {
+    ], function(Map, FeatureLayer, InfoTemplate, TextSymbol, LabelClass, Color, ClassBreaksRenderer, SimpleFillSymbol) {
 
       var metrolines = new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0"
       );
@@ -84,31 +83,6 @@
       map.addLayer(featureLayer);
       map.addLayer(metrolines);
       map.addLayer(metrostops);
-
-      // Create search
-      var search = new Search({
-        map: map
-      }, "search");
-
-      var sources = search.get("sources");
-
-      // Add the feature layer source to search
-      sources.push({
-        featureLayer: new FeatureLayer("https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"),
-        name: "Metro Stop Search",
-        searchFields: ["NAME"],
-        displayField: "NAME",
-        exactMatch: false,
-        outFields: ["*"],
-        placeholder: "Metro Stop e.g. Dupont Circle",
-        // Create a PopupTemplate to format data
-        infoTemplate: new InfoTemplate("Metro Stop", "Line: ${LINE}</br>Address: ${ADDRESS}</br>Transfer Station: ${Transfer}</br><a href=${WEB_URL}>More info</a>"),
-      });
-      // Set the sources
-      search.set("sources", sources);
-      // Start the widget
-      search.startup();
-
     });
   </script>
 </head>
