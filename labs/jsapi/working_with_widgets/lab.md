@@ -42,7 +42,7 @@ In this lab it will search against the neighborhood polygon layer but you can po
    });
 
     // Add widget to the UI
-    view.ui.add(searchWidget, "top-right");
+    view.ui.add(search, "top-right");
  
   ```
 
