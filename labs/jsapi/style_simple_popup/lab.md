@@ -19,7 +19,7 @@ In this lab you will use code to style a popup.
     "dojo/domReady!"
   ], function(Map, MapView, FeatureLayer, PopupTemplate, ClassBreaksRenderer, SimpleFillSymbol, Legend) {
   ```
-3. reate the map and define the symbols and ClassBreaksRenderer for the Block Groups
+3. Create the map and define the symbols and ClassBreaksRenderer for the Block Groups
   ```javascript
    ...
   var map = new Map({
@@ -169,4 +169,4 @@ Bonus
            title: "Total Population"
          }]
   }, "infoDiv");
-* Play with the popup docking within the view.  Have the popup dock in the bottom-right of the view and not allow user to undock.  See [popup for more info](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Popup.html#dockOptions)
+* Play with the popup docking within the view.  Have the popup dock in the top-right of the view and not allow user to undock.  See [popup for more info](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Popup.html#dockOptions)
