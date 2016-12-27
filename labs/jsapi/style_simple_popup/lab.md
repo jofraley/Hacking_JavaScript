@@ -169,4 +169,4 @@ Bonus
            title: "Total Population"
          }]
   }, "infoDiv");
-* Play with the popup docking within the view.  Have the popup dock in the top-right of the view and allow user to undock.  See [popup for more info](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Popup.html#dockOptions)
+* Play with the popup docking within the view.  Have the popup dock in the top-right of the view and no allow user to undock.  See [popup for more info](https://developers.arcgis.com/javascript/latest/api-reference/esri-widgets-Popup.html#dockOptions)
