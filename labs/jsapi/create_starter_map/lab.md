@@ -54,7 +54,7 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
   </html>
   ```
 
-2. The JSBin `Output` panel should show a dark-grey map centered on Portland, Oregon.
+2. The JSBin `Output` panel should show a dark-grey map centered on Washington DC.
 
 Your app should look something like this:
 
