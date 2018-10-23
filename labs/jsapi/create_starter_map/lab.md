@@ -62,7 +62,7 @@ Your app should look something like this:
 ###Bonus
 
 * Experiment with different basemaps such as `topo` or `gray`.
-* Declare the `view` variable globally instead and open your browser's javascript console ([see some instructions here](https://www.wickedlysmart.com/hfjsconsole/)). You can then interactively control the view from your browser console by referring to the `view` global variable. Many browsers will autocomplete once you've typed `view.`. For example, change the view extent, center point, zoom level or scale. See [here](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) for some examples.
+* Declare the `view` variable globally instead and open your browser's javascript console ([see some instructions here for chrome](https://developers.google.com/web/tools/chrome-devtools/)). You can then interactively control the view from your browser console by referring to the `view` global variable. Many browsers will autocomplete once you've typed `view.`. For example, change the view extent, center point, zoom level or scale. See [here](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) for some examples.
 
   **Hint:** If you're in a JS Bin, pop the Output into a separate window/tab to get direct access from the console.
   ``` javascript
