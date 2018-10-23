@@ -13,7 +13,7 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>JS API Starter App</title>
+    <title>2D Map</title>
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
     <script src="https://js.arcgis.com/4.9/"></script>
