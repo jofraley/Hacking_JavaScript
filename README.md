@@ -26,7 +26,7 @@ Let's get started!
 ### Version 4.9
 
 * Lab 1:  [Review HTML, CSS, and JavaScript](./labs/review/lab1.md)
-* Lab 2:  [Build a Starter Map](./labs/jsapi/create_starter_map/lab.md)
+* Lab 2:  [Build a Starter 2D Map](./labs/jsapi/create_starter_map/lab.md)
 * Lab 3:  [Build a Starter 3D Map](./labs/jsapi/create_starter_map_3d/lab.md)
 * Lab 3:  [Add Feature Layer](./labs/jsapi/add_feature_layer/lab.md)
 * Lab 4:  [Style Feature Layer](./labs/jsapi/style_feature_layer/lab.md)
