@@ -15,7 +15,7 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>3D Map</title>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
     <script src="https://js.arcgis.com/4.9/"></script>
 
     <style>
