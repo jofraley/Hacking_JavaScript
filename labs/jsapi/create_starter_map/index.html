@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>JS API Starter App</title>
+  <title>2D Map</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
-
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -14,8 +14,6 @@
       height: 100%;
     }
   </style>
-
-  <script src="https://js.arcgis.com/4.1/"></script>
 
   <script>
     require([
@@ -25,7 +23,7 @@
     ], function(Map, MapView) {
 
       var map = new Map({
-        basemap: "dark-gray",
+        basemap: "dark-gray-vector",
         ground:  "world-elevation"
       });
 
