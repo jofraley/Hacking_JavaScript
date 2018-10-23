@@ -13,9 +13,10 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>JS API 3D Starter App</title>
+    <title>3D Map</title>
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.9/"></script>
 
     <style>
       html, body, #viewDiv {
@@ -25,8 +26,6 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
       }
     </style>
 
-    <script src="https://js.arcgis.com/4.1/"></script>
-
     <script>
       require([
         "esri/Map",
@@ -35,7 +34,7 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
       ], function(Map, SceneView) {
 
         var map = new Map({
-          basemap: "dark-gray"
+          basemap: "dark-gray-vector"
         });
         
         var view = new SceneView({
