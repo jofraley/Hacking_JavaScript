@@ -40,8 +40,8 @@
       });
       renderer.addUniqueValueInfo("Yes",
         new SimpleMarkerSymbol({
-          color: [0, 0, 0, 0.8],
-          size: 13,
+          color: [0, 0, 255, 0.5],
+          size: 18,
           style: "diamond",
           outline: {
             color: [255, 255, 255],
@@ -51,11 +51,14 @@
       );
       renderer.addUniqueValueInfo("No",
         new SimpleMarkerSymbol({
-          color: [255, 255, 255, 0.8],
-          size: 8
+          color: [0, 0, 255, 0.5],
+          size: 8,
+		  outline: {
+            color: [255, 255, 255],
+            width: "1px"
+          }
         })
       );
-
       var metrostops = new FeatureLayer({
         url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Stations_Regional/FeatureServer/0",
         renderer: renderer 
