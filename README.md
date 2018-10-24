@@ -29,7 +29,7 @@ Let's get started!
 * Lab 2:  [Build a Starter 2D Map](./labs/jsapi/create_starter_map/lab.md)
 * Lab 3:  [Build a Starter 3D Map](./labs/jsapi/create_starter_map_3d/lab.md)
 * Lab 4:  [Add Feature Layer](./labs/jsapi/add_feature_layer/lab.md)
-* Lab 5:  [Add a Scene Layer](.labs/jsapi/add_scene_layer/lab.md)
+* Lab 5:  [Add a Scene Layer](./labs/jsapi/add_scene_layer/lab.md)
 * Lab 6:  [Style Feature Layer](./labs/jsapi/style_feature_layer/lab.md)
 * Lab 7:  [Extrude data as Polygons in 3D](./labs/jsapi/extrude_polygon_3d/lab.md)
 * Lab 8:  [Style a layer popup](./labs/jsapi/style_simple_popup/lab.md)
