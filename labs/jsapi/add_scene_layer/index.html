@@ -20,17 +20,17 @@
       require([
         "esri/Map",
         "esri/views/SceneView",
-		"esri/layers/SceneLayer",
+	"esri/layers/SceneLayer",
         "dojo/domReady!"
       ], function(Map, SceneView, SceneLayer) {
 
-	    var buildingsSL = new SceneLayer({
-			url: "https://tiles.arcgis.com/tiles/hRUr1F8lE8Jq2uJo/arcgis/rest/services/BuildingsDC/SceneServer/layers/0"
-		});
+	var buildingsSL = new SceneLayer({
+	  url: "https://tiles.arcgis.com/tiles/hRUr1F8lE8Jq2uJo/arcgis/rest/services/BuildingsDC/SceneServer/layers/0"
+	});
 		
         var map = new Map({
           basemap: "dark-gray-vector",
-		  layers: [buildingsSL],
+	  layers: [buildingsSL],
           ground: "world-elevation"
         });
         
