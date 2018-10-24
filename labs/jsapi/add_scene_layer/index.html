@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>3D Map</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.9/"></script>
+
+    <style>
+      html, body, #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+      }
+    </style>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/SceneView",
+		"esri/layers/SceneLayer",
+        "dojo/domReady!"
+      ], function(Map, SceneView, SceneLayer) {
+
+	    var buildingsSL = new SceneLayer({
+			url: "https://tiles.arcgis.com/tiles/hRUr1F8lE8Jq2uJo/arcgis/rest/services/BuildingsDC/SceneServer/layers/0"
+		});
+		
+        var map = new Map({
+          basemap: "dark-gray-vector",
+		  layers: [buildingsSL],
+          ground: "world-elevation"
+        });
+        
+        var view = new SceneView({
+          container: "viewDiv",
+          map: map,
+          center: [-77.029, 38.89],
+          scale: 50000000
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+  </html>
