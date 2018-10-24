@@ -1,4 +1,4 @@
-# Hacking for Solution Engineers 
+# Hacking JavaScript for Solution Engineers 
 
 A place to learn how to build geo apps with the ArcGIS API for JavaScript.
 
