@@ -17,7 +17,7 @@ To learn more about what options you have with SceneLayers look at the [SceneLay
       ], function(Map, SceneView, SceneLayer) {
    ```
 
-3. Now let's add the buildings scene layer to the scene:
+3. Now let's add the buildings scene layer to the map:
 
   ```javascript
 	    var buildingsSL = new SceneLayer({
