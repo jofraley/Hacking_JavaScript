@@ -1,9 +1,9 @@
-###Build a starter 3D map
+###Add a Scene Layer to a 3D map
 
-This lab covers the basics for creating a basic starter 3D mapping application.
-The starter map simply loads a default base map and centers it.
+This lab covers the basics of adding a scene layer to your application.
 If you are new to ArcGIS and need a full set of instructions on building a basic 3D mapping application
 visit the [Get started with SceneView](https://developers.arcgis.com/javascript/latest/sample-code/get-started-sceneview/index.html) tutorial.
+To learn more about what options you have with SceneLayers look at the [SceneLayer API Reference](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-SceneLayer.html)
 
 1. Copy and paste the code below into a new [jsbin.com](http://jsbin.com).
 
@@ -13,7 +13,7 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>3D Map</title>
+    <title>3D Map with SceneLayer</title>
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
     <script src="https://js.arcgis.com/4.9/"></script>
@@ -30,11 +30,18 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
       require([
         "esri/Map",
         "esri/views/SceneView",
+        "esri/layers/SceneLayer",
         "dojo/domReady!"
-      ], function(Map, SceneView) {
+      ], function(Map, SceneView, SceneLayer) {
 
+	    var buildingsSL = new SceneLayer({
+			url: "https://tiles.arcgis.com/tiles/hRUr1F8lE8Jq2uJo/arcgis/rest/services/BuildingsDC/SceneServer/layers/0"
+		});
+		
         var map = new Map({
-          basemap: "dark-gray-vector"
+          basemap: "dark-gray-vector",
+		      layers: [buildingsSL],
+          ground: "world-elevation"
         });
         
         var view = new SceneView({
@@ -53,25 +60,28 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
   </html>
   ```
 
-2. The JSBin `Output` panel should show a 3D view of earth that you can rotate around.
+2. The JSBin `Output` panel should show a 3D view of earth that you can rotate around and zoom in on DC.
 
 
-3. The Scene is flat since there is no elevation added to the SceneView.  Let's add the world elevation. 
+3. Since we are focused on DC, modify the SceneView to be zoomed in more and tilt the scene since we are looking at 3D data. Take a look at the SceneView and the [Camera](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html#camera
 
 ```html 
-  var map = new Map({
-    basemap: "dark-gray-vector",
-    ground: "world-elevation"
-  });
+ var view = new SceneView({
+   container: "viewDiv",
+   map: map,
+   camera:{
+     position: [-77.04, 38.86, 790],
+     tilt: 71.47,
+     heading: 30.25
+   }
+ });
 ```
 Your app should look something like this:
 
  * [Code](index.html)
- * [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi/create_starter_map_3d/index.html)
+ * [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi/add_scene_layer/index.html)
 
 ###Bonus
 
-* Experiment with different basemaps such as `topo` or `gray`.
-* Change the elevation to the topobathy service.
-* Take a look at the bonus section for the [2D Starter Map](../create_starter_map/lab.md#bonus) and try the same only with the `SceneView` instead of the `MapView`.
-* Run the code locally on your machine. Eventually if your app gets larger you'll want to migrate it from JSBin to your desktop.
+* Add the same layers you did in the 2D map, [MetroLines](https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Lines_Regional/FeatureServer/0), [BlockGroups](https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Census_Block_Groups__2010/FeatureServer/0), and [MetroStations](https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Stations_Regional/FeatureServer/0)
+* 
