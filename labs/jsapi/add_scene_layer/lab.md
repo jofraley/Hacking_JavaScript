@@ -67,7 +67,7 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
 Your app should look something like this:
 
  * [Code](index.html)
- * [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi/create_starter_map_3d/index.html)
+ * [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi/add_scene_layer/index.html)
 
 ###Bonus
 
