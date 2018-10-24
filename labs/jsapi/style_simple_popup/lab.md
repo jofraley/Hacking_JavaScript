@@ -14,26 +14,25 @@ In this lab you will use code to style a popup.
     "esri/layers/FeatureLayer",
     "esri/PopupTemplate",
     "esri/renderers/ClassBreaksRenderer",
-	  "esri/symbols/SimpleFillSymbol",
-	  "esri/widgets/Legend",
+    "esri/symbols/SimpleFillSymbol",
+    "esri/widgets/Legend",
     "dojo/domReady!"
   ], function(Map, MapView, FeatureLayer, PopupTemplate, ClassBreaksRenderer, SimpleFillSymbol, Legend) {
   ```
 3. Create the map and define the symbols and ClassBreaksRenderer for the Block Groups
   ```javascript
-   ...
-  var map = new Map({
-         basemap: "dark-gray"
-  });
+  	var map = new Map({
+    		basemap: "dark-gray-vector"
+  	});
 	  
 	var view = new MapView({
-         container: "viewDiv",
-         map: map,
-         center: [-77.029, 38.89],
-         zoom: 10
-  });
+         	container: "viewDiv",
+         	map: map,
+         	center: [-77.029, 38.89],
+         	zoom: 10
+  	});
        
-//Define symbols for each class break.
+	//Define symbols for each class break.
 	  var less500 = new SimpleFillSymbol({
 	    color: "#7EAAFF",
 		style: "solid",
@@ -104,18 +103,16 @@ In this lab you will use code to style a popup.
           symbol: less3500,
           label: "2500 - 3499"
         }, {
-		  minValue: 3500,
+	  minValue: 3500,
           maxValue: 10000,
           symbol: more3500,
           label: "<= 3500"
         }]
       });
-      
+ ```     
 4. Now add create a new PopupTemple with the popup template style desired:
 
   ```javascript
-    ...
-
     /*** ADD ***/
 
     var popupTemplate = new PopupTemplate({
@@ -132,7 +129,7 @@ In this lab you will use code to style a popup.
                 theme: "BlueDusk",
                 fields: [
                   "H0010002",
-				  "H0010003"
+		  "H0010003"
                 ],
               }
             }]
@@ -143,11 +140,11 @@ In this lab you will use code to style a popup.
 
   ```javascript
     var blockgroups = new FeatureLayer({
-        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0",
+        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Census_Block_Groups__2010/FeatureServer/0",
         outFields: ["*"],
-		renderer: renderer,
+	renderer: renderer,
         popupTemplate: popupTemplate
-	   });
+	});
 	  
 	   map.add(blockgroups);
   ```
