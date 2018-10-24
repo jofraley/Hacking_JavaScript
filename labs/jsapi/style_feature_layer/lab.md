@@ -32,7 +32,7 @@ In this lab you will apply custom styling to a feature layer.
 
     /*** ADD ***/
     var renderer = new UniqueValueRenderer({
-      field: "TYPE",
+      field: "Transfer",
       defaultSymbol: new SimpleMarkerSymbol()
     });
   ```
@@ -68,7 +68,7 @@ In this lab you will apply custom styling to a feature layer.
   ```javascript
     /*** ADD ***/
     var metrostops = new FeatureLayer({
-      url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0",
+      url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Stations_Regional/FeatureServer/0",
       renderer: renderer 
     });
 
@@ -79,5 +79,4 @@ Your app should look something like this:
  * [Code](index.html)
  * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/style_feature_layer/index.html)
 
-###Bonus
- * Add a [Metro Lines feature layer](http://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroLines/FeatureServer/0) to the map and then apply custom styles to it.
+
