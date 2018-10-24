@@ -25,27 +25,27 @@
       "dojo/domReady!"
     ], function(Map, MapView, FeatureLayer) {
       
-      var featureLayer1 = new FeatureLayer({
+      var blockGroupsFL = new FeatureLayer({
         portalItem: {
-		  id: "fefc81afd8404c399915fe3ac05cc309"
+		  id: "baac7d7be5a846388ec64252d9bdd6ca"
 		}
       });
 
-      var featureLayer2 = new FeatureLayer({
+      var metroLinesFL = new FeatureLayer({
         portalItem: {
-		  id: "a9bb0518e0154eb58695b4ad76f14201"
+		  id: "61b9ea7e364040389ff2f205d0151b74"
 		}
       });
 
-      var featureLayer3 = new FeatureLayer({
+      var metroStationsFL = new FeatureLayer({
         portalItem: {
-		  id: "74f55caeacc24e77bcceee84f5f23ed1"
+		  id: "d2800734a998448f9c4dc81014c52905"
 		}
       });
 
       var map = new Map({
-        basemap: "dark-gray",
-		layers: [featureLayer1,featureLayer2,featureLayer3]
+        basemap: "dark-gray-vector",
+		layers: [blockGroupsFL,metroLinesFL,metroStationsFL]
       });
       
       var view = new MapView({
