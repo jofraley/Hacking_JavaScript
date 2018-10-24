@@ -34,7 +34,7 @@ To learn more about what options you have with SceneLayers look at the [SceneLay
 2. The JSBin `Output` panel should show a 3D view of earth that you can rotate around and zoom in on DC to see the 3D buildings.
 
 
-3. Since we are focused on DC, modify the SceneView to be zoomed in more and tilt the scene since we are looking at 3D data. Take a look at the SceneView and the [Camera](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html#camera
+3. Since we are focused on DC, modify the SceneView to be zoomed in more and tilt the scene since we are looking at 3D data. Take a look at the SceneView and the [Camera](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html#camera)
 
 ```javascript 
  var view = new SceneView({
