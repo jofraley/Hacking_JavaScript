@@ -4,7 +4,7 @@ This lab covers the basics of adding a scene layer to your application.
 
 To learn more about what options you have with SceneLayers look at the [SceneLayer API Reference](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-SceneLayer.html)
 
-1. Click [create_starter_map/index.html](../create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
+1. Click [create_starter_map_3d/index.html](../create_starter_map_3d/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
 2. In `JSBin` > `HTML`, update the `require` statement and `function` definition: 
 
