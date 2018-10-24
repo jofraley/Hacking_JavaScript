@@ -46,8 +46,8 @@ In this lab you will apply custom styling to a feature layer.
       });
       renderer.addUniqueValueInfo("Yes",
         new SimpleMarkerSymbol({
-          color: [0, 0, 0, 0.8],
-          size: 13,
+          color: [0, 0, 255, 0.5],
+          size: 18,
           style: "diamond",
           outline: {
             color: [255, 255, 255],
@@ -57,8 +57,12 @@ In this lab you will apply custom styling to a feature layer.
       );
       renderer.addUniqueValueInfo("No",
         new SimpleMarkerSymbol({
-          color: [255, 255, 255, 0.8],
-          size: 8
+          color: [0, 0, 255, 0.5],
+          size: 8,
+          outline: {
+            color:  [255,255,255],
+            width: "1px"
+          }
         })
       );
   ```
