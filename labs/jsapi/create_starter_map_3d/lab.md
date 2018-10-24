@@ -55,6 +55,15 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
 
 2. The JSBin `Output` panel should show a 3D view of earth that you can rotate around.
 
+
+3. The Scene is flat since there is no elevation added to the SceneView.  Let's add the world elevation. 
+
+```html 
+  var map = new Map({
+    basemap: "dark-gray-vector",
+    ground: "world-elevation"
+  });
+```
 Your app should look something like this:
 
  * [Code](index.html)
@@ -63,6 +72,6 @@ Your app should look something like this:
 ###Bonus
 
 * Experiment with different basemaps such as `topo` or `gray`.
-* Add elevation to the map using the ground property.
+* Change the elevation to the topobathy service.
 * Take a look at the bonus section for the [2D Starter Map](../create_starter_map/lab.md#bonus) and try the same only with the `SceneView` instead of the `MapView`.
 * Run the code locally on your machine. Eventually if your app gets larger you'll want to migrate it from JSBin to your desktop.
