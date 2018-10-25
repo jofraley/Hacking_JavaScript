@@ -1,27 +1,27 @@
 ###Create an App from a Web Map
 
-You can use the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) to easily load web maps built with the Map Viewer. The advantage to using this approach is that the map will contain all of the pre-defined settings you configured in the Map Viewer. e.g. Layer Styles, Popups, Refresh Rate.
+You can use the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) to easily load web scenes built with the Scene Viewer. The advantage to using this approach is that the map will contain all of the pre-defined settings you configured in the Scene Viewer. 
 
-In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a custom JavaScript app. 
+In this lab, you will use the ArcGIS JS API to load a Scene by its ID in a custom JavaScript app. 
 
-1. Click [JS API starter map HTML](../../jsapi/create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
+1. Click [JS API starter 3D app HTML](../../jsapi/create_starter_map_3d/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
-2. In `JSBin` > `HTML`, update the `require` statement and `function` definition (notice to remove the `Map` and MapView reference and add the WebScene and SceneView references).
+2. In `JSBin` > `HTML`, update the `require` statement and `function` definition (notice we add the WebScene reference).
 
-	```javascript
+```javascript
   require([
     "esri/views/SceneView",
     /*** ADD ***/
     "esri/WebScene",
     "dojo/domReady!"
   ], function(SceneView, WebScene) {
-	```
+```
 
 3. Open a Web Scene into the SceneView using the WebSceneID. Note that the code is really similar to the starter map, but in place of a Map we're using a WebScene. To use the saved initial view of the WebScene, remove the `center` and `zoom` attributes from the `MapView` options.  Also add the portalItem id to reference the Web Scene.
 	
   NOTE: Feel free to use your own Web Scene ID below!
 
-	```javascript
+```javascript
   require([
     "esri/views/SceneView",
     "esri/WebScene",
@@ -32,7 +32,7 @@ In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a cust
 
     var scene = new WebScene({
       portalItem: { // autocasts as new PortalItem
-        id: "6b06eb3e7db04dfab1b67d49e654c587"
+        id: "a49ce6d0705b41fb81b6dea098a8b2f7"
       }
     });
 
@@ -40,9 +40,11 @@ In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a cust
       map: scene,
       container: "viewDiv"
     });
-	```
+```
+Here is another scene that a 3d mesh: 31ea5dd6b2e74a1aaf3b0619a03b53c1 that you can try out
 
 Your app should look something like this:
  * [Code](index.html)
  * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi_scene_app/index.html)
+
 
