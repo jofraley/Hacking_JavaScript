@@ -110,7 +110,7 @@ In this lab you will use code to style a popup.
         }]
       });
  ```     
-4. Now add create a new PopupTemple with the popup template style desired:
+4. Now add create a new PopupTemplate with the popup template style desired:
 
   ```javascript
     /*** ADD ***/
