@@ -35,7 +35,7 @@ Let's get started!
 * Lab 8:  [Style a layer popup](./labs/jsapi/style_simple_popup/lab.md)
 * Lab 9:  [Create a JS API 4.x WebMap App](./labs/webmap_apps/create_jsapi_app/lab.md)
 * Lab 10: [Create a JS API 4.x WebScene App](./labs/webmap_apps/create_jsapi_scene_app/lab.md)
-* Lab 11: [Search with a Widget](./labs/jsapi/search_with_widget/lab.md)
+* Lab 11: [Working with Widgets](./labs/jsapi/search_with_widget/lab.md)
 * Lab 12: [Search with a Query Task](./labs/jsapi/search_with_query_task/lab.md)
 * Lab 13: [Client-side Buffering](./labs/jsapi/buffer_with_geometry_engine/lab.md)
 
