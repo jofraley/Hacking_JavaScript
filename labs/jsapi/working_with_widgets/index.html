@@ -3,64 +3,54 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-  <title>Simple UI</title>
+  <title>2D Map</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
-
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
   <style>
-    html,
-    body,
-    #viewDiv {
+    html, body, #viewDiv {
       padding: 0;
       margin: 0;
       height: 100%;
     }
   </style>
 
-  <script src="https://js.arcgis.com/4.1/"></script>
   <script>
-    var map, view;
-
     require([
-      "dojo/dom-construct",
-      "esri/Map",
       "esri/views/MapView",
-      "esri/widgets/Search",
-	  "esri/widgets/BasemapToggle",
+	  "esri/WebMap",
+	  "esri/widgets/Search",
+	  "esri/widgets/Legend",
+	  "esri/widgets/Expand",
       "dojo/domReady!"
-    ], function(domConstruct, Map, MapView, Search, BasemapToggle) {
-
-      map = new Map({
-        basemap: "dark-gray"
-      });
-
-      view = new MapView({
-        map: map,
+    ], function(MapView, WebMap, Search, Legend) {
+      var map = new WebMap({
+      portalItem: { // autocasts as new PortalItem
+        id: "7d281311aef74b5fa2c39f0ebc01b5dd"
+      }
+	  
+    });
+      var view = new MapView({
         container: "viewDiv",
-        center: [-77.029, 38.89],
-        zoom: 10
-      });
-
-      var logo = domConstruct.create("img", {
-        src: "https://placeholdit.imgix.net/~text?bg=000&txtclr=e8117f&txtsize=48&txt=logo&w=100&h=80",
-        id: "logo",
-        title: "logo"
-      });
-      var search = new Search({
-        view: view
-      });
-	  var toggle = new BasemapToggle({
-        view: view,
-        nextBasemap: "hybrid"
+        map: map
       });
 	  
-      view.ui.add(logo, "bottom-right");
-      view.ui.add(search, "top-right");
-      view.ui.add(toggle, "top-left")
+	  var searchWidget = new Search({
+        view: view
+	  });
+	  
+	  view.ui.add(searchWidget, {
+        position: "top-right",
+      });
+	  
+	  var legend = new Legend({
+	    view: view,		
+	  });
+	  
+	  view.ui.add(legend, "bottom-right");
     });
   </script>
 </head>
-
 <body>
   <div id="viewDiv"></div>
 </body>

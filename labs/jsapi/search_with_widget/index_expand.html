@@ -7,7 +7,6 @@
 
   <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
   <script src="https://js.arcgis.com/4.9/"></script>
-  
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -21,8 +20,11 @@
       "esri/views/MapView",
 	  "esri/WebMap",
 	  "esri/widgets/Search",
+	  "esri/widgets/Legend",
+	  "esri/widgets/BasemapGallery",
+	  "esri/widgets/Expand",
       "dojo/domReady!"
-    ], function(MapView, WebMap, Search) {
+    ], function(MapView, WebMap, Search, Legend, BasemapGallery, Expand) {
       var map = new WebMap({
       portalItem: { // autocasts as new PortalItem
         id: "7d281311aef74b5fa2c39f0ebc01b5dd"
@@ -40,6 +42,29 @@
 	  
 	  view.ui.add(searchWidget, {
         position: "top-right",
+      });
+	  
+	  var legend = new Expand ({
+	     content: new Legend({
+	      view: view,
+	    }),
+		view: view,
+		expanded: true
+	  });
+	  
+	  view.ui.add(legend, "bottom-right");
+
+	  var basemapGallery = new Expand ({
+	    content: new BasemapGallery({
+          view: view,
+		  }),
+		  view: view,
+		  expanded: false
+      });
+
+      // Add the widget to the top-right corner of the view
+      view.ui.add(basemapGallery, {
+        position: "top-right"
       });
 	  
     });

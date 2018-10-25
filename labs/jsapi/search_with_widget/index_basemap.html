@@ -7,7 +7,6 @@
 
   <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
   <script src="https://js.arcgis.com/4.9/"></script>
-  
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -21,8 +20,10 @@
       "esri/views/MapView",
 	  "esri/WebMap",
 	  "esri/widgets/Search",
+	  "esri/widgets/Legend",
+	  "esri/widgets/BasemapGallery",
       "dojo/domReady!"
-    ], function(MapView, WebMap, Search) {
+    ], function(MapView, WebMap, Search, Legend, BasemapGallery) {
       var map = new WebMap({
       portalItem: { // autocasts as new PortalItem
         id: "7d281311aef74b5fa2c39f0ebc01b5dd"
@@ -42,6 +43,17 @@
         position: "top-right",
       });
 	  
+	  var legend = new Legend({
+	    view: view,		
+	  });
+	  
+	  view.ui.add(legend, "bottom-right");
+	  
+	  var basemaps = new BasemapGallery({
+		view: view,
+	  )};
+	  
+	  view.ui.add(basemaps, "top-right");
     });
   </script>
 </head>
