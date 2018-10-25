@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>3D Map</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.9/"></script>
+
+    <style>
+      html, body, #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+      }
+    </style>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/SceneView",
+		"esri/WebScene",
+		"esri/widgets/Search",
+		"esri/widgets/Legend",
+        "dojo/domReady!"
+      ], function(Map, SceneView, WebScene, Search, Legend) {
+
+        var scene = new WebScene({
+          portalItem: { // autocasts as new PortalItem
+            id: "a49ce6d0705b41fb81b6dea098a8b2f7"
+          }
+        });
+        
+        var view = new SceneView({
+          container: "viewDiv",
+          map: scene
+        });
+
+		// Create search widget
+		var searchWidget = new Search({
+		  view: view
+		});
+
+		// Add widget to the UI
+		view.ui.add(searchWidget, {
+		  position: "top-right"
+		});   
+		
+		var legend = new Legend({
+	      view: view,		
+		});
+	  
+		view.ui.add(legend, "bottom-right");
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+  </html>
