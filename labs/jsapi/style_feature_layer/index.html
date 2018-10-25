@@ -5,8 +5,9 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Style Feature Layer</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
-
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+   <script src="https://js.arcgis.com/4.9/"></script>
+  
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -14,8 +15,6 @@
       height: 100%;
     }
   </style>
-
-  <script src="https://js.arcgis.com/4.1/"></script>
 
   <script>
     require([
@@ -27,7 +26,7 @@
       "dojo/domReady!"
     ], function(Map, MapView, FeatureLayer, SimpleMarkerSymbol, UniqueValueRenderer) {
       var map = new Map({
-        basemap: "dark-gray"
+        basemap: "dark-gray-vector"
       });
       var view = new MapView({
         container: "viewDiv",
@@ -41,8 +40,8 @@
       });
       renderer.addUniqueValueInfo("Yes",
         new SimpleMarkerSymbol({
-          color: [0, 0, 0, 0.8],
-          size: 13,
+          color: [0, 0, 255, 0.5],
+          size: 18,
           style: "diamond",
           outline: {
             color: [255, 255, 255],
@@ -52,13 +51,16 @@
       );
       renderer.addUniqueValueInfo("No",
         new SimpleMarkerSymbol({
-          color: [255, 255, 255, 0.8],
-          size: 8
+          color: [0, 0, 255, 0.5],
+          size: 8,
+		  outline: {
+            color: [255, 255, 255],
+            width: "1px"
+          }
         })
       );
-
       var metrostops = new FeatureLayer({
-        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0",
+        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Stations_Regional/FeatureServer/0",
         renderer: renderer 
       });
       map.add(metrostops);

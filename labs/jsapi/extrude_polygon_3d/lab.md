@@ -10,9 +10,11 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>Extrude polygon by visual variables - 4.0beta3</title>
+    <title>Extrude polygon by visual variables</title>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.9/"></script>
+    
     <style>
       html, body, #viewDiv {
         padding: 0;
@@ -21,8 +23,6 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
         width: 100%;
       }
     </style>
-
-    <script src="https://js.arcgis.com/4.1/"></script>
 
     <script>
       require(["esri/Map",
@@ -38,7 +38,7 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
 
           //Create map
           var map = new Map({
-            basemap: "dark-gray"
+            basemap: "dark-gray-vector"
           });
 
           //Create SceneView for 3d visualization
@@ -64,14 +64,14 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
    
 2. The JSBin `Output` panel should show a 3D view of earth that you can rotate around.
 
-3. Below the `SceneView` add a feature layer. When you test run your app the layer will look like blue polygons with a black outline. 
+3. Below the `SceneView` add a feature layer. When you test run your app the layer will look like green polygons. 
 Don't worry, we're going to fix this in just a minute.
 
 
-  ``` js
+  ``` javascript
       //Create featureLayer and add to the map
       var blockgroups = new FeatureLayer({
-        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/BlockGroupsDC/FeatureServer/0"
+        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Census_Block_Groups__2010/FeatureServer/0"
       });
       map.add(blockgroups);
   ```
@@ -107,11 +107,11 @@ then we'll apply `visualVariables` to define how to render the values by color, 
              stops: [
               {
                 value: 0,
-                color: "#FFFCD4",
+                color: [222,235,247],
               },
               {
                 value: 10000,
-                color: [153, 83, 41],
+                color: [49,130,189],
               }]
           }]
         });

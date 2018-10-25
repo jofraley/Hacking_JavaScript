@@ -1,4 +1,4 @@
-# Hacking for Solution Engineers 
+# Hacking JavaScript for Solution Engineers 
 
 A place to learn how to build geo apps with the ArcGIS API for JavaScript.
 
@@ -29,15 +29,16 @@ Let's get started!
 * Lab 2:  [Build a Starter 2D Map](./labs/jsapi/create_starter_map/lab.md)
 * Lab 3:  [Build a Starter 3D Map](./labs/jsapi/create_starter_map_3d/lab.md)
 * Lab 4:  [Add Feature Layer](./labs/jsapi/add_feature_layer/lab.md)
-* Lab 5:  [Add a Scene Layer](.labs/jsapi/add_scene_layer/lab.md)
+* Lab 5:  [Add a Scene Layer](./labs/jsapi/add_scene_layer/lab.md)
 * Lab 6:  [Style Feature Layer](./labs/jsapi/style_feature_layer/lab.md)
 * Lab 7:  [Extrude data as Polygons in 3D](./labs/jsapi/extrude_polygon_3d/lab.md)
 * Lab 8:  [Style a layer popup](./labs/jsapi/style_simple_popup/lab.md)
-* Lab 9:  [Search with a Widget](./labs/jsapi/search_with_widget/lab.md)
-* Lab 10: [Search with a Query Task](./labs/jsapi/search_with_query_task/lab.md)
-* Lab 11: [Client-side Buffering](./labs/jsapi/buffer_with_geometry_engine/lab.md)
-* Lab 12: [Create a JS API 4.x WebMap App](./labs/webmap_apps/create_jsapi_app/lab.md)
-* Lab 13: [Create a JS API 4.x WebScene App](./labs/webmap_apps/create_jsapi_scene_app/lab.md)
+* Lab 9:  [Create a JS API 4.x WebMap App](./labs/webmap_apps/create_jsapi_app/lab.md)
+* Lab 10: [Create a JS API 4.x WebScene App](./labs/webmap_apps/create_jsapi_scene_app/lab.md)
+* Lab 11: [Working with Widgets](./labs/jsapi/search_with_widget/lab.md)
+* Lab 12: [Search with a Query Task](./labs/jsapi/search_with_query_task/lab.md)
+* Lab 13: [Client-side Buffering](./labs/jsapi/buffer_with_geometry_engine/lab.md)
+
 
 You can see a high-level overview of the differences between the 3.x and 4.x JS APIs [here](https://developers.arcgis.com/javascript/latest/guide/choose-version/index.html) and a more detailed comparison [here](https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html).
 

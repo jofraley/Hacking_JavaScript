@@ -5,8 +5,9 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Style Popups</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
-
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+  
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -26,8 +27,6 @@
     }
   </style>
 
-  <script src="https://js.arcgis.com/4.1/"></script>
-
   <script>
     require([
       "esri/Map",
@@ -41,7 +40,7 @@
     ], function(Map, MapView, FeatureLayer, PopupTemplate, ClassBreaksRenderer, SimpleFillSymbol, Legend) {
 	
 	   var map = new Map({
-         basemap: "dark-gray"
+         basemap: "dark-gray-vector"
        });
 	  
 	  var view = new MapView({
@@ -133,7 +132,7 @@
 		  minValue: 3500,
           maxValue: 10000,
           symbol: more3500,
-          label: "<= 3500"
+          label: ">= 3500"
         }]
       });
 	  
@@ -141,7 +140,7 @@
 		  title: "Total Population is {P0010001}",
 		  content: [{ 
             type: "text",		  
-			text: "Total Housing Units: {H0010001}.  {H0010002} are occupied and {H0010003} are vacant."
+			text: "Total Housing Units: <b>{H0010001}</b>.  <b>{H0010002}</b> are occupied and <b>{H0010003}</b> are vacant."
 		  	},{
         	type: "media",
             mediaInfos: [{
@@ -159,7 +158,7 @@
 		});
 		
 	  var blockgroups = new FeatureLayer({
-        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/arcgis/rest/services/BlockGroupsDC/FeatureServer/0",
+        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Census_Block_Groups__2010/FeatureServer/0",
         outFields: ["*"],
 		renderer: renderer,
         popupTemplate: popupTemplate
@@ -184,3 +183,4 @@
   <div id="infoDiv"></div>
 </body>
 </html>
+
