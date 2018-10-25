@@ -53,15 +53,15 @@
       function getFeatures(theColor) {
         query.where = "LINE LIKE '%" + theColor + "%'";
         queryTask.execute(query).then(function(results) {
-			if (!view.ready) {
-			  watchUtils.whenTrueOnce(view, "ready", function() {
-                addFeatures(results.features);
-			  })
-			} else {
-			  addFeatures(results.features);
-			}  
+	  if (!view.ready) {
+	    watchUtils.whenTrueOnce(view, "ready", function() {
+              addFeatures(results.features);
+	    })
+	  } else {
+	    addFeatures(results.features);
+	  }  
         })
-		.otherwise(promiseRejected);
+	.otherwise(promiseRejected);
       }
 		  
       // Add features as graphics
@@ -122,12 +122,12 @@
       // Get the color from the drop down
       on(dom.byId("queryDiv"), "change", function(e) {
 	    var theColor = e.target.value;
-		getFeatures(theColor);
-	  })
+	    getFeatures(theColor);
+      })
       //Add the promise rejected function  
       function promiseRejected(){
 	    console.write("Error with query");
-	  }
+      }
     });
   </script>
 </head>
@@ -138,7 +138,7 @@
     <option selected>blue</option>
     <option>orange</option>
     <option>red</option>
-	<option>silver</option>
+    <option>silver</option>
     <option>yellow</option>
     <option>green</option>
   </select>
