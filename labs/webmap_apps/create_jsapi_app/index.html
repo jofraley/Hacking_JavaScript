@@ -5,8 +5,9 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>JS API Starter App</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.0/esri/css/main.css">
-
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+  
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -16,15 +17,12 @@
   
   </style>
 
-  <script src="https://js.arcgis.com/4.0/"></script>
-
   <script>
     require([
       "esri/views/MapView",
       "esri/WebMap",
-      "esri/widgets/Legend",
       "dojo/domReady!"
-    ], function(MapView, WebMap, Legend) {
+    ], function(MapView, WebMap) {
 
       var map = new WebMap({
         portalItem: { // autocasts as new PortalItem()
@@ -36,12 +34,6 @@
         map: map,
         container: "viewDiv"
       });
-
-      var legend = new Legend({
-        view: view
-      });
-
-      view.ui.add(legend, "top-right");
 
     });
   </script>
