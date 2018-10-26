@@ -167,4 +167,4 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
 
 Your app should look something like this:
 * [Code](index.html)
-* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/search_with_query_task/index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/query_stats/index.html)
