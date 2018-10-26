@@ -21,57 +21,13 @@ In this lab you will use a with distance and then clone that query to do stats o
       line-height: 0.8;
     }
 
-	#tot-Homicides {
+    #tot-Homicides,#tot-theft,#tot-Arson,
+    #tot-theftAuto,#tot-MVT,#tot-Robbery,
+    #tot-AssaultwWeapon,#tot-Burglary,#tot-SexAbuse{
       color: #149dcf;
       font-size: 20pt;
       font-weight: bolder;
       line-height: 0.8;
-    }
-	
-    #tot-theft {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-
-    #tot-Arson {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-theftAuto {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	#tot-MVT {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-Robbery {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-AssaultwWeapon {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-Burglary {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }	
-	#tot-SexAbuse {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
     }
   ```
 
