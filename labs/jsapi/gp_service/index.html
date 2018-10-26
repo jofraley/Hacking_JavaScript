@@ -36,10 +36,7 @@
         Geoprocessor, LinearUnit, FeatureSet, domReady
     ) {
 
-	  var gpUrl =
-          "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Elevation/ESRI_Elevation_World/GPServer/Viewshed";
-		  
-      var map = new Map({
+	  var map = new Map({
           basemap: "hybrid",
       });
 
@@ -70,7 +67,7 @@
           }
         };
 
-        var gp = new Geoprocessor(gpUrl);
+        var gp = new Geoprocessor("https://sampleserver6.arcgisonline.com/arcgis/rest/services/Elevation/ESRI_Elevation_World/GPServer/Viewshed");
         gp.outSpatialReference = { // autocasts as new SpatialReference()
           wkid: 102100
         };
