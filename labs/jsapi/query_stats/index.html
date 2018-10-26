@@ -11,15 +11,7 @@
 
   <style>
     html,
-    body {
-      padding: 0;
-      margin: 0;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-    }
-
-    #viewDiv {
+    body, #viewDiv {
       padding: 0;
       margin: 0;
       height: 100%;
@@ -32,60 +24,15 @@
       line-height: 0.8;
     }
 
-	#tot-Homicides {
+	#tot-Homicides,#tot-theft,#tot-Arson,
+	#tot-theftAuto,#tot-MVT,#tot-Robbery,
+	#tot-AssaultwWeapon,#tot-Burglary,#tot-SexAbuse{
       color: #149dcf;
       font-size: 20pt;
       font-weight: bolder;
       line-height: 0.8;
     }
-	
-    #tot-theft {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-
-    #tot-Arson {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-theftAuto {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	#tot-MVT {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-Robbery {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-AssaultwWeapon {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-Burglary {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-	
-	#tot-SexAbuse {
-      color: #149dcf;
-      font-size: 20pt;
-      font-weight: bolder;
-    }
-  </style>
+	</style>
 
   <script src="https://js.arcgis.com/4.9/"></script>
 
@@ -97,22 +44,23 @@
       "esri/widgets/Expand",
       "esri/core/lang",
       "esri/core/promiseUtils",
-      "esri/core/watchUtils"
+      "esri/core/watchUtils",
+	  "dojo/domReady!"
     ], function(
       MapView, WebMap, Legend, Expand, lang, promiseUtils,
-      watchUtils
+      watchUtils, domReady
     ) {
 
       // load a web map containing crime data
       // from a portal item
 
-      const webmap = new WebMap({
+      var webmap = new WebMap({
         portalItem: {
           id: "ac967bafb27d4ded896975e18e928fca"
         }
       });
 
-      const view = new MapView({
+      var view = new MapView({
         map: webmap,
         container: "viewDiv",
         constraints: {
@@ -126,7 +74,7 @@
       });
 
       // Add UI elements to the view
-      const titleContent = document.createElement("div");
+      var titleContent = document.createElement("div");
       titleContent.style.padding = "15px";
       titleContent.style.backgroundColor = "white";
       titleContent.style.width = "500px";
@@ -145,7 +93,7 @@
         "</div>"
       ].join(" ");
 
-      const titleExpand = new Expand({
+      var titleExpand = new Expand({
         expandIconClass: "esri-icon-dashboard",
         expandTooltip: "Summary stats",
         view: view,
@@ -154,7 +102,7 @@
       });
       view.ui.add(titleExpand, "top-right");
 
-      const legendExpand = new Expand({
+      var legendExpand = new Expand({
         view: view,
         content: new Legend({
           view: view
@@ -168,7 +116,7 @@
         legendExpand.expanded = newValue !== "xsmall";
       });
 
-      let highlightHandle = null;
+      var highlightHandle = null;
 
       /**
        * Start querying the layer view when
@@ -177,7 +125,7 @@
       view.when()
         .then(function() {
           
-          const layer = webmap.layers.getItemAt(0);
+          var layer = webmap.layers.getItemAt(0);
 
           view.whenLayerView(layer).then(function(layerView) {
 
@@ -203,18 +151,18 @@
 
         // create a query object for the highlight and the statistics query
 
-        const query = layerView.layer.createQuery();
+        var query = layerView.layer.createQuery();
         query.geometry = view.toMap(event); // converts the screen point to a map point
         query.distance = .5; // queries all features within 1 mile of the point
         query.units = "miles";
 
-        const statsQuery = query.clone();
+        var statsQuery = query.clone();
 
         // Create the statistic definitions for querying stats from the layer view
         // the `onStatisticField` property can reference a field name or a SQL expression
         // `outStatisticFieldName` is the name of the statistic you will reference in the result
         // `statisticType` can be sum, avg, min, max, count, stddev
-        const statDefinitions = [
+        var statDefinitions = [
 
           // total OFFENSES
 
@@ -274,9 +222,9 @@
         statsQuery.outStatistics = statDefinitions;
 
         // execute the query for all features in the layer view
-        const allStatsResponse = layerView.queryFeatures(statsQuery)
+        var allStatsResponse = layerView.queryFeatures(statsQuery)
           .then(function(response) {
-            const stats = response.features[0].attributes;
+            var stats = response.features[0].attributes;
             return stats;
           }, function(e) {
             console.error(e);
@@ -300,7 +248,7 @@
        * Updates the numbers with the data returned from the statistic queries.
        */
       function updateStats(responses) {
-        const allStats = responses[0].value;
+        var allStats = responses[0].value;
 		totalNumber = document.getElementById("tot-crimes");
         totTheft = document.getElementById("tot-theft");
         totTheftAuto = document.getElementById("tot-theftAuto");
