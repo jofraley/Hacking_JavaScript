@@ -24,7 +24,7 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
 3. Update the `require` statement and `function` definition:
 
   ```javascript
-  require([
+   require([
     "esri/Map",
     "esri/views/MapView",
     /*** ADD ***/
@@ -42,7 +42,7 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
 4. Now add the `QueryTask` and `Query` to select features from the metro stops layer. Only return two fields from the layer.
 
   ```javascript
-    ...
+ 
 
     var view = new MapView({
       container: "viewDiv",
@@ -55,7 +55,7 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
 
     // Create query task to reference the PDX_Rail_Stops_Styled feature layer      
     var queryTask = new QueryTask({
-      url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+      url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Stations_Regional/FeatureServer/0"
     });
 
     // Only return three fields
@@ -74,20 +74,20 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
     // Perform query when page loads
     getFeatures("blue");
 	  
-      // Get features with query where clause
-      function getFeatures(theColor) {
+    // Get features with query where clause
+    function getFeatures(theColor) {
         query.where = "LINE LIKE '%" + theColor + "%'";
         queryTask.execute(query).then(function(results) {
-			    if (!view.ready) {
-			      watchUtils.whenTrueOnce(view, "ready", function() {
-                addFeatures(results.features);
-			      })
-			    } else {
-			      addFeatures(results.features);
-			    }  
+	  if (!view.ready) {
+	    watchUtils.whenTrueOnce(view, "ready", function() {
+              addFeatures(results.features);
+	    })
+          } else {
+            addFeatures(results.features);
+	  }  
         })
-		    .otherwise(promiseRejected);
-      }
+	.otherwise(promiseRejected);
+    }
 
     // Add features as graphics
       function addFeatures(features) {

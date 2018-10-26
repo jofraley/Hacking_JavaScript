@@ -91,3 +91,9 @@ Your app should look something like this:
 Your app should look something like this:
 * [Code](index_expand.html)
 * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/search_with_widget/index_expand.html)
+
+* Add widgets to your 3D Scene app like the legend and search like what you did in 2D
+
+Your app should look something like this:
+* [Code](index_3D_widgets.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/search_with_widget/index_3D_widgets.html)

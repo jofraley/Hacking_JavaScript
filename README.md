@@ -38,6 +38,8 @@ Let's get started!
 * Lab 11: [Working with Widgets](./labs/jsapi/search_with_widget/lab.md)
 * Lab 12: [Search with a Query Task](./labs/jsapi/search_with_query_task/lab.md)
 * Lab 13: [Client-side Buffering](./labs/jsapi/buffer_with_geometry_engine/lab.md)
+* Lab 14: [Query plus calculating stats](./labs/jsapi/query_stats/lab.md)
+* Lab 15: [Geoprocessing Service](./labs/jsapi/gp_service/lab.md)
 
 
 You can see a high-level overview of the differences between the 3.x and 4.x JS APIs [here](https://developers.arcgis.com/javascript/latest/guide/choose-version/index.html) and a more detailed comparison [here](https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html).
@@ -45,7 +47,7 @@ You can see a high-level overview of the differences between the 3.x and 4.x JS 
  
 ## Data and Terms of Use
 
-Please see [www.civicapps.org](http://www.civicapps.org/), [developer.trimet.org/gis](developer.trimet.org/gis), and [http://opendata.dc.gov/](http://opendata.dc.gov/) for the data terms of use.
+Please see [http://opendata.dc.gov/](http://opendata.dc.gov/) for the data terms of use.
 
 ## Licensing
 Copyright 2016 Esri

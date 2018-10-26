@@ -5,8 +5,8 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Search with Query Task</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.1/esri/css/main.css">
-  
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -14,8 +14,6 @@
       height: 100%;
     }
   </style>
-
-  <script src="https://js.arcgis.com/4.1/"></script>
 
   <script>
     require([
@@ -26,7 +24,7 @@
       "esri/tasks/support/Query",
       "esri/symbols/SimpleMarkerSymbol",
       "esri/core/watchUtils",
-	  "dojo/on",
+      "dojo/on",
       "dojo/dom",
       "dojo/domReady!"
     ], function(Map, MapView, FeatureLayer, QueryTask, Query, SimpleMarkerSymbol, watchUtils, on, dom) {
@@ -36,12 +34,10 @@
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-77.029, 38.89], // lon, lat
-        zoom: 10
       });
       // Create query task to reference the Metro stops feature layer      
       var queryTask = new QueryTask({
-        url: "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
+        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Stations_Regional/FeatureServer/0"
       });
 	  
       // Only return two fields
@@ -57,15 +53,15 @@
       function getFeatures(theColor) {
         query.where = "LINE LIKE '%" + theColor + "%'";
         queryTask.execute(query).then(function(results) {
-			if (!view.ready) {
-			  watchUtils.whenTrueOnce(view, "ready", function() {
-                addFeatures(results.features);
-			  })
-			} else {
-			  addFeatures(results.features);
-			}  
+	  if (!view.ready) {
+	    watchUtils.whenTrueOnce(view, "ready", function() {
+              addFeatures(results.features);
+	    })
+	  } else {
+	    addFeatures(results.features);
+	  }  
         })
-		.otherwise(promiseRejected);
+	.otherwise(promiseRejected);
       }
 		  
       // Add features as graphics
@@ -126,12 +122,12 @@
       // Get the color from the drop down
       on(dom.byId("queryDiv"), "change", function(e) {
 	    var theColor = e.target.value;
-		getFeatures(theColor);
-	  })
+	    getFeatures(theColor);
+      })
       //Add the promise rejected function  
       function promiseRejected(){
 	    console.write("Error with query");
-	  }
+      }
     });
   </script>
 </head>
@@ -142,7 +138,7 @@
     <option selected>blue</option>
     <option>orange</option>
     <option>red</option>
-	<option>silver</option>
+    <option>silver</option>
     <option>yellow</option>
     <option>green</option>
   </select>
