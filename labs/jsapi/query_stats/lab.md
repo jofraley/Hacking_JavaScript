@@ -70,7 +70,7 @@ In this lab you will use a with distance and then clone that query to do stats o
       });
 ```
 
-5. Next, we are going to add a UI element to show the results of our query.  Notice that the values in the <span id=''>, the id's are the same as you defined in your css above.
+5. Next, we are going to add a UI element to show the results of our query.  Notice that the values in the span id='', the id's are the same as you defined in your css above.
 
   ```javascript
     var titleContent = document.createElement("div");
