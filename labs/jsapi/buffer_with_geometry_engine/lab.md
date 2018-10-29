@@ -50,7 +50,7 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
       };
   ```
 
-5. We need to capture the event of clicking on the view and call a funtion to generate the cuffer.
+5. We need to capture the event of clicking on the view and call a funtion to generate the buffer.
 
   ```javascript
     view.on("click", function(event) {
