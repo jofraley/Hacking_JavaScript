@@ -18,7 +18,7 @@ In this lab you will call a geoprocessing service to calculate a viewshed.
 	  "esri/tasks/support/FeatureSet",
 	  "dojo/domReady!"
     ], function(Map, MapView, GraphicsLayer, Graphic, Point,
-        Geoprocessor, LinearUnit, FeatureSet, domReady
+        Geoprocessor, LinearUnit, FeatureSet, domReady) { 
   ```
 
 3. Next update the map to use the hybrid basemap and the view to center on a new location. Also add a graphic layer to the map
