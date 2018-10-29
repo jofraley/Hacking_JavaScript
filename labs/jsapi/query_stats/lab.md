@@ -44,7 +44,7 @@ In this lab you will use a with distance and then clone that query to do stats o
       "esri/core/watchUtils",
       "dojo/domReady!"
     ], function(
-      MapView, WebMap, Legend, Expand, lang, promiseUtils,watchUtils, domReady
+      MapView, WebMap, Legend, Expand, lang, promiseUtils,watchUtils, domReady) {
   ```
 
 4. Let's use the portal id for a new web map that contains crime data and use this webmap in the view.  Notice that we are setting some addtional properties on the view like the [contraints](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#constraints) of minScale and [highlightOptions](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html#highlightOptions).  Look at the links to get more info and play around with some different properties as you build out this lab.
