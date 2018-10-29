@@ -6,51 +6,30 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
 
 2. Update the `require` statement and `function` definition:
 
-  ```javascript
+ ```javascript
   require([
-    "esri/Map",
-    "esri/views/MapView",
-    /*** ADD ***/
-    "esri/layers/GraphicsLayer",
-    "esri/layers/FeatureLayer",
-    "esri/Graphic",
-    "esri/symbols/SimpleFillSymbol",
-    "esri/geometry/geometryEngineAsync",
-    "dojo/domReady!"
-  ], function(Map, MapView, 
-              GraphicsLayer, FeatureLayer, Graphic, SimpleFillSymbol, geometryEngineAsync) {
-  ```
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/GraphicsLayer",
+      "esri/Graphic",
+      "esri/symbols/SimpleFillSymbol",
+      "esri/geometry/geometryEngine",
+      "dojo/domReady!"
+    ], function(Map, MapView,
+                GraphicsLayer, Graphic, SimpleFillSymbol, geometryEngine) {
+ ```
 
-3. Add the Styled Metro Stops and a Graphics Layer to display the calculated buffers. Optionally modify the map to initialize at zoom level `12` to see the half-mile buffers more easily:
+3. Add a graphics layer to the map.
 
   ```javascript
-    ...
-
-     var view = new MapView({
-        container: "viewDiv",
-        map: map,
-        center: [-77.029, 38.89],
-        zoom: 12
-      });
-    /*** ADD ***/
-
-    // Create a GraphicsLayer to show the calculated buffer, and a FeatureLayer for the buffer source data
-    // (Metro Stops).
-    var bufferLayer = new GraphicsLayer();
-    var stopsLayer = new FeatureLayer({
-      url : "https://services.arcgis.com/lA2FZKuu26Fips7U/ArcGIS/rest/services/MetroStops/FeatureServer/0"
-    });
-
-    // Add these layers to the map with the buffer layer below the stops layer.
-    map.addMany([bufferLayer, stopsLayer]);
+   var bufferLayer = new GraphicsLayer();
+      
+	  map.add(bufferLayer);
   ```
 
-4. Next create a buffer symbol to be used to display the buffers on the map.
+4. We need a symbol for the buffer and the point where you click on the map.
 
   ```javascript
-    /*** ADD ***/
-
-    // Configure the output buffer
     var bufferSymbol = new SimpleFillSymbol({
         color: [0,100,255,0.4],
         style: "solid",
@@ -59,36 +38,37 @@ In this lab you will use the GeometryEngine to buffer around Rail Stops in the b
           width: 1
         }
       });
+	  
+	  var pointSym = {
+        type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+        color: [255, 0, 0],
+        outline: {
+          color: [255, 255, 255],
+          width: 1
+        },
+        size: 7
+      };
   ```
 
-5. Lastly we'll wait for the Metro Stops data to load and then calculate and display a buffer.
+5. We need to capture the event of clicking on the view and call a funtion to generate the cuffer.
 
   ```javascript
-    /*** ADD ***/
-
-    // Buffer the view's contents
-    view.whenLayerView(stopsLayer).then(function(stopsLayerView) {
-        stopsLayerView.watch("updating", function(isUpdating) {
-          if (!isUpdating) {
-            stopsLayerView.queryFeatures().then(function(stopGraphics) {
-              // We need geometries, not graphics for the buffer operation.
-              var stops = stopGraphics.map(function(stopGraphic) {
-                return stopGraphic.geometry;
-              });
-              // Buffer and union all the points in the layer view.
-              geometryEngineAsync.geodesicBuffer(stops, 0.5, "miles", true).then(function(totalBuffer) {
-                // Display the unioned buffer on the map.
-                bufferLayer.removeAll();
-                bufferLayer.add(new Graphic({
-                  geometry: totalBuffer[0],
-                  symbol: bufferSymbol
-                }));
-              });
-            });
-          }
-        });
+    view.on("click", function(event) {
+        bufferPoint(event.mapPoint);
       });
-    });
+	  
+	  function bufferPoint(point) {
+        bufferLayer.add(new Graphic({
+          geometry: point,
+          symbol: pointSym
+        }));
+
+        var buffer = geometryEngine.geodesicBuffer(point, 1, "miles");
+        bufferLayer.add(new Graphic({
+          geometry: buffer,
+          symbol: bufferSymbol
+        }));
+      }
   ```
 
 6. In JSBin, run the app > When the stops have loaded, a 0.5 mile buffer will be calculated around them and added to the map.
@@ -98,4 +78,7 @@ Your app should look something like this:
 * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/buffer_with_geometry_engine/index.html)
 
 ###Bonus
-* Modify buffer distance and units, change value to merge buffer
+* Modify buffer distance and units.
+* Clear the graphics from previous click on the map.
+  * [Code](index_clear.htmll)
+  * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/buffer_with_geometry_engine/index_clear.html)
