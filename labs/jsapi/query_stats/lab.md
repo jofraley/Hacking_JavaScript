@@ -1,6 +1,6 @@
 ###Query by distance with statistics
 
-In this lab you will use a with distance and then clone that query to do stats on the features selected. 
+In this lab you will use a query with distance and then clone that query to do stats on the features selected. 
 
 1. Click [create_starter_map/index.html](../create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
