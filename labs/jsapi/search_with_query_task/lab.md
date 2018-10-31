@@ -66,7 +66,7 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
     });
   ```
 
-5. Next, add functions to execute the query task, get features, and then add them to the default graphics layer of the view. Notice that features will not be added until the view promise is ready.
+5. Next, add functions to execute the query task, get features, and then add them to the default graphics layer of the view. 
 
   ```javascript
     /*** ADD ***/
@@ -78,13 +78,7 @@ In this lab you will use a QueryTask to query data from a feature layer. A query
     function getFeatures(theColor) {
         query.where = "LINE LIKE '%" + theColor + "%'";
         queryTask.execute(query).then(function(results) {
-	  if (!view.ready) {
-	    watchUtils.whenTrueOnce(view, "ready", function() {
-              addFeatures(results.features);
-	    })
-          } else {
             addFeatures(results.features);
-	  }  
         })
 	.otherwise(promiseRejected);
     }
