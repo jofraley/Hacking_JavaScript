@@ -53,13 +53,7 @@
       function getFeatures(theColor) {
         query.where = "LINE LIKE '%" + theColor + "%'";
         queryTask.execute(query).then(function(results) {
-	  if (!view.ready) {
-	    watchUtils.whenTrueOnce(view, "ready", function() {
-              addFeatures(results.features);
-	    })
-	  } else {
 	    addFeatures(results.features);
-	  }  
         })
 	.otherwise(promiseRejected);
       }
