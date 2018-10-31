@@ -80,5 +80,5 @@ Your app should look something like this:
 ###Bonus
 * Modify buffer distance and units.
 * Clear the graphics from previous click on the map.
-  * [Code](index_clear.htmll)
+  * [Code](index_clear.html)
   * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/buffer_with_geometry_engine/index_clear.html)
