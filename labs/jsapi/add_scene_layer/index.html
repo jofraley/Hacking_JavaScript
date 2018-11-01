@@ -37,8 +37,11 @@
         var view = new SceneView({
           container: "viewDiv",
           map: map,
-          center: [-77.029, 38.89],
-          scale: 50000000
+          camera:{
+            position: [-77.04, 38.86, 790],
+            tilt: 71.47,
+             heading: 30.25
+          }
         });
 
       });
