@@ -121,7 +121,7 @@ In this lab you will call a geoprocessing service to calculate a viewshed.
           });
         }
 ```
-8. In JSBin, run the app > Select a category to query the feature layer. Click on any point to display the attribute data in a popup.
+8. In JSBin, run the app > Click anywhere on the map to run a viewshed. 
 
 Your app should look something like this:
 * [Code](index.html)
