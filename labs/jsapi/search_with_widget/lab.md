@@ -4,7 +4,7 @@ In this lab you will add a search widget and search against a feature layer. The
 
 In this lab it will search against the neighborhood polygon layer but you can point to any hosted feature layer you want.
 
-1. Click [webmap_apps/create_jsapi_app/index.html](../webmap_apps/create_jsapi_app/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
+1. Click [webmap_apps/create_jsapi_app/index.html](../../webmap_apps/create_jsapi_app/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
 2. In `JSBin` > `HTML`, update the `require` statement and `function` definition:
 
