@@ -66,7 +66,7 @@ Your app should look something like this:
 	    view: view,		
 	});
 	  
-	view.ui.add(legend, "bottom-right");
+	view.ui.add(legend, "bottom-left");
 ```
 That's it.  play around with moving the legend around on the ui.
 
