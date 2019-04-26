@@ -23,7 +23,7 @@ The labs start from ground-zero and work through the accessing different aspects
 
 Let's get started!
 
-### Version 4.9
+### Version 4.11
 
 * Lab 1:  [Review HTML, CSS, and JavaScript](./labs/review/lab1.md)
 * Lab 2:  [Build a Starter 2D Map](./labs/jsapi/create_starter_map/lab.md)
