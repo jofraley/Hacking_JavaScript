@@ -131,5 +131,5 @@ function createTextSymbol(color) {
  Your app should display a map of all the wineries in Virginia.  They shouod be labeled with the winery name and list the available amenities.
  
  It should look something like this:
-* [Code](index_basemap.html)
-* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/search_with_widget/index_basemap.html)
+* [Code](index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/label_with_arcade/index.html)
