@@ -40,6 +40,9 @@ Let's get started!
 * Lab 13: [Client-side Buffering](./labs/jsapi/buffer_with_geometry_engine/lab.md)
 * Lab 14: [Geoprocessing Service](./labs/jsapi/gp_service/lab.md)
 * Lab 15: [Query plus calculating stats](./labs/jsapi/query_stats/lab.md)
+* Lab 16: [Using the Editor Widget](./labs/jsapi/using_the_editor_widget/lab.md)
+* Lab 17: [Working with Arcade](./labs/jsapi/label_with_arcade/lab.md)
+* Lab 18: [Adding Cedar Charts](./labs/jsapi/cedar_charts/lab.md)
 
 You can see a high-level overview of the differences between the 3.x and 4.x JS APIs [here](https://developers.arcgis.com/javascript/latest/guide/choose-version/index.html) and a more detailed comparison [here](https://developers.arcgis.com/javascript/latest/guide/functionality-matrix/index.html).
 
