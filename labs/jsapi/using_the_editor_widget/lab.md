@@ -54,3 +54,9 @@ view.when(function() {
 ```html
 <div id="editorDiv"></div>
 ```
+
+ Your app should display a map of tourist locations in DC.  You should be able to add, edit, and delete features.
+ 
+ It should look something like this:
+* [Code](index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/using_the_editor_widget/index.html)
