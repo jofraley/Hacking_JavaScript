@@ -103,3 +103,9 @@ function loadCharts(features, chartName, chartField, chartLabel){
 <div id="chart2"></div> 
 <div id="chart3"></div>
 ```
+
+ Your app should display a map of the United States.  As you zoom into the map the charts should update dynamically.
+ 
+ It should look something like this:
+* [Code](index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/cedar_charts/index.html)
