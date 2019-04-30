@@ -81,7 +81,7 @@ The NYC Subway system is split between the A Division (Numbering) and B Division
   ```javascript
     /*** ADD ***/
     var metrolines = new FeatureLayer({
-        url: "http://services7.arcgis.com/kHi1Eco9RJ4lZsrC/arcgis/rest/services/NYC_Subway_Routes/FeatureServer",
+        url: "http://services7.arcgis.com/kHi1Eco9RJ4lZsrC/arcgis/rest/services/NYC_Subway_Routes/FeatureServer/1",
         renderer: renderer
      });
 
