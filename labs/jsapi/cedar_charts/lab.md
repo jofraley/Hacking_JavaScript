@@ -24,40 +24,65 @@ In this lab you will use the Cedar library to create charts that will dynamicall
 4.	Change the basemap to Topo, edit the map location, and add a feature layer.  This layer depicts the US states and includes multiple demographic attributes.
 
 ```javascript
-var map = new Map("viewDiv", {
-  center: [-99, 38.9],
-  zoom: 4,
-  basemap: "topo"
-});		
-
+var map = new Map({
+  basemap: "topo",
+})
+      
+var extent = new Extent ({
+  xmin: -83.7,
+  ymin: 36.4,
+  xmax: -75.7,
+  ymax: 39.6
+})
+var view = new MapView({
+  container: "viewDiv",
+  map: map,
+  extent: extent
+});
+		  
 var featureLayer = new FeatureLayer("https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
-  { 
-    outFields: ["*"] 
-  }
-);
-
-map.addLayer(featureLayer); 
+        { outFields: ["*"] }
+); 
 ```
 
-5.	Whenever a user moves around the map we need to update the charts by passing them the visible features.  This is accomplished by adding “update-end” to the feature layer.  After the update completes a response will be returned which can be used to iterate through each visible graphic.  From each graphic the feature attributes are pushed into an array.  Once the array has been populated by all the visible features it is passed to a function called loadCharts, which it does once for each chart.
+5.	Whenever a user moves around the map we need to update the charts by passing them the visible features.  This is accomplished by watching the view.  After the update completes, a response will be returned which can be used to iterate through each visible graphic.  From each graphic the feature attributes are pushed into an array.  Once the array has been populated by all the visible features it is passed to a function called loadCharts, which it does once for each chart.
 
 ```javascript
-featureLayer.on("update-end", function(response) {
-  var features = [];
-  response.target.graphics.forEach(feature => {
-    features.push({
-      attributes: {
-        STATE_ABBR: feature.attributes.STATE_ABBR,
-	POPULATION: feature.attributes.POPULATION,
-	POP_SQMI: feature.attributes.POP_SQMI,
-	MED_AGE: feature.attributes.MED_AGE
-      }
-    });
-  });	
-	
-  loadCharts(features, "chart1", "POPULATION", "Population")
-  loadCharts(features, "chart2", "POP_SQMI", "Density (Square Mile)")
-  loadCharts(features, "chart3", "MED_AGE", "Median Age")		
+view.whenLayerView(featureLayer).then(function(layerView) {
+  layerView.watch("updating", function(value) {
+    if (!value) {
+      layerView
+        .queryFeatures({
+          geometry: view.extent,
+          returnGeometry: true
+        })
+        .then(function(results) {
+	  var features = [];
+          graphics = results.features;
+
+          graphics.forEach(function(result, index) {
+            var attributes = result.attributes;
+            var name = attributes.NAME;
+	      features.push({
+                attributes: {
+	          STATE_ABBR: attributes.STATE_ABBR,
+		  POPULATION: attributes.POPULATION,
+		  POP_SQMI: attributes.POP_SQMI,
+		  MED_AGE: attributes.MED_AGE
+	        }
+	      });
+            });
+				  
+	    loadCharts(features, "chart1", "POPULATION", "Population")
+	    loadCharts(features, "chart2", "POP_SQMI", "Density (Square Mile)")
+	    loadCharts(features, "chart3", "MED_AGE", "Median Age")
+                  
+          })
+        .catch(function(error) {
+           console.error("query failed: ", error);
+         });
+       }
+  });
 });
 ```
 
