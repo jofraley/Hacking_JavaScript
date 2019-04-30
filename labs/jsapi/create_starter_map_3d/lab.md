@@ -1,9 +1,12 @@
-###Build a starter 3D map
+### Exercise 3 Build a starter 3D map
 
 This lab covers the basics for creating a basic starter 3D mapping application.
 The starter map simply loads a default base map and centers it.
-If you are new to ArcGIS and need a full set of instructions on building a basic 3D mapping application
-visit the [Get started with SceneView](https://developers.arcgis.com/javascript/latest/sample-code/get-started-sceneview/index.html) tutorial.
+
+* Explore the [SceneView Class and its corresponding properties](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-SceneView.html)
+* Explore the [Map Class and its corresponding properties](https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html)
+
+
 
 1. Copy and paste the code below into a new [jsbin.com](http://jsbin.com).
 
@@ -13,10 +16,11 @@ visit the [Get started with SceneView](https://developers.arcgis.com/javascript/
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>3D Map</title>
+    <title>Exercise 3 -- Creating a 3D Scene</title>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.9/"></script>
+    <!-- Add references to latest ArcGIS API for Javascript Version --> 
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
+	  <script src="https://js.arcgis.com/4.11/"></script>
 
     <style>
       html, body, #viewDiv {
