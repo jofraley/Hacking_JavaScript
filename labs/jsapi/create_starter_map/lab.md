@@ -8,51 +8,59 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
 1. Copy and paste the code below into a new [jsbin.com](http://jsbin.com).
 
   ```html
-  <!DOCTYPE html>
-  <html>
+<!-- Exercise 2 , Written in JavaScript 4.11 -->
+<!DOCTYPE html>
+<html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
-    <title>2D Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Exercise 2 -- Create a 2D map</title>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.9/"></script>
-    <style>
-      html, body, #viewDiv {
-        padding: 0;
-        margin: 0;
-        height: 100%;
-      }
-    </style>
 
-    <script>
-      require([
-        "esri/Map",
-        "esri/views/MapView",
-        "dojo/domReady!"
-      ], function(Map, MapView) {
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.11/"></script>
 
-        var map = new Map({
-          basemap: "dark-gray-vector"
-        });
+	<style>
+    	html, body, #viewDiv {
+      		padding: 0;
+      		margin: 0;
+      		height: 100%;
+    	}
+  	</style>
 
-        var view = new MapView({
-          container: "viewDiv",
-          map: map,
-          center: [-77.029, 38.89],
-          zoom: 10
-        });
 
-      });
-    </script>
-  </head>
-  <body>
-    <div id="viewDiv"></div>
-  </body>
-  </html>
+  	<script>
+  		var view; // declaring view as a global variable
+
+    	require([
+      	"esri/Map",
+      	"esri/views/MapView",
+      	"dojo/domReady!"
+    	], function(Map, MapView) {
+
+      	var map = new Map({
+        	basemap: "satellite"
+      	});
+
+      	view = new MapView({
+        	container: "viewDiv",
+        	map: map,
+        	center: [-74.029, 40.71],
+        	zoom: 10
+      	});
+
+    	});
+  	</script>
+
+
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
   ```
 
-2. The JSBin `Output` panel should show a dark-grey-vector map centered on Washington DC.
+2. The JSBin `Output` panel should show a imagery basemap centered on New York City.
 
 Your app should look something like this:
 
