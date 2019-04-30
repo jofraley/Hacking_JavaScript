@@ -1,4 +1,5 @@
 ###Review HTML, CSS, and JavaScript
+Lab 1 -- ArcGIS API for Javascript 4.11 
 
 This lab covers the basics of creating your first web page.  Take this starter page and play around with modifying the HTML, CSS, and JavaScript.  Use the resource [W3School](http://w3schools.com) to learn what is possible.
 
