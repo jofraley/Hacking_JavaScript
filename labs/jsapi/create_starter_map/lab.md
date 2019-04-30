@@ -16,7 +16,6 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
     <title>Exercise 2 -- Create a 2D map</title>
 
-
     <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
 	<script src="https://js.arcgis.com/4.11/"></script>
 
@@ -27,7 +26,6 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
       		height: 100%;
     	}
   	</style>
-
 
   	<script>
   		var view; // declaring view as a global variable
@@ -51,8 +49,6 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
 
     	});
   	</script>
-
-
 </head>
 <body>
   <div id="viewDiv"></div>
