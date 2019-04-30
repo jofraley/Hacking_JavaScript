@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Exercise 3 -- Create a 2D Scene</title>
+
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.11/"></script>
+
+	<style>
+    	html, body, #viewDiv {
+      		padding: 0;
+      		margin: 0;
+      		
+      		height: 100%;
+    	}
+  	</style>
+
+
+  	<script type="text/javascript">
+
+  		var view;
+
+  		require([
+      		"esri/Map",
+      		"esri/views/SceneView",
+      		"dojo/domReady!"
+    	], function(Map, SceneView) {
+
+      		var map = new Map({
+        		basemap: "satellite",
+        		ground: "topo"
+      		});
+      
+      		view = new SceneView({
+        		container: "viewDiv",
+        		map: map,
+        		center: [-74.029, 40.71],
+        		scale: 50000000
+      		});
+
+      		view.map.basemap = "streets",
+      		view.center = [30,30]
+
+    	});
+
+  	</script>
+
+
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
