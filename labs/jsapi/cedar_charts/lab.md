@@ -41,7 +41,7 @@ var view = new MapView({
 });
 		  
 var featureLayer = new FeatureLayer("https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
-        { outFields: ["*"] }
+  { outFields: ["*"] }
 ); 
 ```
 
