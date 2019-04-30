@@ -1,3 +1,4 @@
+<!-- Exercise 2 Creating a starter map, Written in JavaScript 4.11 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +6,9 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>2D Map</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/css/main.css">
-  <script src="https://js.arcgis.com/4.11/"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.11/"></script>
+  
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -16,6 +18,8 @@
   </style>
 
   <script>
+    var view; // declaring view as a global variable 
+    
     require([
       "esri/Map",
       "esri/views/MapView",
@@ -32,7 +36,8 @@
         center: [-77.029, 38.89],
         zoom: 10
       });
-
+      //view.map.basemap = "streets"
+      //view.popup = "null"
     });
   </script>
 </head>
