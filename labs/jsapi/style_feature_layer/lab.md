@@ -1,4 +1,5 @@
-###Style Feature Layers
+###Style Feature Layers| Excercise 6 , Written in JavaScript 4.11 / Styling Feature Layers in a Web Map
+
 
 The NYC Subway system is split between the A Division (Numbering) and B Division (Letters). In this lab you will apply custom styling to the subway line feature layer to highlight these divisions.
 
@@ -88,7 +89,7 @@ The NYC Subway system is split between the A Division (Numbering) and B Division
   ```
 
 Your app should look something like this:
- * [Code](index.html)
+ * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/style_feature_layer/js411_stylingfeatures.html)
  * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/style_feature_layer/index.html)
 
 
