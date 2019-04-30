@@ -43,7 +43,9 @@ var view = new MapView({
 		  
 var featureLayer = new FeatureLayer("https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
   { outFields: ["*"] }
-); 
+);
+
+view.map.add(featureLayer);
 ```
 
 5.	Whenever a user moves around the map we need to update the charts by passing them the visible features.  This is accomplished by watching the view.  After the update completes, a response will be returned which can be used to iterate through each visible graphic.  From each graphic the feature attributes are pushed into an array.  Once the array has been populated by all the visible features it is passed to a function called loadCharts, which it does once for each chart.
