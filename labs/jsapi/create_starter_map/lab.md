@@ -11,44 +11,41 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
 <!-- Exercise 2 , Written in JavaScript 4.11 -->
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
-    <title>Exercise 2 -- Create a 2D map</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>2D Map</title>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
-	<script src="https://js.arcgis.com/4.11/"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
+  <script src="https://js.arcgis.com/4.9/"></script>
+  <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+    }
+  </style>
 
-	<style>
-    	html, body, #viewDiv {
-      		padding: 0;
-      		margin: 0;
-      		height: 100%;
-    	}
-  	</style>
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "dojo/domReady!"
+    ], function(Map, MapView) {
 
-  	<script>
-  		var view; // declaring view as a global variable
+      var map = new Map({
+        basemap: "dark-gray-vector"
+      });
 
-    	require([
-      	"esri/Map",
-      	"esri/views/MapView",
-      	"dojo/domReady!"
-    	], function(Map, MapView) {
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-77.029, 38.89],
+        zoom: 10
+      });
 
-      	var map = new Map({
-        	basemap: "satellite"
-      	});
-
-      	view = new MapView({
-        	container: "viewDiv",
-        	map: map,
-        	center: [-74.029, 40.71],
-        	zoom: 10
-      	});
-
-    	});
-  	</script>
+    });
+  </script>
 </head>
 <body>
   <div id="viewDiv"></div>
