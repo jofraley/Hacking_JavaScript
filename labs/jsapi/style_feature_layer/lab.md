@@ -44,7 +44,7 @@ The NYC Subway system is split between the A Division (Numbering) and B Division
      });
   ```
 
-4. Next we tell the renderer how to represent each discrete `Division` value (the values are `Yes` or `No`). We will define the line color / properties for each division of the NYC Subway system.  
+4. Next we tell the renderer how to represent each discrete `Division` value. We will define the line color / properties for each division of the NYC Subway system.  
   ```javascript
     var renderer = new UniqueValueRenderer({
         field: "Division", 
