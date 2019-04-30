@@ -1,0 +1,109 @@
+<!-- Excercise 6 , Written in JavaScript 4.11 / Styling Feature Layers in a Web Map   -->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>Exercise 6 -- Styling Feature Layers</title>
+
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.11/"></script>
+
+	<style>
+    	html, body, #viewDiv {
+      		padding: 0;
+      		margin: 0;
+      		height: 100%;
+    	}
+  	</style>
+
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/FeatureLayer",
+      /*** ADD ***/
+      "esri/symbols/SimpleLineSymbol",
+      "esri/renderers/UniqueValueRenderer",
+      "dojo/domReady!"
+
+    ], function(Map, MapView, FeatureLayer, SimpleLineSymbol, UniqueValueRenderer) {
+
+
+
+      var map = new Map({
+          basemap: "gray-vector"
+      });
+
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-74.029, 40.71],
+        zoom: 10
+      });
+
+      //Add this   
+      var renderer = new UniqueValueRenderer({
+        field: "Division", 
+        defaultSymbol: new SimpleLineSymbol()
+      });
+
+      renderer.addUniqueValueInfo("IRT",
+        new SimpleLineSymbol({
+          color: "blue",
+          width: "2px",
+          style: "solid",
+        })
+      );
+
+      renderer.addUniqueValueInfo("BMT",
+        new SimpleLineSymbol({
+          color: "green",
+          width: "2px",
+          style: "solid",
+        })
+      );
+
+      renderer.addUniqueValueInfo("IND",
+        new SimpleLineSymbol({
+          color: "green",
+          width: "2px",
+          style: "solid",
+        })
+      );
+        
+      var metrolines = new FeatureLayer({
+        url: "http://services7.arcgis.com/kHi1Eco9RJ4lZsrC/arcgis/rest/services/NYC_Subway_Routes/FeatureServer",
+        renderer: renderer
+      });
+
+
+      var stations = new FeatureLayer({
+        url: "https://services1.arcgis.com/JPUKRee8mEBfJ0K4/arcgis/rest/services/NYC_Subway_Stations_2015/FeatureServer", 
+
+      });
+
+      var nyc_blocks = new FeatureLayer({
+        url: "http://services7.arcgis.com/kHi1Eco9RJ4lZsrC/arcgis/rest/services/NeighborhoodTabulationAreas_NYC_2010Census_Brooklyn_Queens/FeatureServer"
+      });
+
+      map.add(nyc_blocks);
+      map.add(metrolines);
+      map.add(stations);
+      stations.opacity = 0.3;
+      nyc_blocks.opacity = 0.3;
+      //map.addMany([nyc_blocks, metrolines, stations]);
+
+
+    });      
+  </script>
+
+</head>
+<body>
+  <div id="viewDiv"></div>
+</body>
+</html>
