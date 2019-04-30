@@ -22,7 +22,7 @@ In this lab you will use the Cedar library to create charts that will dynamicall
 <script src="https://js.arcgis.com/4.11/"></script>
 ```
 
-4.	Change the basemap to Topo, edit the map location, and add a feature layer.  This layer depicts the US states and includes multiple demographic attributes.
+4.	Update the require statement and function definition with "esri/geometry/Extent".  Change the basemap to Topo, edit the map location, and add a feature layer.  This layer depicts the US states and includes multiple demographic attributes.
 
 ```javascript
 var map = new Map({
