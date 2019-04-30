@@ -1,3 +1,4 @@
+<!-- Exercise 4 , Written in JavaScript 4.11 / Adding features to a 2D Map -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,8 +6,8 @@
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>Add Feature Layer</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
-  <script src="https://js.arcgis.com/4.9/"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.11/"></script>
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -30,25 +31,27 @@
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-77.029, 38.89],
+        center: [-74.029, 40.71],
         zoom: 10
-      });
-
-      var blockgroups = new FeatureLayer({
-        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Census_Block_Groups__2010/FeatureServer/0"
-      });
+      });  
 
       var metrolines = new FeatureLayer({
-        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Lines_Regional/FeatureServer/0"
+        url: "https://services.arcgis.com/bGgB6gXiQ835YdNp/ArcGIS/rest/services/NYC_SubwayLines/FeatureServer/1"
       });
 
-      var metrostops = new FeatureLayer({
-        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Stations_Regional/FeatureServer/0"
+
+      var stations = new FeatureLayer({
+        url: "https://services.arcgis.com/bGgB6gXiQ835YdNp/arcgis/rest/services/NYC_SubwayStations/FeatureServer/0" 
       });
 
-      map.add(blockgroups);
-      map.add(metrolines);
-      map.add(metrostops);
+      var nyc_blocks = new FeatureLayer({
+        url: "https://services.arcgis.com/bGgB6gXiQ835YdNp/arcgis/rest/services/NYC_Neighborhoods/FeatureServer/2"
+      });
+
+      //map.add(nyc_blocks);
+      //map.add(metrolines);
+      //map.add(stations);
+      map.addMany([nyc_blocks, metrolines, stations]);
 
     });
   </script>
