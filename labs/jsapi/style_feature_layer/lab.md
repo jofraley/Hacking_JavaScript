@@ -1,82 +1,90 @@
 ###Style Feature Layers
 
-In this lab you will apply custom styling to a feature layer.
+The NYC Subway system is split between the A Division (Numbering) and B Division (Letters). In this lab you will apply custom styling to the subway line feature layer to highlight these divisions.
+
+
+* Explore the [FeatureLayer Class and its corresponding properties](https://developers.arcgis.com/javascript/latest/api-reference/esri-layers-FeatureLayer.html)
+* Explore the [SimpleLineSymbol Class and its corresponding properties](https://developers.arcgis.com/javascript/latest/api-reference/esri-symbols-SimpleLineSymbol.html)
+* Explore the [UniqueValueRenderer Class and its corresponding properties](https://developers.arcgis.com/javascript/latest/api-reference/esri-renderers-UniqueValueRenderer.html)
+
 
 1. Click [create_starter_map/index.html](../create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
 2. In `JSBin` > `HTML`, update the `require` statement and `function` definition.
 
   ```javascript
-  require([
-    "esri/Map",
-    "esri/views/MapView",
-    /*** ADD ***/
-    "esri/layers/FeatureLayer",
-    "esri/symbols/SimpleMarkerSymbol",
-    "esri/renderers/UniqueValueRenderer",
-    "dojo/domReady!"
-  ], function(Map, MapView, FeatureLayer, SimpleMarkerSymbol, UniqueValueRenderer) {
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/FeatureLayer",
+      /*** ADD ***/
+      "esri/symbols/SimpleLineSymbol",
+      "esri/renderers/UniqueValueRenderer",
+      "dojo/domReady!"
+    ], function(Map, MapView, FeatureLayer, SimpleLineSymbol, UniqueValueRenderer) {
   ```
 
-3. Now set up a `UniqueValueRenderer` based off the `Transfer` field.
+3. Now set up a `UniqueValueRenderer` based off the `Division` field. You can check out the list of fields by navigating to the service endpoint
 
   ```javascript
     ...
 
     var view = new MapView({
-      container: "viewDiv",
-      map: map,
-      center: [-77.029, 38.89],
-      zoom: 10
-    });
-
-    /*** ADD ***/
-    var renderer = new UniqueValueRenderer({
-      field: "Transfer",
-      defaultSymbol: new SimpleMarkerSymbol()
-    });
-  ```
-
-4. Next we tell the renderer how to show each `Transfer` value (the values are `Yes` or `No`). We want to highlight `Yes`, so we make this a diamond and a little bigger size.
-
-  ```javascript
-    var renderer = new UniqueValueRenderer({
-        field: "Transfer",
-        defaultSymbol: new SimpleMarkerSymbol()
+        container: "viewDiv",
+        map: map,
+        center: [-74.029, 40.71],
+        zoom: 10
       });
-      renderer.addUniqueValueInfo("Yes",
-        new SimpleMarkerSymbol({
-          color: [0, 0, 255, 0.5],
-          size: 18,
-          style: "diamond",
-          outline: {
-            color: [255, 255, 255],
-            width: "1px"
-          }
+
+      //Add this   
+     var renderer = new UniqueValueRenderer({
+       field: "Division", 
+       defaultSymbol: new SimpleLineSymbol()
+     });
+  ```
+
+4. Next we tell the renderer how to represent each discrete `Division` value (the values are `Yes` or `No`). We will define the line color / properties for each division of the NYC Subway system.  
+  ```javascript
+    var renderer = new UniqueValueRenderer({
+        field: "Division", 
+        defaultSymbol: new SimpleLineSymbol()
+      });
+
+      renderer.addUniqueValueInfo("IRT",
+        new SimpleLineSymbol({
+          color: "blue",
+          width: "2px",
+          style: "solid",
         })
       );
-      renderer.addUniqueValueInfo("No",
-        new SimpleMarkerSymbol({
-          color: [0, 0, 255, 0.5],
-          size: 8,
-          outline: {
-            color:  [255,255,255],
-            width: "1px"
-          }
+
+      renderer.addUniqueValueInfo("BMT",
+        new SimpleLineSymbol({
+          color: "green",
+          width: "2px",
+          style: "solid",
+        })
+      );
+
+      renderer.addUniqueValueInfo("IND",
+        new SimpleLineSymbol({
+          color: "green",
+          width: "2px",
+          style: "solid",
         })
       );
   ```
 
-5. Lastly, we create the `FeatureLayer`, attach the `UniqueValueRenderer`, and add it to the map.
+5. Lastly, we create the `FeatureLayer`(NYC Subway lines), attach the `UniqueValueRenderer`, and add it to the map.
 
   ```javascript
     /*** ADD ***/
-    var metrostops = new FeatureLayer({
-      url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Metro_Stations_Regional/FeatureServer/0",
-      renderer: renderer 
-    });
+    var metrolines = new FeatureLayer({
+        url: "http://services7.arcgis.com/kHi1Eco9RJ4lZsrC/arcgis/rest/services/NYC_Subway_Routes/FeatureServer",
+        renderer: renderer
+     });
 
-    map.add(metrostops);
+    map.add(metrolines);
   ```
 
 Your app should look something like this:
