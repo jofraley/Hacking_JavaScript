@@ -71,13 +71,13 @@ view.whenLayerView(featureLayer).then(function(layerView) {
 		  MED_AGE: attributes.MED_AGE
 	        }
 	      });
-            });
+          });
 				  
-	    loadCharts(features, "chart1", "POPULATION", "Population")
-	    loadCharts(features, "chart2", "POP_SQMI", "Density (Square Mile)")
-	    loadCharts(features, "chart3", "MED_AGE", "Median Age")
+	  loadCharts(features, "chart1", "POPULATION", "Population")
+	  loadCharts(features, "chart2", "POP_SQMI", "Density (Square Mile)")
+	  loadCharts(features, "chart3", "MED_AGE", "Median Age")
                   
-          })
+        })
         .catch(function(error) {
            console.error("query failed: ", error);
         });
