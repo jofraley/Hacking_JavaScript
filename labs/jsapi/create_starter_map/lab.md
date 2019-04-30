@@ -16,8 +16,8 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
   <title>2D Map</title>
 
-  <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
-  <script src="https://js.arcgis.com/4.9/"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
+  <script src="https://js.arcgis.com/4.11/"></script>
   <style>
     html, body, #viewDiv {
       padding: 0;
@@ -34,13 +34,13 @@ visit the [Getting Started with MapView](https://developers.arcgis.com/javascrip
     ], function(Map, MapView) {
 
       var map = new Map({
-        basemap: "dark-gray-vector"
+        basemap: "satellite"
       });
 
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-77.029, 38.89],
+        center: [-74.029, 40.71],
         zoom: 10
       });
 
@@ -62,7 +62,10 @@ Your app should look something like this:
 
 ###Bonus
 
-* Experiment with different basemaps such as `topo-vector` or `gray-vector`.
+* Experiment with different basemaps such as `topo-vector` or `gray-vector`. [Map Class / Basemap Property](https://developers.arcgis.com/javascript/latest/api-reference/esri-Map.html#basemap)
+
+* Explore the [MapView Class](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html)
+
 * Declare the `view` variable globally instead and open your browser's javascript console ([see some instructions here for chrome](https://developers.google.com/web/tools/chrome-devtools/)). You can then interactively control the view from your browser console by referring to the `view` global variable. Many browsers will autocomplete once you've typed `view.`. For example, change the view extent, center point, zoom level or scale. See [here](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html) for some examples.
 
   **Hint:** If you're in a JS Bin, pop the Output into a separate window/tab to get direct access from the console.
@@ -81,7 +84,7 @@ Your app should look something like this:
     view = new MapView({ // REMOVE the 'var' so we're setting the new global 'view' variable.
       container: "viewDiv",
       map: map,
-      center: [-77.029, 38.89],
+      center: [-74.029, 40.71],
       zoom: 10
     });
   ```
