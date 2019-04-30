@@ -12,13 +12,14 @@ In this lab you will use the Cedar library to create charts that will dynamicall
 #chart3 { height: 300px; width: 34%; box-shadow: 0px 0px 0px 1px black inset; float: right;}
 ```
 
-3.	Next add the JavaScript URLs for the Cedar library:
+3.	Next add the JavaScript URLs for the Cedar library. You will need to remove the original link to the ArcGIS JavaScript library and place it below the Cedar library scripts:
 
 ```javascript
 <script src='https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.12/amcharts.js'></script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/amcharts/3.21.12/serial.js'></script>
 <script src='https://unpkg.com/@esri/cedar@1.0.0-beta.2/dist/umd/cedar.js'></script>
 <script src='https://unpkg.com/@esri/cedar@1.0.0-beta.2/dist/umd/themes/amCharts/calcite.js'></script>
+<script src="https://js.arcgis.com/4.11/"></script>
 ```
 
 4.	Change the basemap to Topo, edit the map location, and add a feature layer.  This layer depicts the US states and includes multiple demographic attributes.
