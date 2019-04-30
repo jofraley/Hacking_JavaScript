@@ -4,7 +4,7 @@ In this lab you will use Arcade to create custom labels based on each feature’
 
 1.	Click [create_starter_map/index.html](../create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
-2.	Add the following code directly below </script>.  This is the Arcade expression that will be used to produce the label.
+2.	Add the following code directly below </style>.  This is the Arcade expression that will be used to produce the label.
 
 ```javascript
 <script type="text/plain" id="amenities">
