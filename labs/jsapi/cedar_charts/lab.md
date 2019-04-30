@@ -80,7 +80,7 @@ view.whenLayerView(featureLayer).then(function(layerView) {
           })
         .catch(function(error) {
            console.error("query failed: ", error);
-         });
+        });
      }
   });
 });
