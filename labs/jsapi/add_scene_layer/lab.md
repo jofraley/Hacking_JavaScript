@@ -1,4 +1,4 @@
-###Lab 5, Add a Scene Layer to a 3D map
+###Exercise 5, Add a Scene Layer to a 3D map
 
 This lab covers the basics of adding a scene layer to your application.
 
