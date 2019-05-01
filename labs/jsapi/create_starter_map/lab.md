@@ -1,4 +1,4 @@
-###Build a starter map
+###Exercise 2 Building a starter map
 
 This lab covers the basics for creating a basic starter mapping application.
 The starter map simply loads a default base map, and centers and zooms it in in a [MapView](https://developers.arcgis.com/javascript/latest/api-reference/esri-views-MapView.html).
