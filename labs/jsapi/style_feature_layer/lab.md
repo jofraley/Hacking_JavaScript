@@ -33,8 +33,8 @@ The NYC Subway system is split between the A Division (Numbering) and B Division
     var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-74.029, 40.71],
-        zoom: 10
+        center: [-73.99, 40.71],
+        zoom: 12
       });
 
       //Add this   
