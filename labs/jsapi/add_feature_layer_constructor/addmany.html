@@ -8,7 +8,7 @@
 
 
     <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/themes/light/main.css" />
-	  <script src="https://js.arcgis.com/4.11/"></script>
+    <script src="https://js.arcgis.com/4.11/"></script>
 
 	<style>
     	html, body, #viewDiv {
@@ -28,14 +28,9 @@
       "dojo/domReady!"
     ], function(Map, MapView, FeatureLayer) {
 
-
-
-
-
       var metrolines = new FeatureLayer({
         url: "https://services.arcgis.com/bGgB6gXiQ835YdNp/ArcGIS/rest/services/NYC_SubwayLines/FeatureServer/1"
       });
-
 
       var stations = new FeatureLayer({
         url: "https://services.arcgis.com/bGgB6gXiQ835YdNp/arcgis/rest/services/NYC_SubwayStations/FeatureServer/0" 
@@ -56,7 +51,6 @@
         center: [-74.029, 40.71],
         zoom: 10
       });  
-
 
     });      
   </script>
