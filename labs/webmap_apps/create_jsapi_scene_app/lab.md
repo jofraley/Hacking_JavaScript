@@ -1,8 +1,10 @@
-###Create an App from a Web Map
+###Create an 3D Application from a 3d Web Scene
 
 You can use the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) to easily load web scenes built with the Scene Viewer. The advantage to using this approach is that the map will contain all of the pre-defined settings you configured in the Scene Viewer. 
 
 In this lab, you will use the ArcGIS JS API to load a Scene by its ID in a custom JavaScript app. 
+
+1. Look through the [WebScene Class Documentation](https://developers.arcgis.com/javascript/latest/api-reference/esri-WebScene.html)
 
 1. Click [JS API starter 3D app HTML](../../jsapi/create_starter_map_3d/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
@@ -32,7 +34,7 @@ In this lab, you will use the ArcGIS JS API to load a Scene by its ID in a custo
 
     var scene = new WebScene({
       portalItem: { // autocasts as new PortalItem
-        id: "a49ce6d0705b41fb81b6dea098a8b2f7"
+        id: "611e614e01e2459785b9a27b9c73313a"
       }
     });
 
@@ -41,10 +43,13 @@ In this lab, you will use the ArcGIS JS API to load a Scene by its ID in a custo
       container: "viewDiv"
     });
 ```
-Here is another scene that a 3d mesh: 31ea5dd6b2e74a1aaf3b0619a03b53c1 that you can try out
+Here are some additional scenes that you can try out: 
+* 31ea5dd6b2e74a1aaf3b0619a03b53c1
+* a49ce6d0705b41fb81b6dea098a8b2f7
+
 
 Your app should look something like this:
- * [Code](index.html)
+ * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/webmap_apps/create_jsapi_scene_app/js411_scene.html)
  * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi_scene_app/index.html)
 
 
