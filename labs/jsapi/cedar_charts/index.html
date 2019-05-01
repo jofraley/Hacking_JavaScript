@@ -28,7 +28,6 @@
       "esri/layers/FeatureLayer",
       "esri/geometry/Extent"
     ], function(Map, MapView, FeatureLayer, Extent) {
-
       var map = new Map({
         basemap: "topo",
       })
@@ -46,9 +45,20 @@
       });
 		  
       var featureLayer = new FeatureLayer("https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
-        { outFields: ["*"] }
+        { outFields: ["*"],
+		  renderer: {
+            type: "simple",  // autocasts as new SimpleRenderer()
+            symbol: {
+              type: "simple-fill",  // autocasts as new SimpleMarkerSymbol()
+              color: [0, 0, 0, 0.1],
+              outline: {  // autocasts as new SimpleLineSymbol()
+                width: 0.5,
+                color: "white"
+              }
+            }  
+		  }
+		}
       );
-
       view.map.add(featureLayer);
 		  
       view.whenLayerView(featureLayer).then(function(layerView) {
@@ -74,7 +84,7 @@
 		    });
                   });
 				  
-	          loadCharts(features, "chart1", "POPULATION", "Population")
+	      loadCharts(features, "chart1", "POPULATION", "Population")
 		  loadCharts(features, "chart2", "POP_SQMI", "Density (Square Mile)")
 		  loadCharts(features, "chart3", "MED_AGE", "Median Age")
                   
@@ -113,7 +123,6 @@
 	    }
 		  
 	});
-
   </script>
   
 </head>
