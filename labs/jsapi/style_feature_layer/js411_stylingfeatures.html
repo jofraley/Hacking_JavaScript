@@ -1,4 +1,4 @@
-<!-- Excercise 6 , Written in JavaScript 4.11 / Styling Feature Layers in a Web Map   -->
+<!-- Exercise 6 , Written in JavaScript 4.11 / Styling Feature Layers in a Web Map   -->
 
 
 <!DOCTYPE html>
@@ -42,8 +42,8 @@
       var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-74.029, 40.71],
-        zoom: 10
+        center: [-73.99, 40.71],
+        zoom: 12
       });
 
       //Add this   
@@ -94,8 +94,8 @@
       map.add(nyc_blocks);
       map.add(metrolines);
       map.add(stations);
-      stations.opacity = 0.3;
-      nyc_blocks.opacity = 0.3;
+      stations.opacity = 0.7;
+      nyc_blocks.opacity = 0.7;
       //map.addMany([nyc_blocks, metrolines, stations]);
 
 
