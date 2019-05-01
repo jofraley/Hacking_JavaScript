@@ -1,8 +1,11 @@
-###Create an App from a Web Map
+###Create an App from a Web Map | Exercise 9 
 
 You can use the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) to easily load web maps built with the Map Viewer. The advantage to using this approach is that the map will contain all of the pre-defined settings you configured in the Map Viewer. e.g. Layer Styles, Popups, Refresh Rate.
 
 In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a custom JavaScript app. 
+
+* Explore the [WebMap Class](https://developers.arcgis.com/javascript/latest/api-reference/esri-WebMap.html)
+
 
 1. Click [JS API starter map HTML](../../jsapi/create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
@@ -32,17 +35,17 @@ In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a cust
 
     var map = new WebMap({
       portalItem: { // autocasts as new PortalItem
-        id: "7d281311aef74b5fa2c39f0ebc01b5dd"
+        id: "dc098a0cd0bd4358823bc702898e703e"
       }
-    });
+    })
 
     var view = new MapView({
-      map: map,
-      container: "viewDiv"
+      container: "viewDiv",
+      map: map
     });
 ```
 
 Your app should look something like this:
- * [Code](index.html)
+ * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/webmap_apps/create_jsapi_app/js411_app.html)
  * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi_app/index.html)
 
