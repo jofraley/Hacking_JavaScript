@@ -41,7 +41,7 @@ To learn more about what options you have with SceneLayers look at the [SceneLay
           container: "viewDiv",
           map: map,
           camera:{
-            position: [-74.029, 40.71, 790],
+            position: [-74.022468, 40.699343, 790],
             tilt: 71.47,
             heading: 30.25
           }
