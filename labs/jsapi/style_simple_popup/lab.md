@@ -2,7 +2,7 @@
 
 In this lab you will use code to style a popup.
 
-1. Click [create_starter_map/index.html](../create_starter_map/index.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
+1. Click [create_starter_map/index.html](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/create_starter_map/starter_map.html) and copy the contents to a new [jsbin.com](http://jsbin.com).
 
 2. In `JSBin` > `HTML`, update the `require` statement and `function` definition:
 
