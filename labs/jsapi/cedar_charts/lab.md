@@ -44,11 +44,11 @@ var view = new MapView({
 var featureLayer = new FeatureLayer("https://services.arcgis.com/P3ePLMYs2RVChkJx/arcgis/rest/services/USA_States_Generalized/FeatureServer/0",
   { outFields: ["*"],
     renderer: {
-      type: "simple",  // autocasts as new SimpleRenderer()
+      type: "simple",
       symbol: {
-        type: "simple-fill",  // autocasts as new SimpleMarkerSymbol()
+        type: "simple-fill",
         color: [0, 0, 0, 0.1],
-        outline: {  // autocasts as new SimpleLineSymbol()
+        outline: {
           width: 0.5,
           color: "white"
         }
