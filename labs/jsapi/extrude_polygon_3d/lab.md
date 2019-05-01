@@ -12,8 +12,8 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
     <title>Extrude polygon by visual variables</title>
 
-    <link rel="stylesheet" href="https://js.arcgis.com/4.9/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.9/"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.11/"></script>
     
     <style>
       html, body, #viewDiv {
@@ -38,7 +38,7 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
 
           //Create map
           var map = new Map({
-            basemap: "dark-gray-vector"
+            basemap: "terrain"
           });
 
           //Create SceneView for 3d visualization
@@ -46,7 +46,7 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
             container: "viewDiv",
             map: map,
             camera: {
-              position: [-77.00, 38.55, 30000],
+              position: [-74.0060, 40.328, 30000],
               tilt: 50,
               heading: 0
             }
