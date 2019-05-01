@@ -64,14 +64,14 @@ This lab introduces visual variables as a powerful way of extruding polygons in 
    
 2. The JSBin `Output` panel should show a 3D view of earth that you can rotate around.
 
-3. Below the `SceneView` add a feature layer. When you test run your app the layer will look like green polygons. 
+3. Below the `SceneView` add a feature layer. When you test run your app the layer will look like blue polygons. 
 Don't worry, we're going to fix this in just a minute.
 
 
   ``` javascript
       //Create featureLayer and add to the map
       var blockgroups = new FeatureLayer({
-        url: "https://services.arcgis.com/hRUr1F8lE8Jq2uJo/arcgis/rest/services/Census_Block_Groups__2010/FeatureServer/0"
+        url: "https://services.arcgis.com/bGgB6gXiQ835YdNp/arcgis/rest/services/NYC_All_Neighborhoods_Alc/FeatureServer/0"
       });
       map.add(blockgroups);
   ```
@@ -81,7 +81,6 @@ then we'll apply `visualVariables` to define how to render the values by color, 
 
    
   ``` js
-
       //Create the Renderer for the featureLayer,
       var extrudePolygonRenderer = new SimpleRenderer({
         symbol: new PolygonSymbol3D({
@@ -90,38 +89,40 @@ then we'll apply `visualVariables` to define how to render the values by color, 
         // These define how to render by size, color and/or opacity
         // Each visualVariable is associated with a field
         visualVariables: [{
+          // Total Wine Consumption -- symbolize by polygon height
             type: "size",
-            field: "P0010001",
-             stops: [
+            field: "food_x2005_x",
+            stops: [
               {
                 value: 0,
-                size: 500
+                size: 10
               },
               {
-                value: 3500,
-                size: 4000
+                value: 20000000,
+                size: 2000
               }]
           }, {
+            // Total Beer Consumption -- Symbolize by color
             type: "color", 
-            field: "P0010001",
-             stops: [
+            field: "food_x2003_x",
+            stops: [
               {
                 value: 0,
-                color: [222,235,247],
+                color: "#FFFCD4",
               },
               {
-                value: 10000,
-                color: [49,130,189],
+                value: 20000000,
+                color: "#0D2644",
               }]
-          }]
+          }
+        ]
         });
         blockgroups.renderer = extrudePolygonRenderer;
-
   ```
    
 Your app should look something like this:
 
- * [Code](index.html)
+ * [Code](https://github.com/jofraley/Hacking_JavaScript/tree/master/labs/jsapi/extrude_polygon_3d)
  * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/extrude_polygon_3d/index.html)
  
 ###Bonus
