@@ -1,0 +1,70 @@
+    
+// Exercise 5 Adding 3D Scene Layer
+
+<!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>3D Map</title>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.11/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.11/"></script>
+
+    <style>
+      html, body, #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+      }
+    </style>
+
+    <script>
+      require([
+        "esri/Map",
+        "esri/views/SceneView",
+        "esri/layers/SceneLayer",
+        "dojo/domReady!"
+      ], function(Map, SceneView, SceneLayer) {
+
+        var buildingsSL = new SceneLayer({
+          url: "https://tiles.arcgis.com/tiles/0p6i4J6xhQas4Unf/arcgis/rest/services/New_York_City_3D_Buildings_Optimized/SceneServer"
+        });
+
+        var map = new Map({
+          basemap: "dark-gray-vector",
+          ground: "world-elevation",
+          layers: [buildingsSL, metrolines, stations]
+        });
+        
+        var view = new SceneView({
+          container: "viewDiv",
+          map: map,
+          camera:{
+            position: [-74.029, 40.71, 790],
+            tilt: 71.47,
+            heading: 30.25
+          }
+        });
+        
+        var metrolines = new FeatureLayer({
+          url: "http://services7.arcgis.com/kHi1Eco9RJ4lZsrC/arcgis/rest/services/NYC_Subway_Routes/FeatureServer",
+          renderer: renderer
+        });
+
+
+        var stations = new FeatureLayer({
+          url: "https://services1.arcgis.com/JPUKRee8mEBfJ0K4/arcgis/rest/services/NYC_Subway_Stations_2015/FeatureServer", 
+        });
+
+        var nyc_blocks = new FeatureLayer({
+          url: "http://services7.arcgis.com/kHi1Eco9RJ4lZsrC/arcgis/rest/services/NeighborhoodTabulationAreas_NYC_2010Census_Brooklyn_Queens/FeatureServer"
+        });
+
+      });
+    </script>
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+  </html>
