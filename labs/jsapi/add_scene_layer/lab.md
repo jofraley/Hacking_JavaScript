@@ -55,4 +55,4 @@ Your app should look something like this:
 ###Bonus
 
 * Add the same layers you did in the 2D map, [MetroLines](https://services7.arcgis.com/kHi1Eco9RJ4lZsrC/arcgis/rest/services/NYC_Subway_Routes/FeatureServer/0), [BlockGroups](http://services7.arcgis.com/kHi1Eco9RJ4lZsrC/ArcGIS/rest/services/NeighborhoodTabulationAreas_NYC_2010Census_Brooklyn_Queens/FeatureServer/0), and [MetroStations](https://services1.arcgis.com/JPUKRee8mEBfJ0K4/ArcGIS/rest/services/NYC_Subway_Stations_2015/FeatureServer/0)
-You can see the resulting code [here](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/add_scene_layer_feature_layers/index.html)
+You can see the resulting code [here](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/add_scene_layer_feature_layers/js411_addscenefeaturelayers.html)
