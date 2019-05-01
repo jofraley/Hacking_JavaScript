@@ -1,4 +1,4 @@
-###Create an 3D Application from a 3d Web Scene
+###Create an 3D Application from a Web Scene
 
 You can use the [ArcGIS API for JavaScript](https://developers.arcgis.com/javascript/) to easily load web scenes built with the Scene Viewer. The advantage to using this approach is that the map will contain all of the pre-defined settings you configured in the Scene Viewer. 
 
