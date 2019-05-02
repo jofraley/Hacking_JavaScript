@@ -32,7 +32,7 @@ In this lab you will use code to style a popup.
         }]
       });
   ```
-5. Now add the template to its assigned feature layer and add the featurelayer to the map.
+4. Now add the template to its assigned feature layer and add the featurelayer to the map.
 
   ```javascript
       var metrolines = new FeatureLayer({
@@ -50,7 +50,7 @@ In this lab you will use code to style a popup.
       map.add(stations);
   ```
 
-6. Confirm that the JSBin `Output` panel shows styled popups when you click on the block groups.
+5. Confirm that the JSBin `Output` panel shows styled popups when you click on the block groups.
 
 Your app should look something like this:
 * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/style_simple_popup/js411popup.html)
