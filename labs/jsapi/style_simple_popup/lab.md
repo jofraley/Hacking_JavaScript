@@ -54,7 +54,7 @@ In this lab you will use code to style a popup.
 
 Your app should look something like this:
 * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/style_simple_popup/js411popup.html)
-* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/style_simple_popup/index.html)
+* [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/style_simple_popup/js411popup.html)
 
 Bonus
 * Add a legend and make sure to add the infoDiv to the html
