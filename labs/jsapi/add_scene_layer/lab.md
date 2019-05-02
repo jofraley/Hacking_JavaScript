@@ -50,7 +50,7 @@ To learn more about what options you have with SceneLayers look at the [SceneLay
 Your app should look something like this:
 
  * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/add_scene_layer/js411_addscenelayer.html)
- * [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi/add_scene_layer/index.html)
+ * [Live App](https://jofraley.github.io/Hacking_JavaScript/labs/jsapi/add_scene_layer/js411_addscenelayer.html)
 
 ###Bonus
 
