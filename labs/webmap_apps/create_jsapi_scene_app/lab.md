@@ -50,6 +50,6 @@ Here are some additional scenes that you can try out:
 
 Your app should look something like this:
  * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/webmap_apps/create_jsapi_scene_app/js411_scene.html)
- * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi_scene_app/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi_scene_app/js411_scene.html)
 
 
