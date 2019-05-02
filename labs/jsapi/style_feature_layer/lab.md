@@ -90,6 +90,6 @@ The NYC Subway system is split between the A Division (Numbering) and B Division
 
 Your app should look something like this:
  * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/style_feature_layer/js411_stylingfeatures.html)
- * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/style_feature_layer/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/style_feature_layer/js411_stylingfeatures.html)
 
 
