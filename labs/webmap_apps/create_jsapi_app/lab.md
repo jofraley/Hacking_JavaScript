@@ -48,5 +48,5 @@ In this lab, you will use the ArcGIS JS API to load a WebMap by its ID in a cust
 
 Your app should look something like this:
  * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/webmap_apps/create_jsapi_app/js411_app.html)
- * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi_app/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/webmap_apps/create_jsapi_app/js411_app.html)
 
