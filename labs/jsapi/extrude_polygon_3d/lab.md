@@ -123,7 +123,7 @@ then we'll apply `visualVariables` to define how to render the values by color, 
 Your app should look something like this:
 
  * [Code](https://github.com/jofraley/Hacking_JavaScript/blob/master/labs/jsapi/extrude_polygon_3d/js411extrudepolygons.html)
- * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/extrude_polygon_3d/index.html)
+ * [Live App](http://jofraley.github.io/Hacking_JavaScript/labs/jsapi/extrude_polygon_3d/js411extrudepolygons.html)
  
 ###Bonus
 
