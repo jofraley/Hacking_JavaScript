@@ -62,10 +62,40 @@
 
         var view = new SceneView({
           container: "viewDiv",
-          map: scene
-          //zoom: 2
+          map: scene,
+          zoom: 4
         });
-		_toggleVizTimer();
+		scene.load()
+    .then(function() {
+      // load the basemap to get its layers created
+      return scene.basemap.load();
+    })
+    .then(function() {
+      // grab all the layers and load them
+      var allLayers = scene.allLayers;
+      var promises = allLayers.map(function(layer) {
+        return layer.load();
+      });
+      return Promise.all(promises.toArray());
+    })
+    .then(function(layers) {
+      // each layer load promise resolves with the layer
+      console.log("all " + layers.length + " layers loaded");
+	  _toggleVizTimer();
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+		//if(scene.loaded) {
+		//	_toggleVizTimer();
+		//}
+		
+		//scene
+     	//	.when(function() {
+		//    console.log("inside watch");
+		//   _toggleVizTimer();
+		//});
+		
         /*****************************************************************
          *
          * Add event listeners to go to a target point using animation options
@@ -132,7 +162,7 @@
 	  //console.log(posX)
       view.goTo({
         position: [posX, 0, posZ],
-        tilt: 0,
+        tilt: 5,
         heading: 0
       }, {
         maxDuration: 900
