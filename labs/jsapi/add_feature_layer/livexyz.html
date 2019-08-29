@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>Filter features by attribute - 4.12</title>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.12/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.12/"></script>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      #categories-filter {
+        height: 520px;
+        width: 170px;
+        visibility: hidden;
+      }
+
+      .category-item {
+        width: 100%;
+        padding: 10px;
+        text-align: center;
+        vertical-align: baseline;
+        cursor: pointer;
+        height: 40px;
+      }
+
+      .category-item:focus {
+        background-color: dimgrey;
+      }
+
+      .category-item:hover {
+        background-color: dimgrey;
+      }
+
+      #titleDiv {
+        padding: 10px;
+      }
+
+      #titleText {
+        font-size: 20pt;
+        font-weight: 60;
+        padding-bottom: 10px;
+      }
+    </style>
+    <script>
+      require([
+        "esri/views/MapView",
+        "esri/Map",
+        "esri/layers/FeatureLayer",
+        "esri/widgets/Expand"
+      ], function(MapView, Map, FeatureLayer, Expand) {
+        let businessLayerView;
+
+        
+        const layer = new FeatureLayer({
+          portalItem: {
+            id: "9e83c36b245341d6b9dcd6c1bee0f458"
+          },
+          outFields: ["*"]
+        });
+
+        const map = new Map({
+          basemap: "dark-gray-vector",
+          layers: [layer]
+        });
+
+        const view = new MapView({
+          map: map,
+          container: "viewDiv",
+          center: [-73.9150, 40.69252],
+          zoom: 10
+        });
+
+        const categoriesNodes = document.querySelectorAll(`.category-item`);
+        const categoriesElement = document.getElementById("categories-filter");
+
+        
+        categoriesElement.addEventListener("click", filterBycategory);
+
+        
+        function filterBycategory(event) {
+          const selectedcategory = event.target.getAttribute("data-category");
+          businessLayerView.filter = {
+            where: "primary_category_0_name = '" + selectedcategory + "'"
+          };
+        }
+
+        view.whenLayerView(layer).then(function(layerView) {
+          
+          businessLayerView = layerView;
+
+          // set up UI items
+          categoriesElement.style.visibility = "visible";
+          const categoriesExpand = new Expand({
+            view: view,
+            content: categoriesElement,
+            expandIconClass: "esri-icon-filter",
+            group: "top-left"
+          });
+          //clear the filters when user closes the expand widget
+          categoriesExpand.watch("expanded", function() {
+            if (!categoriesExpand.expanded) {
+              businessLayerView.filter = null;
+            }
+          });
+          view.ui.add(categoriesExpand, "top-left");
+          view.ui.add("titleDiv", "top-right");
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="categories-filter" class="esri-widget">
+	  <div class="category-item visible-category" data-category="Home & Hobby">Home & Hobby</div>
+      <div class="category-item visible-category" data-category="Misc">Misc</div>
+      <div class="category-item visible-category" data-category="Food">Food</div>
+      <div class="category-item visible-category" data-category="Services">Services</div>
+      <div class="category-item visible-category" data-category="Essentials">Essentials</div>
+	  <div class="category-item visible-category" data-category="Municipal">Municipal</div> 
+	  <div class="category-item visible-category" data-category="Body">Body</div>
+	  <div class="category-item visible-category" data-category="Parks & Rec">Parks & Rec</div>
+	  <div class="category-item visible-category" data-category="Groups">Groups</div>
+	  <div class="category-item visible-category" data-category="Fashion">Fashion</div>
+	  <div class="category-item visible-category" data-category="Drinks">Drinks</div>
+	  <div class="category-item visible-category" data-category="Entertainment">Entertainment</div>
+	  <div class="category-item visible-category" data-category="Arts & Culture">Arts & Culture</div>
+    </div>
+    <div id="viewDiv"></div>
+    <div id="titleDiv" class="esri-widget">
+      <div id="titleText">Find Businesses</div>
+      <div>LiveXYZ</div>
+    </div>
+  </body>
+</html>
