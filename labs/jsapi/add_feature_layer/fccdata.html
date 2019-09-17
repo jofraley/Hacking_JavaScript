@@ -1,0 +1,170 @@
+<!-- Testing FCC Data -->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>FCC Data</title>
+
+  <link rel="stylesheet" href="https://js.arcgis.com/4.12/esri/themes/light/main.css" />
+	<script src="https://js.arcgis.com/4.12/"></script>
+  <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      #types-filter {
+        height: 280px;
+		width: 170px;
+        visibility: hidden;
+      }
+	  
+
+      .type-item {
+        width: 100%;
+        padding: 12px;
+        text-align: center;
+        vertical-align: baseline;
+        cursor: pointer;
+        height: 40px;
+      }
+
+      .type-item:focus {
+        background-color: dimgrey;
+      }
+
+      .type-item:hover {
+        background-color: dimgrey;
+      }
+
+      #titleDiv {
+        padding: 10px;
+      }
+
+      #titleText {
+        font-size: 20pt;
+        font-weight: 60;
+        padding-bottom: 10px;
+      }
+    </style>
+
+  <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/layers/FeatureLayer",
+	  "esri/widgets/Expand",
+	   "esri/widgets/Search",
+      "dojo/domReady!"
+    ], function(Map, MapView, FeatureLayer, Expand, Search) {
+	let typeView;
+      var map = new Map({
+        basemap: "dark-gray-vector"
+      });
+      var view = new MapView({
+        container: "viewDiv",
+        map: map,
+        center: [-75.17, 40.00],
+        zoom: 12
+      });  
+	   const fccRenderer = {
+          type: "simple", // autocasts as new SimpleRenderer()
+          symbol: {
+            type: "simple-fill", // autocasts as new SimpleMarkerSymbol()
+            color: [0, 255, 255, .25],
+            outline: {
+			  color: [0, 255, 255],
+			  width: 0.2
+			},
+          }
+        };
+
+
+      var fccData = new FeatureLayer({
+        url: "https://kadebeem.esri.com/server/rest/services/FCC_Form477SummaryDec2017v2/MapServer/0",
+		renderer: fccRenderer,
+      });
+	  
+      map.add(fccData);
+      const typesNodes = document.querySelectorAll(`.type-item`);
+      const typesElement = document.getElementById("types-filter");
+	  
+      // click event handler for seasons choices
+      typesElement.addEventListener("click", filterByType);
+	  
+      function filterByType(event) {
+          const selectedType = event.target.getAttribute("data-type");
+		  if (selectedType == "DistinctBBOfferings40") {
+		     typeView.filter = {
+				where: selectedType + " <> 0 OR DistinctBBOfferings41 <> 0 OR DistinctBBOfferings42 <> 0 OR DistinctBBOfferings43 <> 0"
+             };
+		  } 
+		  else if (selectedType == "DistinctBBOfferings11") {
+			typeView.filter = {
+				where: selectedType + " <> 0 OR DistinctBBOfferings10 <> 0 OR DistinctBBOfferings20 <> 0 OR DistinctBBOfferings12 <> 0"
+             };
+		  }
+		  else {
+		    console.log(selectedType)
+			typeView.filter = {
+				where: selectedType + " <> 0"
+				
+			};
+		  }
+        }
+
+		
+      view.whenLayerView(fccData).then(function(layerView) {
+          // layer loaded
+          // get a reference to the type layerview
+          typeView = layerView;
+
+          // set up UI items
+          typesElement.style.visibility = "visible";
+          const typesExpand = new Expand({
+            view: view,
+            content: typesElement,
+            expandIconClass: "esri-icon-filter",
+            group: "top-left"
+          });
+          //clear the filters when user closes the expand widget
+          typesExpand.watch("expanded", function() {
+            if (!typesExpand.expanded) {
+              typeView.filter = null;
+            }
+          });
+          view.ui.add(typesExpand, "top-left");
+		  
+		  
+		});
+		var searchWidget = new Search({
+          view: view
+        });
+
+        // Add the search widget to the top right corner of the view
+        view.ui.add(searchWidget, {
+          position: "top-right"
+        });
+	});
+  </script>
+</head>
+<body>  
+<div id="types-filter" class="esri-widget"> 
+	  <div class="type-item visible-type" data-type="DistinctBBOfferings0">All Other</div>
+      <div class="type-item visible-type" data-type="DistinctBBOfferings50">Fiber Optic</div>
+      <div class="type-item visible-type" data-type="DistinctBBOfferings40">Cable Modem</div>
+      <div class="type-item visible-type" data-type="DistinctBBOfferings11">DSL</div>
+      <div class="type-item visible-type" data-type="DistinctBBOfferings90">Electric Powerline</div>
+	  <div class="type-item visible-type" data-type="DistinctBBOfferings70">Fixed Wireless</div>
+	  <div class="type-item visible-type" data-type="DistinctBBOfferings30">Other Copper</div>
+	  <div class="type-item visible-type" data-type="DistinctBBOfferings60">Satellite</div>
+    </div>
+
+  <div id="viewDiv"></div>
+</body>
+</html>
