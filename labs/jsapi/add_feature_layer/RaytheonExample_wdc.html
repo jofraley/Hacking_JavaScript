@@ -1,0 +1,613 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+
+<title>Raytheon Example App</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      #infoDiv {
+        position: absolute;
+        top: 15px;
+        left: 60px;
+      }
+
+      #screenshotDiv {
+        position: absolute;
+        bottom: 30px;
+        right: 10;
+        width: 200px;
+      }
+
+      #infoDiv input {
+        border: none;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 2px;
+      }
+      .esri-editor .esri-item-list__scroller {
+        max-height: 350px;
+      }
+
+      #slidesDiv {
+        background-color: white;
+        opacity: 0.9;
+        color: black;
+        padding: 10px;
+        visibility: hidden;
+        bottom: 20px;
+        overflow-y: auto;
+        text-align: center;
+        height: 260px;
+      }
+
+      #slidesDiv .slide {
+        /* Show cursor as pointer when on a slide */
+        cursor: pointer;
+        margin-bottom: 6px;
+      }
+
+      #slidesDiv .slide .title {
+        /* Center the title text */
+        text-align: center;
+      }
+      /* Draw active slide with a nice border around the thumbnail */
+
+      #slidesDiv .slide.active img {
+        box-shadow: 0px 0px 12px black;
+        border-style: solid;
+        border-width: thin;
+        border-color: black;
+      }
+    </style>
+
+    <link
+      rel="stylesheet"
+      href="https://js.arcgis.com/4.14/esri/themes/light/main.css"
+    />
+    <script src="https://js.arcgis.com/4.14/"></script>
+
+    <script>
+      require([
+        "esri/config",
+        "esri/views/MapView",
+        "esri/views/SceneView",
+        "esri/WebMap",
+        "esri/WebScene",
+        "esri/widgets/LayerList",
+        "esri/widgets/BasemapGallery",
+        "esri/widgets/Expand",
+        "esri/geometry/Point",
+        "esri/Graphic",
+        "esri/widgets/LineOfSight",
+        "esri/core/watchUtils",
+        "esri/widgets/ScaleBar",
+        "esri/widgets/Editor",
+        "esri/layers/GraphicsLayer",
+        "esri/tasks/Geoprocessor",
+        "esri/tasks/support/LinearUnit",
+        "esri/tasks/support/FeatureSet",
+        "esri/widgets/Search",
+        "esri/widgets/Bookmarks",
+        "esri/layers/MapImageLayer",
+        "esri/layers/FeatureLayer",
+        "esri/widgets/Home",
+        "esri/webscene/Slide"
+      ], function(esriConfig, MapView, SceneView, WebMap, WebScene, 
+         LayerList, BasemapGallery, Expand, Point, Graphic, 
+         LineOfSight, watchUtils, ScaleBar, Editor, GraphicsLayer,
+         Geoprocessor, LinearUnit, FeatureSet, Search, Bookmarks,
+         MapImageLayer, FeatureLayer, Home, Slide) {
+        
+        // CHANGE THE URL TO THE PORTAL TO RAYTHEON ENTERPRISE AND UNCOMMENT OUT NEXT LINE
+        //esriConfig.portalUrl = "https://dcgs-a-cd1-gis.dcgscd1.ray.com/portal";
+        esriConfig.portalUrl = "https://wdcdefense.esri.com/portal";
+
+        var switchButton = document.getElementById("switch-btn");
+        var ssButton = document.getElementById("screenshotBtn");
+        
+        var gpUrl =
+          "https://sampleserver6.arcgisonline.com/arcgis/rest/services/Elevation/ESRI_Elevation_World/GPServer/Viewshed";
+        var gp = new Geoprocessor(gpUrl);
+        
+        var enableViewshed = false;
+        var enableEditing = false;
+        
+        var viewshedExpand = new Expand();
+        var editorExpand = new Expand();
+
+        var appConfig = {
+          mapView: null,
+          sceneView: null,
+          activeView: null,
+          container: "viewDiv" // use same container for views
+        };
+
+        var initialViewParams = {
+          //zoom: 12,
+          //center: [-77.029, 38.89],
+          container: appConfig.container
+        };
+        var webmap = new WebMap({
+          portalItem: {
+            // autocasts as new PortalItem()
+            //id: "7d281311aef74b5fa2c39f0ebc01b5dd"
+            // Raytheon Web Map id  
+            //id: "2fb06f261fde4d6daa36604be919d531"
+            //WDC Defence ID
+            //id: "7d7a47b3d0464f83894437b874ad19d2"
+            id: "d3d3860df7b444a383246d1bf04961c3"
+          }
+        });
+        var mapLayer = new MapImageLayer({
+          url: "https://wdcdefense.esri.com/server/rest/services/MilitarySymbology/MapServer",
+          refreshInterval: 0.1,
+          minScale: 1500000
+        });
+        webmap.add(mapLayer);
+
+        var controlAreas = new FeatureLayer({
+          url: "https://wdcdefense.esri.com/server/rest/services/MilitarySymbology/FeatureServer/22",
+          refreshInterval: 0.1,
+          opacity: 0,
+          minScale: 1500000
+          
+        });
+        webmap.add(controlAreas);
+
+        var controlLines = new FeatureLayer({
+          url: "https://wdcdefense.esri.com/server/rest/services/MilitarySymbology/FeatureServer/21",
+          refreshInterval: 0.1,
+          opacity: 0,
+          minScale: 1500000
+        });
+        webmap.add(controlLines);
+
+        var controlPoints = new FeatureLayer({
+          url: "https://wdcdefense.esri.com/server/rest/services/MilitarySymbology/FeatureServer/20",
+          refreshInterval: 0.1,
+          opacity: 0,
+          minScale: 1500000
+        });
+        webmap.add(controlPoints);
+
+        var graphicsLayer = new GraphicsLayer();
+        webmap.add(graphicsLayer);
+
+        var scene = new WebScene({
+          portalItem: {
+            // autocasts as new PortalItem()
+            //id: "a49ce6d0705b41fb81b6dea098a8b2f7",
+            //Raytheon Scene Id
+            //id: "9142d8c44cba4a69a6ba84cf756f8fa4"
+            //WDC Defense id
+            //id: "0fc57f0994af400c826562474d30f2db"
+            id: "dc954d115d9b4436badb0a0f49086076"
+          }
+        });
+
+        var markerSymbol = {
+          type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
+          color: [255, 0, 0],
+          outline: {
+            // autocasts as new SimpleLineSymbol()
+            color: [255, 255, 255],
+            width: 2
+          }
+        };
+
+        var fillSymbol = {
+          type: "simple-fill", // autocasts as new SimpleFillSymbol()
+          color: [226, 119, 40, 0.75],
+          outline: {
+            // autocasts as new SimpleLineSymbol()
+            color: [255, 255, 255],
+            width: 1
+          }
+        };
+
+        function expandedWidget(){
+          if (viewshedExpand.expanded) {
+            enableViewshed = true;
+            console.log("inside viewshed expanded");
+            
+          }
+          else {
+            console.log("inside viewshed not expanded")
+            graphicsLayer.removeAll();
+            //enableViewshed = false;
+          }
+          if (editorExpand.expanded){
+            console.log("edit expanded");
+            enableEditing = true;
+          }
+          else {
+            console.log("edit not expanded");
+            enableEditing = false;
+          }
+        }
+        
+        function mapInteraction(event){
+          if (enableEditing){
+            console.log("Editing");
+          }
+          else if(enableViewshed) {
+            console.log("Viewshed");
+            computeViewshed(event);
+          }
+          else {
+            appConfig.activeView.popup.watch("visible", function(event){});
+          }
+        }
+
+        function computeViewshed(event) {
+          graphicsLayer.removeAll();
+
+          var point = new Point({
+            longitude: event.mapPoint.longitude,
+            latitude: event.mapPoint.latitude
+          });
+
+          var inputGraphic = new Graphic({
+            geometry: point,
+            symbol: markerSymbol
+          });
+
+          graphicsLayer.add(inputGraphic);
+
+          var inputGraphicContainer = [];
+          inputGraphicContainer.push(inputGraphic);
+          var featureSet = new FeatureSet();
+          featureSet.features = inputGraphicContainer;
+
+          var vsDistance = new LinearUnit();
+          vsDistance.distance = 5;
+          vsDistance.units = "miles";
+
+          var params = {
+            Input_Observation_Point: featureSet,
+            Viewshed_Distance: vsDistance
+          };
+
+          gp.execute(params).then(drawResultData);
+        }
+
+        function drawResultData(result) {
+          var resultFeatures = result.results[0].value.features;
+
+          // Assign each resulting graphic a symbol
+          var viewshedGraphics = resultFeatures.map(function(feature) {
+            feature.symbol = fillSymbol;
+            return feature;
+          });
+
+          // Add the resulting graphics to the graphics layer
+          graphicsLayer.addMany(viewshedGraphics);
+
+        }
+        // create 2D view and and set active
+        appConfig.mapView = createView(initialViewParams, "2d");
+        appConfig.mapView.map = webmap;
+        appConfig.activeView = appConfig.mapView;
+        
+        // create 3D view, won't initialize until container is set
+        initialViewParams.container = null;
+        initialViewParams.map = scene;
+        appConfig.sceneView = createView(initialViewParams, "3d");
+
+        // switch the view between 2D and 3D each time the button is clicked
+        switchButton.addEventListener("click", function() {
+          switchView();
+        });
+        
+        ssButton.addEventListener("click", createScreenShot);
+        
+        function createScreenShot(){
+          appConfig.activeView.takeScreenshot().then(function(screenshot) {  
+                var newTab = window.open();
+                var imagesrc = screenshot.dataUrl;
+                newTab.document.body.innerHTML = "<img src='" + imagesrc + "' width='100%' height='100%'>";
+                console.log(screenshot.dataUrl);
+          });
+        }
+        // Switches the view from 2D to 3D and vice versa
+        function switchView() {
+          var is3D = appConfig.activeView.type === "3d";
+          var activeViewpoint = appConfig.activeView.viewpoint.clone();
+
+          // remove the reference to the container for the previous view
+          appConfig.activeView.container = null;
+
+          if (is3D) {
+            // if the input view is a SceneView, set the viewpoint on the
+            // mapView instance. Set the container on the mapView and flag
+            // it as the active view
+            appConfig.mapView.viewpoint = activeViewpoint;
+            appConfig.mapView.container = appConfig.container;
+            appConfig.activeView = appConfig.mapView;
+            switchButton.value = "3D";
+          } else {
+            appConfig.sceneView.viewpoint = activeViewpoint;
+            appConfig.sceneView.container = appConfig.container;
+            appConfig.activeView = appConfig.sceneView;
+            switchButton.value = "2D";
+          }
+        }
+
+        function createSlideUI(slide, placement) {
+          var slideElement = document.createElement("div");
+          // Assign the ID of the slide to the <span> element
+          slideElement.id = slide.id;
+          slideElement.classList.add("slide");
+          var slidesDiv = document.getElementById("slidesDiv");
+          if (placement === "first") {
+            slidesDiv.insertBefore(slideElement, slidesDiv.firstChild);
+          } else {
+            slidesDiv.appendChild(slideElement);
+          }
+          var title = document.createElement("div");
+          title.innerText = slide.title.text;
+          // Place the title of the slide in the <div> element
+          slideElement.appendChild(title);
+
+          var img = new Image();
+          // Set the src URL of the image to the thumbnail URL of the slide
+          img.src = slide.thumbnail.url;
+          // Set the title property of the image to the title of the slide
+          img.title = slide.title.text;
+          // Place the image inside the new <div> element
+          slideElement.appendChild(img);
+
+          slideElement.addEventListener("click", function() {
+            var slides = document.querySelectorAll(".slide");
+            Array.from(slides).forEach(function(node) {
+              node.classList.remove("active");
+            });
+
+            slideElement.classList.add("active");
+
+            slide.applyTo(appConfig.sceneView);
+          });
+        }
+
+
+        // convenience function for creating a 2D or 3D view
+        function createView(params, type) {
+          var view;
+          
+              
+          var is2D = type === "2d";
+          if (is2D) {
+            view = new MapView(params);
+            // create the LayerList Widget
+            view.when(function() {
+              var layerList = new LayerList({
+                view: view,
+                listItemCreatedFunction: function(event) {
+                  const item = event.item;
+                  if (item.layer.type != "group") {
+                    // don't show legend twice
+                    item.panel = {
+                      content: "legend",
+                      open: false
+                    };
+                  }
+                }
+              });
+
+              var homeBtn = new Home({
+                view: view
+              });
+
+              // Add the home button to the top left corner of the view
+              view.ui.add(homeBtn, "top-left");
+
+              var llExpand = new Expand({
+                view: view,
+                content: layerList
+              });
+              // Add widget to the top right corner of the view
+              view.ui.add(llExpand, "top-left");
+              
+            });
+            var scaleBar = new ScaleBar({
+                view: view
+            });
+            // Add widget to the bottom left corner of the view
+            view.ui.add(scaleBar, {
+              position: "bottom-left"
+            });
+            
+            // Create the basemapGallery widget
+            var basemapGallery = new BasemapGallery({
+              view: view
+            });
+            var bgExpand = new Expand({
+              view: view,
+              content: basemapGallery
+            });
+            view.ui.add(bgExpand, "top-left");
+            
+            // Create the Editor
+            var editor = new Editor({
+              view: view
+            });
+
+            editorExpand.view = view;
+            editorExpand.content = editor;
+            var searchWidget = new Search({
+              view: view
+            });
+            const bookmarks = new Bookmarks({
+              view: view,
+              editingEnabled: true,
+              // whenever a new bookmark is created, a 100x100 px
+              // screenshot of the view will be taken and the extent
+              // of the view will not be set as the extent of the new bookmark
+              bookmarkCreationOptions: {
+                takeScreenshot: true,
+                captureExtent: false,
+                screenshotSettings: {
+                  width: 100,
+                  height: 100
+                }
+              }
+            });
+            
+            // Add the search widget to the top right corner of the view
+            view.ui.add(searchWidget, {
+              position: "top-right"
+            });
+
+            view.ui.add(bookmarks, "top-right");
+
+            // Add widget to the top right corner of the view
+            view.ui.add(editorExpand, "top-right");
+           
+            //var gp = new Geoprocessor(gpUrl);
+            gp.outSpatialReference = {
+              // autocasts as new SpatialReference()
+              wkid: 102100
+            };
+            //view.on("click", computeViewshed);
+            viewshedExpand.expandTooltip = "Click on map to run viewshed";
+            viewshedExpand.view = view;
+            viewshedExpand.content = document.getElementById("info1Div");
+
+            view.ui.add(viewshedExpand, "top-right");
+            
+            //clear the filters when user closes the expand widget
+            viewshedExpand.watch("expanded", expandedWidget);
+            editorExpand.watch("expanded", expandedWidget)
+
+            view.on("click", mapInteraction);
+            
+            
+
+            return view;
+          } else {
+            view = new SceneView(params);
+            var homeBtn = new Home({
+                view: view
+              });
+
+              // Add the home button to the top left corner of the view
+              view.ui.add(homeBtn, "top-left");
+
+            // Create basemapGallery widget
+            var basemapGallery = new BasemapGallery({
+              view: view
+            });
+            var bgExpand = new Expand({
+              view: view,
+              content: basemapGallery
+            });
+            view.ui.add(bgExpand, "top-left");
+            
+            // create the LayerList Widget
+            view.when(function() {
+              var layerList = new LayerList({
+                view: view,
+                listItemCreatedFunction: function(event) {
+                  const item = event.item;
+                  if (item.layer.type != "group") {
+                    // don't show legend twice
+                    item.panel = {
+                      content: "legend",
+                      open: true
+                    };
+                  }
+                }
+            });
+            var llExpand = new Expand({
+              view: view,
+              content: layerList
+            });
+            // Add widget to the top right corner of the view
+            view.ui.add(llExpand, "top-left");
+            });
+
+            // Line of Sight Widget
+            const lineOfSight = new LineOfSight({
+              view: view,
+              container: "losWidget"
+            });
+            
+            // add an Expand widget to make the menu responsive
+            const expand = new Expand({
+              expandTooltip: "Expand line of sight widget",
+              view: view,
+              content: document.getElementById("menu"),
+              expanded: false,
+              collapseIconClass: "esri-icon-hollow-eye"
+            });
+            
+            var searchWidget = new Search({
+              view: view
+            });
+            
+            view.ui.add(searchWidget, "top-right")
+            view.ui.add(expand, "top-right");
+
+          }
+          view.when(function() {
+            document.getElementById("slidesDiv").style.visibility = "visible";
+            var slides = scene.presentation.slides;
+            slides.forEach(createSlideUI);
+
+          
+          });
+          view.ui.add("slidesDiv", "bottom-left");
+          return view;
+        }
+        
+      });
+    </script>
+  </head>
+
+  <body>
+    <div id="viewDiv">
+      <div id="viewDiv">
+        <div id="menu" class="esri-widget">
+          <h3>Line of sight analysis</h3>
+          <div id="losWidget"></div>
+        </div>
+      </div>
+    </div>
+    <div id="info1Div" class="esri-widget">
+      <button id="toggle-auto-size" class="esri-button">
+        Click Map to Run Viewshed
+      </button>
+    </div>
+    <div id="editorDiv"></div>
+    <div id="infoDiv">
+      <input
+        class="esri-component esri-widget--button esri-widget esri-interactive"
+        type="button"
+        id="switch-btn"
+        value="3D"
+      />
+    </div>
+    <div id="screenshotDiv">
+      <button
+        id="screenshotBtn"
+        class="action-button esri-widget"
+        aria-label="Select screenshot area"
+        title="Select screenshot area"
+        >
+        Create Screenshot
+      </button>
+    </div>
+    <div id="slidesDiv" class="esri-widget"></div>
+  </body>
+</html>
